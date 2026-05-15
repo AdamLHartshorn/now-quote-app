@@ -3,62 +3,61 @@
 import { useState } from "react";
 
 import {
-  equipmentConfig,
+  parcelServiceRates,
+  parcelVehicleConfig,
+  fuelSurcharge,
   accessorialRates,
 } from "@/config/rates";
 
 export default function FastQuote() {
-  const [equipment, setEquipment] =
-    useState<keyof typeof equipmentConfig>("Car");
+  const [serviceType, setServiceType] =
+    useState<keyof typeof parcelServiceRates>("Direct");
+
+  const [vehicle, setVehicle] =
+    useState<keyof typeof parcelVehicleConfig>("Car");
 
   const [miles, setMiles] = useState("");
 
-  const [rush, setRush] = useState(false);
   const [afterHours, setAfterHours] = useState(false);
+  const [airport, setAirport] = useState(false);
   const [liftgate, setLiftgate] = useState(false);
-  const [twoPerson, setTwoPerson] = useState(false);
 
-  const selectedEquipment =
-    equipmentConfig[equipment];
+  const selectedService = parcelServiceRates[serviceType];
+  const selectedVehicle = parcelVehicleConfig[vehicle];
 
-  const mileage =
-    Number(miles) || 0;
+  const mileage = Number(miles) || 0;
 
-  const mileageSubtotal =
-    mileage *
-    selectedEquipment.ratePerMile;
+  const mileageRate =
+    mileage > 50
+      ? selectedVehicle.over50MileRate
+      : selectedService.ratePerMile;
 
-  const baseQuote =
+  const baseTransport =
     Math.max(
-      mileageSubtotal,
-      selectedEquipment.minimum
-    );
+      selectedService.minimum,
+      mileage * mileageRate
+    ) + selectedVehicle.upcharge;
+
+  const fuelPercent =
+    fuelSurcharge[selectedVehicle.fuelClass];
+
+  const fuelCharge =
+    baseTransport * fuelPercent;
 
   const accessorialTotal =
-    (rush ? accessorialRates.rush : 0) +
-    (afterHours
-      ? accessorialRates.afterHours
-      : 0) +
-    (liftgate
-      ? accessorialRates.liftgate
-      : 0) +
-    (twoPerson
-      ? accessorialRates.twoPerson
-      : 0);
+    (afterHours ? accessorialRates.parcelAfterHours : 0) +
+    (airport ? accessorialRates.airport : 0) +
+    (liftgate ? accessorialRates.liftgate : 0);
 
   const estimatedQuote =
-    baseQuote +
+    baseTransport +
+    fuelCharge +
     accessorialTotal;
 
   return (
     <main className="min-h-screen bg-black text-white p-6">
-
       <div className="mx-auto w-full max-w-md">
-
-        <a
-          href="/"
-          className="text-gray-400 text-sm"
-        >
+        <a href="/" className="text-gray-400 text-sm">
           ← Back
         </a>
 
@@ -67,37 +66,51 @@ export default function FastQuote() {
         </h1>
 
         <p className="text-gray-400 mb-8">
-          Quick customer-facing estimate.
+          Quick parcel-style quote.
         </p>
 
         <div className="space-y-5">
-
           <label className="block">
-
             <span className="text-sm text-gray-300">
-              Equipment
+              Service Type
             </span>
 
             <select
-              value={equipment}
+              value={serviceType}
               onChange={(event) =>
-                setEquipment(
-                  event.target.value as keyof typeof equipmentConfig
+                setServiceType(
+                  event.target.value as keyof typeof parcelServiceRates
                 )
               }
               className="mt-2 w-full rounded-xl bg-gray-900 border border-gray-700 p-4 text-xl"
             >
-              {Object.keys(equipmentConfig).map((item) => (
-                <option key={item}>
-                  {item}
-                </option>
+              {Object.keys(parcelServiceRates).map((item) => (
+                <option key={item}>{item}</option>
               ))}
             </select>
-
           </label>
 
           <label className="block">
+            <span className="text-sm text-gray-300">
+              Vehicle
+            </span>
 
+            <select
+              value={vehicle}
+              onChange={(event) =>
+                setVehicle(
+                  event.target.value as keyof typeof parcelVehicleConfig
+                )
+              }
+              className="mt-2 w-full rounded-xl bg-gray-900 border border-gray-700 p-4 text-xl"
+            >
+              {Object.keys(parcelVehicleConfig).map((item) => (
+                <option key={item}>{item}</option>
+              ))}
+            </select>
+          </label>
+
+          <label className="block">
             <span className="text-sm text-gray-300">
               Miles
             </span>
@@ -105,40 +118,20 @@ export default function FastQuote() {
             <input
               type="number"
               value={miles}
-              onChange={(event) =>
-                setMiles(event.target.value)
-              }
+              onChange={(event) => setMiles(event.target.value)}
               placeholder="Enter miles"
               className="mt-2 w-full rounded-xl bg-gray-900 border border-gray-700 p-4 text-xl"
             />
-
           </label>
 
           <section className="rounded-2xl bg-gray-900 border border-gray-700 p-4">
-
             <p className="text-sm text-gray-300 mb-3">
               Add-ons
             </p>
 
             <div className="grid grid-cols-2 gap-3">
-
               <button
-                onClick={() =>
-                  setRush(!rush)
-                }
-                className={`rounded-xl p-4 text-lg font-semibold border ${
-                  rush
-                    ? "bg-red-600 border-red-500"
-                    : "bg-black border-gray-700"
-                }`}
-              >
-                Rush
-              </button>
-
-              <button
-                onClick={() =>
-                  setAfterHours(!afterHours)
-                }
+                onClick={() => setAfterHours(!afterHours)}
                 className={`rounded-xl p-4 text-lg font-semibold border ${
                   afterHours
                     ? "bg-red-600 border-red-500"
@@ -149,9 +142,18 @@ export default function FastQuote() {
               </button>
 
               <button
-                onClick={() =>
-                  setLiftgate(!liftgate)
-                }
+                onClick={() => setAirport(!airport)}
+                className={`rounded-xl p-4 text-lg font-semibold border ${
+                  airport
+                    ? "bg-red-600 border-red-500"
+                    : "bg-black border-gray-700"
+                }`}
+              >
+                Airport
+              </button>
+
+              <button
+                onClick={() => setLiftgate(!liftgate)}
                 className={`rounded-xl p-4 text-lg font-semibold border ${
                   liftgate
                     ? "bg-red-600 border-red-500"
@@ -160,26 +162,10 @@ export default function FastQuote() {
               >
                 Liftgate
               </button>
-
-              <button
-                onClick={() =>
-                  setTwoPerson(!twoPerson)
-                }
-                className={`rounded-xl p-4 text-lg font-semibold border ${
-                  twoPerson
-                    ? "bg-red-600 border-red-500"
-                    : "bg-black border-gray-700"
-                }`}
-              >
-                Two Person
-              </button>
-
             </div>
-
           </section>
 
           <div className="rounded-2xl bg-gray-900 border border-gray-700 p-6 text-center">
-
             <p className="text-gray-400 text-sm">
               Estimated Quote
             </p>
@@ -189,46 +175,20 @@ export default function FastQuote() {
             </p>
 
             <div className="text-gray-500 text-sm mt-4 space-y-1">
-
+              <p>Transport: ${baseTransport.toFixed(2)}</p>
               <p>
-                Base:
-                {" "}
-                $
-                {baseQuote.toFixed(2)}
+                Fuel ({(fuelPercent * 100).toFixed(1)}%): $
+                {fuelCharge.toFixed(2)}
               </p>
-
+              <p>Add-ons: ${accessorialTotal.toFixed(2)}</p>
               <p>
-                Add-ons:
-                {" "}
-                $
-                {accessorialTotal.toFixed(2)}
+                {vehicle} / {serviceType} @ ${mileageRate.toFixed(2)}/mile
               </p>
-
-              <p>
-                {equipment}
-                {" "}
-                @
-                {" "}
-                $
-                {selectedEquipment.ratePerMile.toFixed(2)}
-                /mile
-              </p>
-
-              <p>
-                Minimum:
-                {" "}
-                $
-                {selectedEquipment.minimum.toFixed(2)}
-              </p>
-
+              <p>Minimum: ${selectedService.minimum.toFixed(2)}</p>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </main>
   );
 }

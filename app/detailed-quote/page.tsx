@@ -3,94 +3,130 @@
 import { useState } from "react";
 
 import {
-  equipmentConfig,
-  accessorialRates,
+  commercialEquipmentConfig,
   fuelSurcharge,
-  serviceMultipliers,
 } from "@/config/rates";
 
 export default function DetailedQuote() {
-  const [serviceType, setServiceType] =
-    useState<keyof typeof serviceMultipliers>("Same Day");
-
   const [equipment, setEquipment] =
-    useState<keyof typeof equipmentConfig>("Car");
+    useState<keyof typeof commercialEquipmentConfig>("Dock Truck");
+
+  const selectedEquipment =
+    commercialEquipmentConfig[equipment];
+
+  type ServiceType =
+    keyof typeof selectedEquipment.serviceRates;
+
+  const availableServices =
+    Object.keys(selectedEquipment.serviceRates) as ServiceType[];
+
+  const [serviceType, setServiceType] =
+    useState<string>("Direct");
 
   const [miles, setMiles] = useState("");
   const [stops, setStops] = useState("1");
   const [waitTime, setWaitTime] = useState("");
   const [weight, setWeight] = useState("");
 
-  const [rush, setRush] = useState(false);
   const [afterHours, setAfterHours] = useState(false);
+  const [sharp, setSharp] = useState(false);
+  const [noLoad, setNoLoad] = useState(false);
   const [liftgate, setLiftgate] = useState(false);
-  const [twoPerson, setTwoPerson] = useState(false);
-  const [palletJack, setPalletJack] = useState(false);
-  const [insideDelivery, setInsideDelivery] = useState(false);
   const [moffett, setMoffett] = useState(false);
-  const [airport, setAirport] = useState(false);
 
-  const selectedEquipment = equipmentConfig[equipment];
+  const safeServiceType =
+    availableServices.includes(serviceType as ServiceType)
+      ? (serviceType as ServiceType)
+      : availableServices[0];
+
+  const selectedService =
+    selectedEquipment.serviceRates[safeServiceType];
 
   const mileage = Number(miles) || 0;
   const stopCount = Number(stops) || 1;
   const waitMinutes = Number(waitTime) || 0;
   const shipmentWeight = Number(weight) || 0;
 
-  const serviceMultiplier = serviceMultipliers[serviceType];
-  const fuelPercent = fuelSurcharge[selectedEquipment.fuelClass];
-
   const baseMileage =
-    mileage *
-    selectedEquipment.ratePerMile *
-    serviceMultiplier;
+    selectedService.base +
+    mileage * selectedService.ratePerMile;
 
-  const fuelCharge = baseMileage * fuelPercent;
+  const overThresholdCharge =
+    "overThresholdEntireTripRate" in selectedEquipment &&
+    mileage > selectedEquipment.overMileageThreshold
+      ? mileage * selectedEquipment.overThresholdEntireTripRate
+      : "overThresholdAdditionalPerMile" in selectedEquipment &&
+          mileage > selectedEquipment.overMileageThreshold
+        ? (mileage - selectedEquipment.overMileageThreshold) *
+          selectedEquipment.overThresholdAdditionalPerMile
+        : 0;
 
-  const loadedMileage = baseMileage + fuelCharge;
+  const transportBeforeFuel =
+    noLoad
+      ? 0
+      : baseMileage + overThresholdCharge;
 
-  const baseQuote = Math.max(
-    loadedMileage,
-    selectedEquipment.minimum
-  );
+  const fuelPercent =
+    fuelSurcharge[selectedEquipment.fuelClass];
+
+  const fuelCharge =
+    transportBeforeFuel * fuelPercent;
 
   const additionalStopCharge =
     stopCount > 1 ? (stopCount - 1) * 25 : 0;
 
-  const chargeableWaitMinutes = Math.max(
-    0,
-    waitMinutes - selectedEquipment.freeWaitMinutes
-  );
+  const chargeableWaitMinutes =
+    Math.max(
+      0,
+      waitMinutes - selectedEquipment.freeWaitMinutes
+    );
 
   const waitTimeCharge =
     chargeableWaitMinutes *
     selectedEquipment.waitRatePerMinute;
 
-  const overweightAmount = Math.max(
-    0,
-    shipmentWeight - selectedEquipment.includedWeight
-  );
+  const overweightAmount =
+    Math.max(
+      0,
+      shipmentWeight - selectedEquipment.includedWeight
+    );
 
   const overweightCharge =
-    overweightAmount *
-    selectedEquipment.overweightRate;
+    Math.ceil(overweightAmount / 100) *
+    selectedEquipment.overweightRatePerCwt;
 
-  const accessorialTotal =
-    (rush ? accessorialRates.rush : 0) +
-    (afterHours ? accessorialRates.afterHours : 0) +
-    (liftgate ? accessorialRates.liftgate : 0) +
-    (twoPerson ? accessorialRates.twoPerson : 0) +
-    (palletJack ? accessorialRates.palletJack : 0) +
-    (insideDelivery ? accessorialRates.insideDelivery : 0) +
-    (moffett ? accessorialRates.moffett : 0) +
-    (airport ? accessorialRates.airport : 0);
+  const afterHoursCharge =
+    afterHours ? selectedEquipment.afterHours : 0;
 
-  const estimatedQuote =
-    baseQuote +
+  const sharpCharge =
+    sharp ? selectedEquipment.sharp : 0;
+
+  const noLoadCharge =
+    noLoad ? selectedEquipment.noLoad : 0;
+
+  const liftgateCharge =
+    liftgate && selectedEquipment.liftgateAllowed
+      ? 25
+      : 0;
+
+  const moffettCharge =
+    moffett &&
+    selectedEquipment.moffettAllowed &&
+    "moffettCharge" in selectedEquipment
+      ? selectedEquipment.moffettCharge
+      : 0;
+
+  const total =
+    transportBeforeFuel +
+    fuelCharge +
     additionalStopCharge +
     waitTimeCharge +
     overweightCharge +
-    accessorialTotal;
+    afterHoursCharge +
+    sharpCharge +
+    noLoadCharge +
+    liftgateCharge +
+    moffettCharge;
 
   return (
     <main className="min-h-screen bg-black text-white p-6">
@@ -104,25 +140,26 @@ export default function DetailedQuote() {
         </h1>
 
         <p className="text-gray-400 mb-8">
-          Full operational quote workflow.
+          Commercial quote workflow.
         </p>
 
         <div className="space-y-5">
           <label className="block">
             <span className="text-sm text-gray-300">
-              Service Type
+              Equipment
             </span>
 
             <select
-              value={serviceType}
-              onChange={(event) =>
-                setServiceType(
-                  event.target.value as keyof typeof serviceMultipliers
-                )
-              }
+              value={equipment}
+              onChange={(event) => {
+                setEquipment(
+                  event.target.value as keyof typeof commercialEquipmentConfig
+                );
+                setServiceType("Direct");
+              }}
               className="mt-2 w-full rounded-xl bg-gray-900 border border-gray-700 p-4 text-xl"
             >
-              {Object.keys(serviceMultipliers).map((item) => (
+              {Object.keys(commercialEquipmentConfig).map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
@@ -130,19 +167,17 @@ export default function DetailedQuote() {
 
           <label className="block">
             <span className="text-sm text-gray-300">
-              Equipment Type
+              Service Type
             </span>
 
             <select
-              value={equipment}
+              value={safeServiceType}
               onChange={(event) =>
-                setEquipment(
-                  event.target.value as keyof typeof equipmentConfig
-                )
+                setServiceType(event.target.value)
               }
               className="mt-2 w-full rounded-xl bg-gray-900 border border-gray-700 p-4 text-xl"
             >
-              {Object.keys(equipmentConfig).map((item) => (
+              {availableServices.map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
@@ -212,15 +247,6 @@ export default function DetailedQuote() {
 
             <div className="grid grid-cols-2 gap-3">
               <button
-                onClick={() => setRush(!rush)}
-                className={`rounded-xl p-4 text-base font-semibold border ${
-                  rush ? "bg-red-600 border-red-500" : "bg-black border-gray-700"
-                }`}
-              >
-                Rush
-              </button>
-
-              <button
                 onClick={() => setAfterHours(!afterHours)}
                 className={`rounded-xl p-4 text-base font-semibold border ${
                   afterHours
@@ -232,69 +258,53 @@ export default function DetailedQuote() {
               </button>
 
               <button
-                onClick={() => setLiftgate(!liftgate)}
+                onClick={() => setSharp(!sharp)}
                 className={`rounded-xl p-4 text-base font-semibold border ${
-                  liftgate
+                  sharp
                     ? "bg-red-600 border-red-500"
                     : "bg-black border-gray-700"
+                }`}
+              >
+                Sharp
+              </button>
+
+              <button
+                onClick={() => setNoLoad(!noLoad)}
+                className={`rounded-xl p-4 text-base font-semibold border ${
+                  noLoad
+                    ? "bg-red-600 border-red-500"
+                    : "bg-black border-gray-700"
+                }`}
+              >
+                No Load
+              </button>
+
+              <button
+                onClick={() => setLiftgate(!liftgate)}
+                disabled={!selectedEquipment.liftgateAllowed}
+                className={`rounded-xl p-4 text-base font-semibold border ${
+                  !selectedEquipment.liftgateAllowed
+                    ? "bg-gray-800 border-gray-700 text-gray-600"
+                    : liftgate
+                      ? "bg-red-600 border-red-500"
+                      : "bg-black border-gray-700"
                 }`}
               >
                 Liftgate
               </button>
 
               <button
-                onClick={() => setTwoPerson(!twoPerson)}
-                className={`rounded-xl p-4 text-base font-semibold border ${
-                  twoPerson
-                    ? "bg-red-600 border-red-500"
-                    : "bg-black border-gray-700"
-                }`}
-              >
-                Two Person
-              </button>
-
-              <button
-                onClick={() => setPalletJack(!palletJack)}
-                className={`rounded-xl p-4 text-base font-semibold border ${
-                  palletJack
-                    ? "bg-red-600 border-red-500"
-                    : "bg-black border-gray-700"
-                }`}
-              >
-                Pallet Jack
-              </button>
-
-              <button
-                onClick={() => setInsideDelivery(!insideDelivery)}
-                className={`rounded-xl p-4 text-base font-semibold border ${
-                  insideDelivery
-                    ? "bg-red-600 border-red-500"
-                    : "bg-black border-gray-700"
-                }`}
-              >
-                Inside Delivery
-              </button>
-
-              <button
                 onClick={() => setMoffett(!moffett)}
+                disabled={!selectedEquipment.moffettAllowed}
                 className={`rounded-xl p-4 text-base font-semibold border ${
-                  moffett
-                    ? "bg-red-600 border-red-500"
-                    : "bg-black border-gray-700"
+                  !selectedEquipment.moffettAllowed
+                    ? "bg-gray-800 border-gray-700 text-gray-600"
+                    : moffett
+                      ? "bg-red-600 border-red-500"
+                      : "bg-black border-gray-700"
                 }`}
               >
                 Moffett
-              </button>
-
-              <button
-                onClick={() => setAirport(!airport)}
-                className={`rounded-xl p-4 text-base font-semibold border ${
-                  airport
-                    ? "bg-red-600 border-red-500"
-                    : "bg-black border-gray-700"
-                }`}
-              >
-                Airport
               </button>
             </div>
           </section>
@@ -305,13 +315,11 @@ export default function DetailedQuote() {
             </p>
 
             <p className="text-5xl font-bold mt-2">
-              ${estimatedQuote.toFixed(2)}
+              ${total.toFixed(2)}
             </p>
 
             <div className="text-gray-500 text-sm mt-4 space-y-1">
-              <p>
-                Base Mileage: ${baseMileage.toFixed(2)}
-              </p>
+              <p>Transport: ${transportBeforeFuel.toFixed(2)}</p>
 
               <p>
                 Fuel ({(fuelPercent * 100).toFixed(1)}%): $
@@ -319,19 +327,16 @@ export default function DetailedQuote() {
               </p>
 
               <p>
-                Loaded Mileage: ${loadedMileage.toFixed(2)}
+                Over-threshold Mileage: $
+                {overThresholdCharge.toFixed(2)}
               </p>
 
               <p>
-                Minimum Applied: ${selectedEquipment.minimum.toFixed(2)}
+                Stops: ${additionalStopCharge.toFixed(2)}
               </p>
 
               <p>
-                Additional Stops: ${additionalStopCharge.toFixed(2)}
-              </p>
-
-              <p>
-                Wait Time: ${waitTimeCharge.toFixed(2)}
+                Wait: ${waitTimeCharge.toFixed(2)}
               </p>
 
               <p>
@@ -339,12 +344,14 @@ export default function DetailedQuote() {
               </p>
 
               <p>
-                Accessorials: ${accessorialTotal.toFixed(2)}
-              </p>
-
-              <p>
-                {equipment} / {serviceType} @ $
-                {selectedEquipment.ratePerMile.toFixed(2)}/mile
+                Accessorials: $
+                {(
+                  afterHoursCharge +
+                  sharpCharge +
+                  noLoadCharge +
+                  liftgateCharge +
+                  moffettCharge
+                ).toFixed(2)}
               </p>
 
               <p>
