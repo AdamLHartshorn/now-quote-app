@@ -5,6 +5,10 @@ import { useState } from "react";
 import { commercialEquipmentConfig, fuelSurcharge } from "@/config/rates";
 
 export default function DetailedQuote() {
+  const [customerName, setCustomerName] = useState("");
+  const [pickupAddress, setPickupAddress] = useState("");
+  const [deliveryAddress, setDeliveryAddress] = useState("");
+
   const [equipment, setEquipment] =
     useState<keyof typeof commercialEquipmentConfig>("Dock Truck");
 
@@ -42,6 +46,8 @@ export default function DetailedQuote() {
   const [hazmat, setHazmat] = useState(false);
   const [airport, setAirport] = useState(false);
 
+  const [copied, setCopied] = useState(false);
+
   const mileage = Number(miles) || 0;
   const shipmentWeight = Number(weight) || 0;
   const palletCount = Number(pallets) || 0;
@@ -49,9 +55,7 @@ export default function DetailedQuote() {
 
   const pickWaitMinutes = Number(pickWaitTime) || 0;
   const dropWaitMinutes = Number(dropWaitTime) || 0;
-
-  const totalWaitMinutes =
-    pickWaitMinutes + dropWaitMinutes;
+  const totalWaitMinutes = pickWaitMinutes + dropWaitMinutes;
 
   const baseTransport =
     selectedService.base + mileage * selectedService.ratePerMile;
@@ -66,14 +70,12 @@ export default function DetailedQuote() {
           selectedEquipment.overThresholdAdditionalPerMile
         : 0;
 
-  const transportBeforeFuel =
-    noLoad ? 0 : baseTransport + overThresholdCharge;
+  const transportBeforeFuel = noLoad
+    ? 0
+    : baseTransport + overThresholdCharge;
 
-  const fuelPercent =
-    fuelSurcharge[selectedEquipment.fuelClass];
-
-  const fuelCharge =
-    transportBeforeFuel * fuelPercent;
+  const fuelPercent = fuelSurcharge[selectedEquipment.fuelClass];
+  const fuelCharge = transportBeforeFuel * fuelPercent;
 
   const overweightAmount = Math.max(
     0,
@@ -84,8 +86,7 @@ export default function DetailedQuote() {
     Math.ceil(overweightAmount / 100) *
     selectedEquipment.overweightRatePerCwt;
 
-  const additionalStopCharge =
-    stopCount > 1 ? (stopCount - 1) * 25 : 0;
+  const additionalStopCharge = stopCount > 1 ? (stopCount - 1) * 25 : 0;
 
   const chargeableWaitMinutes = Math.max(
     0,
@@ -93,22 +94,14 @@ export default function DetailedQuote() {
   );
 
   const waitTimeCharge =
-    chargeableWaitMinutes *
-    selectedEquipment.waitRatePerMinute;
+    chargeableWaitMinutes * selectedEquipment.waitRatePerMinute;
 
-  const afterHoursCharge =
-    afterHours ? selectedEquipment.afterHours : 0;
-
-  const sharpCharge =
-    sharp ? selectedEquipment.sharp : 0;
-
-  const noLoadCharge =
-    noLoad ? selectedEquipment.noLoad : 0;
+  const afterHoursCharge = afterHours ? selectedEquipment.afterHours : 0;
+  const sharpCharge = sharp ? selectedEquipment.sharp : 0;
+  const noLoadCharge = noLoad ? selectedEquipment.noLoad : 0;
 
   const liftgateCharge =
-    liftgate && selectedEquipment.liftgateAllowed
-      ? 25
-      : 0;
+    liftgate && selectedEquipment.liftgateAllowed ? 25 : 0;
 
   const moffettCharge =
     moffett &&
@@ -117,11 +110,8 @@ export default function DetailedQuote() {
       ? selectedEquipment.moffettCharge
       : 0;
 
-  const hazmatCharge =
-    hazmat ? 50 : 0;
-
-  const airportCharge =
-    airport ? 30 : 0;
+  const hazmatCharge = hazmat ? 50 : 0;
+  const airportCharge = airport ? 30 : 0;
 
   const accessorialTotal =
     afterHoursCharge +
@@ -140,34 +130,121 @@ export default function DetailedQuote() {
     waitTimeCharge +
     accessorialTotal;
 
+  const selectedAccessorials = [
+    afterHours ? "After Hours" : null,
+    sharp ? "Sharp" : null,
+    noLoad ? "No Load" : null,
+    liftgate ? "Liftgate" : null,
+    moffett ? "Moffett" : null,
+    hazmat ? "Hazmat" : null,
+    airport ? "Airport/TSA/SIDA" : null,
+  ].filter(Boolean);
+
+  const quoteText = `NOW COURIER - DETAILED QUOTE
+
+CUSTOMER: ${customerName || "N/A"}
+
+PICKUP:
+${pickupAddress || "N/A"}
+
+DELIVERY:
+${deliveryAddress || "N/A"}
+
+SERVICE: ${safeServiceType}
+EQUIPMENT: ${equipment}
+
+MILES: ${mileage}
+WEIGHT: ${shipmentWeight || "N/A"} lbs
+PALLETS: ${palletCount || "N/A"}
+STOPS: ${stopCount}
+
+PICK WAIT TIME: ${pickWaitMinutes} min
+DROP WAIT TIME: ${dropWaitMinutes} min
+
+ACCESSORIALS:
+${
+  selectedAccessorials.length
+    ? selectedAccessorials.map((item) => `- ${item}`).join("\n")
+    : "- None"
+}
+
+ESTIMATED QUOTE: $${total.toFixed(2)}
+
+BREAKDOWN:
+Transport: $${transportBeforeFuel.toFixed(2)}
+Fuel (${(fuelPercent * 100).toFixed(1)}%): $${fuelCharge.toFixed(2)}
+Overweight: $${overweightCharge.toFixed(2)}
+Stops: $${additionalStopCharge.toFixed(2)}
+Wait Time: $${waitTimeCharge.toFixed(2)}
+Accessorials: $${accessorialTotal.toFixed(2)}
+
+NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
+
+  async function copyQuote() {
+    await navigator.clipboard.writeText(quoteText);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  }
+
   return (
     <main className="min-h-screen bg-slate-950 text-white p-6">
       <div className="mx-auto w-full max-w-md">
-
         <a href="/" className="text-slate-400 text-sm">
           ← Back
         </a>
 
-        <h1 className="text-4xl font-bold mt-6 mb-2">
-          DETAILED QUOTE
-        </h1>
+        <h1 className="text-4xl font-bold mt-6 mb-2">DETAILED QUOTE</h1>
 
         <p className="text-slate-400 mb-8">
           Operational commercial quote workflow.
         </p>
 
         <div className="space-y-5">
+          <label className="block">
+            <span className="text-sm text-slate-300">Customer Name</span>
+
+            <input
+              type="text"
+              value={customerName}
+              onChange={(event) => setCustomerName(event.target.value)}
+              placeholder="Optional"
+              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-lg"
+            />
+          </label>
 
           <label className="block">
-            <span className="text-sm text-slate-300">
-              Service Type
-            </span>
+            <span className="text-sm text-slate-300">Pickup Address</span>
+
+            <input
+              type="text"
+              value={pickupAddress}
+              onChange={(event) => setPickupAddress(event.target.value)}
+              placeholder="Optional"
+              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-lg"
+            />
+          </label>
+
+          <label className="block">
+            <span className="text-sm text-slate-300">Delivery Address</span>
+
+            <input
+              type="text"
+              value={deliveryAddress}
+              onChange={(event) => setDeliveryAddress(event.target.value)}
+              placeholder="Optional"
+              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-lg"
+            />
+          </label>
+
+          <label className="block">
+            <span className="text-sm text-slate-300">Service Type</span>
 
             <select
               value={safeServiceType}
-              onChange={(event) =>
-                setServiceType(event.target.value)
-              }
+              onChange={(event) => setServiceType(event.target.value)}
               className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
             >
               {availableServices.map((item) => (
@@ -177,9 +254,7 @@ export default function DetailedQuote() {
           </label>
 
           <label className="block">
-            <span className="text-sm text-slate-300">
-              Equipment Type
-            </span>
+            <span className="text-sm text-slate-300">Equipment Type</span>
 
             <select
               value={equipment}
@@ -200,9 +275,7 @@ export default function DetailedQuote() {
           </label>
 
           <label className="block">
-            <span className="text-sm text-slate-300">
-              Miles
-            </span>
+            <span className="text-sm text-slate-300">Miles</span>
 
             <input
               type="number"
@@ -214,11 +287,8 @@ export default function DetailedQuote() {
           </label>
 
           <div className="grid grid-cols-2 gap-3">
-
             <label className="block">
-              <span className="text-sm text-slate-300">
-                Weight (lbs)
-              </span>
+              <span className="text-sm text-slate-300">Weight (lbs)</span>
 
               <input
                 type="number"
@@ -230,9 +300,7 @@ export default function DetailedQuote() {
             </label>
 
             <label className="block">
-              <span className="text-sm text-slate-300">
-                Pallet Count
-              </span>
+              <span className="text-sm text-slate-300">Pallet Count</span>
 
               <input
                 type="number"
@@ -242,15 +310,11 @@ export default function DetailedQuote() {
                 className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
               />
             </label>
-
           </div>
 
           <div className="grid grid-cols-3 gap-3">
-
             <label className="block">
-              <span className="text-sm text-slate-300">
-                Stops
-              </span>
+              <span className="text-sm text-slate-300">Stops</span>
 
               <input
                 type="number"
@@ -261,47 +325,34 @@ export default function DetailedQuote() {
             </label>
 
             <label className="block">
-              <span className="text-sm text-slate-300">
-                Pick Wait
-              </span>
+              <span className="text-sm text-slate-300">Pick Wait</span>
 
               <input
                 type="number"
                 value={pickWaitTime}
-                onChange={(event) =>
-                  setPickWaitTime(event.target.value)
-                }
+                onChange={(event) => setPickWaitTime(event.target.value)}
                 placeholder="0"
                 className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
               />
             </label>
 
             <label className="block">
-              <span className="text-sm text-slate-300">
-                Drop Wait
-              </span>
+              <span className="text-sm text-slate-300">Drop Wait</span>
 
               <input
                 type="number"
                 value={dropWaitTime}
-                onChange={(event) =>
-                  setDropWaitTime(event.target.value)
-                }
+                onChange={(event) => setDropWaitTime(event.target.value)}
                 placeholder="0"
                 className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
               />
             </label>
-
           </div>
 
           <section className="rounded-2xl bg-slate-900 border border-slate-700 p-4">
-
-            <p className="text-sm text-slate-300 mb-3">
-              Accessorials
-            </p>
+            <p className="text-sm text-slate-300 mb-3">Accessorials</p>
 
             <div className="grid grid-cols-2 gap-3">
-
               <button
                 onClick={() => setAfterHours(!afterHours)}
                 className={`rounded-xl p-4 text-base font-semibold border ${
@@ -384,58 +435,41 @@ export default function DetailedQuote() {
               >
                 Airport/TSA/SIDA
               </button>
-
             </div>
-
           </section>
 
           <div className="rounded-2xl bg-slate-900 border border-slate-700 p-6 text-center">
+            <p className="text-slate-400 text-sm">Estimated Quote</p>
 
-            <p className="text-slate-400 text-sm">
-              Estimated Quote
-            </p>
+            <p className="text-5xl font-bold mt-2">${total.toFixed(2)}</p>
 
-            <p className="text-5xl font-bold mt-2">
-              ${total.toFixed(2)}
-            </p>
+            <button
+              onClick={copyQuote}
+              className="mt-5 w-full rounded-xl bg-blue-600 hover:bg-blue-700 p-4 text-lg font-bold"
+            >
+              {copied ? "COPIED!" : "COPY QUOTE"}
+            </button>
 
             <div className="text-slate-500 text-sm mt-4 space-y-1">
-
-              <p>
-                Transport: ${transportBeforeFuel.toFixed(2)}
-              </p>
+              <p>Transport: ${transportBeforeFuel.toFixed(2)}</p>
 
               <p>
                 Fuel ({(fuelPercent * 100).toFixed(1)}%): $
                 {fuelCharge.toFixed(2)}
               </p>
 
-              <p>
-                Overweight: ${overweightCharge.toFixed(2)}
-              </p>
+              <p>Overweight: ${overweightCharge.toFixed(2)}</p>
 
-              <p>
-                Stops: ${additionalStopCharge.toFixed(2)}
-              </p>
+              <p>Stops: ${additionalStopCharge.toFixed(2)}</p>
 
-              <p>
-                Wait Time: ${waitTimeCharge.toFixed(2)}
-              </p>
+              <p>Wait Time: ${waitTimeCharge.toFixed(2)}</p>
 
-              <p>
-                Accessorials: ${accessorialTotal.toFixed(2)}
-              </p>
+              <p>Accessorials: ${accessorialTotal.toFixed(2)}</p>
 
-              <p>
-                Pallets: {palletCount}
-              </p>
-
+              <p>Pallets: {palletCount}</p>
             </div>
-
           </div>
-
         </div>
-
       </div>
     </main>
   );
