@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const auth =
-    request.cookies.get("now-auth");
+  const auth = request.cookies.get("now-auth");
 
   const isLoginPage =
     request.nextUrl.pathname === "/login";
