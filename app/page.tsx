@@ -30,10 +30,17 @@ export default function Home() {
         <div className="flex flex-col gap-4">
 
           <a
-            href="/fast-quote"
+            href="/fast-quote-parcel"
             className="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-5 rounded-2xl block shadow-lg shadow-blue-900/30"
           >
-            FAST QUOTE
+            FAST QUOTE — PARCEL
+          </a>
+
+          <a
+            href="/fast-quote-commercial"
+            className="bg-blue-700 hover:bg-blue-800 text-white text-xl font-bold py-5 rounded-2xl block shadow-lg shadow-blue-950/30"
+          >
+            FAST QUOTE — COMMERCIAL
           </a>
 
           <a
@@ -53,7 +60,7 @@ export default function Home() {
         </div>
 
         <p className="mt-10 text-xs tracking-widest text-slate-500">
-          FOR INTERNAL USE ONLY · v0.3
+          FOR INTERNAL USE ONLY · v0.4
         </p>
 
       </div>
