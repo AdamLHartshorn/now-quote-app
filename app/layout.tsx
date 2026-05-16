@@ -3,7 +3,22 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "NOW Courier Quote Tool",
-  description: "Internal pricing and quoting platform for NOW Courier.",
+  description:
+    "Internal pricing and operational quoting platform for NOW Courier.",
+
+  openGraph: {
+    title: "NOW Courier Quote Tool",
+    description:
+      "Internal pricing and operational quoting platform for NOW Courier.",
+    siteName: "NOW Courier Quote Tool",
+  },
+
+  twitter: {
+    card: "summary",
+    title: "NOW Courier Quote Tool",
+    description:
+      "Internal pricing and operational quoting platform for NOW Courier.",
+  },
 };
 
 export default function RootLayout({
