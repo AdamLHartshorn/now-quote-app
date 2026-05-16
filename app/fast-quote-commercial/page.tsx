@@ -24,7 +24,7 @@ export default function FastQuoteCommercial() {
     useState<string>("Direct");
 
   const [miles, setMiles] = useState("");
-  const [afterHours, setAfterHours] = useState(false);
+  const [weight, setWeight] = useState("");
   const [moffett, setMoffett] = useState(false);
 
   const safeServiceType =
@@ -36,6 +36,7 @@ export default function FastQuoteCommercial() {
     selectedEquipment.serviceRates[safeServiceType];
 
   const mileage = Number(miles) || 0;
+  const shipmentWeight = Number(weight) || 0;
 
   const baseTransport =
     selectedService.base +
@@ -52,16 +53,24 @@ export default function FastQuoteCommercial() {
         : 0;
 
   const transport =
-    baseTransport + overThresholdCharge;
+    baseTransport +
+    overThresholdCharge;
+
+  const overweightAmount =
+    Math.max(
+      0,
+      shipmentWeight - selectedEquipment.includedWeight
+    );
+
+  const overweightCharge =
+    Math.ceil(overweightAmount / 100) *
+    selectedEquipment.overweightRatePerCwt;
 
   const fuelPercent =
     fuelSurcharge[selectedEquipment.fuelClass];
 
   const fuel =
     transport * fuelPercent;
-
-  const afterHoursCharge =
-    afterHours ? selectedEquipment.afterHours : 0;
 
   const moffettCharge =
     moffett &&
@@ -72,13 +81,14 @@ export default function FastQuoteCommercial() {
 
   const total =
     transport +
+    overweightCharge +
     fuel +
-    afterHoursCharge +
     moffettCharge;
 
   return (
     <main className="min-h-screen bg-slate-950 text-white p-6">
       <div className="mx-auto w-full max-w-md">
+
         <a href="/" className="text-slate-400 text-sm">
           ← Back
         </a>
@@ -92,6 +102,7 @@ export default function FastQuoteCommercial() {
         </p>
 
         <div className="space-y-5">
+
           <label className="block">
             <span className="text-sm text-slate-300">
               Equipment
@@ -104,6 +115,7 @@ export default function FastQuoteCommercial() {
                   event.target.value as keyof typeof commercialEquipmentConfig
                 );
                 setServiceType("Direct");
+                setMoffett(false);
               }}
               className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
             >
@@ -145,40 +157,42 @@ export default function FastQuoteCommercial() {
             />
           </label>
 
+          <label className="block">
+            <span className="text-sm text-slate-300">
+              Weight (lbs)
+            </span>
+
+            <input
+              type="number"
+              value={weight}
+              onChange={(event) => setWeight(event.target.value)}
+              placeholder="Optional"
+              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
+            />
+          </label>
+
           <section className="rounded-2xl bg-slate-900 border border-slate-700 p-4">
             <p className="text-sm text-slate-300 mb-3">
               Quick Add-ons
             </p>
 
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                onClick={() => setAfterHours(!afterHours)}
-                className={`rounded-xl p-4 text-lg font-semibold border ${
-                  afterHours
+            <button
+              onClick={() => setMoffett(!moffett)}
+              disabled={!selectedEquipment.moffettAllowed}
+              className={`w-full rounded-xl p-4 text-lg font-semibold border ${
+                !selectedEquipment.moffettAllowed
+                  ? "bg-slate-800 border-slate-700 text-slate-600"
+                  : moffett
                     ? "bg-blue-600 border-blue-500"
                     : "bg-slate-950 border-slate-700"
-                }`}
-              >
-                After Hours
-              </button>
-
-              <button
-                onClick={() => setMoffett(!moffett)}
-                disabled={!selectedEquipment.moffettAllowed}
-                className={`rounded-xl p-4 text-lg font-semibold border ${
-                  !selectedEquipment.moffettAllowed
-                    ? "bg-slate-800 border-slate-700 text-slate-600"
-                    : moffett
-                      ? "bg-blue-600 border-blue-500"
-                      : "bg-slate-950 border-slate-700"
-                }`}
-              >
-                Moffett
-              </button>
-            </div>
+              }`}
+            >
+              Moffett
+            </button>
           </section>
 
           <div className="rounded-2xl bg-slate-900 border border-slate-700 p-6 text-center">
+
             <p className="text-slate-400 text-sm">
               Ballpark Quote
             </p>
@@ -188,24 +202,38 @@ export default function FastQuoteCommercial() {
             </p>
 
             <div className="text-slate-500 text-sm mt-4 space-y-1">
-              <p>Transport: ${transport.toFixed(2)}</p>
+
+              <p>
+                Transport: ${transport.toFixed(2)}
+              </p>
+
+              <p>
+                Overweight: ${overweightCharge.toFixed(2)}
+              </p>
+
               <p>
                 Fuel ({(fuelPercent * 100).toFixed(1)}%): $
                 {fuel.toFixed(2)}
               </p>
+
               <p>
-                Add-ons: $
-                {(afterHoursCharge + moffettCharge).toFixed(2)}
+                Moffett: ${moffettCharge.toFixed(2)}
               </p>
+
               <p>
                 {equipment} / {safeServiceType}
               </p>
+
               <p className="pt-2 text-slate-400">
                 Ballpark only — confirm details for final quote.
               </p>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
     </main>
   );

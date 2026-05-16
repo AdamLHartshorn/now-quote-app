@@ -16,11 +16,13 @@ export default function FastQuoteParcel() {
     useState<keyof typeof parcelVehicleConfig>("Car");
 
   const [miles, setMiles] = useState("");
+  const [weight, setWeight] = useState("");
 
   const selectedService = parcelServiceRates[serviceType];
   const selectedVehicle = parcelVehicleConfig[vehicle];
 
   const mileage = Number(miles) || 0;
+  const shipmentWeight = Number(weight) || 0;
 
   const mileageRate =
     mileage > 50
@@ -33,6 +35,16 @@ export default function FastQuoteParcel() {
       mileage * mileageRate
     ) + selectedVehicle.upcharge;
 
+  const overweightAmount =
+    Math.max(
+      0,
+      shipmentWeight - selectedVehicle.includedWeight
+    );
+
+  const overweightCharge =
+    Math.ceil(overweightAmount / 100) *
+    selectedVehicle.overweightRatePerCwt;
+
   const fuelPercent =
     fuelSurcharge[selectedVehicle.fuelClass];
 
@@ -40,11 +52,14 @@ export default function FastQuoteParcel() {
     transport * fuelPercent;
 
   const total =
-    transport + fuel;
+    transport +
+    overweightCharge +
+    fuel;
 
   return (
     <main className="min-h-screen bg-slate-950 text-white p-6">
       <div className="mx-auto w-full max-w-md">
+
         <a href="/" className="text-slate-400 text-sm">
           ← Back
         </a>
@@ -58,6 +73,7 @@ export default function FastQuoteParcel() {
         </p>
 
         <div className="space-y-5">
+
           <label className="block">
             <span className="text-sm text-slate-300">
               Service Type
@@ -112,7 +128,22 @@ export default function FastQuoteParcel() {
             />
           </label>
 
+          <label className="block">
+            <span className="text-sm text-slate-300">
+              Weight (lbs)
+            </span>
+
+            <input
+              type="number"
+              value={weight}
+              onChange={(event) => setWeight(event.target.value)}
+              placeholder="Optional"
+              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
+            />
+          </label>
+
           <div className="rounded-2xl bg-slate-900 border border-slate-700 p-6 text-center">
+
             <p className="text-slate-400 text-sm">
               Ballpark Quote
             </p>
@@ -122,20 +153,34 @@ export default function FastQuoteParcel() {
             </p>
 
             <div className="text-slate-500 text-sm mt-4 space-y-1">
-              <p>Transport: ${transport.toFixed(2)}</p>
+
+              <p>
+                Transport: ${transport.toFixed(2)}
+              </p>
+
+              <p>
+                Overweight: ${overweightCharge.toFixed(2)}
+              </p>
+
               <p>
                 Fuel ({(fuelPercent * 100).toFixed(1)}%): $
                 {fuel.toFixed(2)}
               </p>
+
               <p>
-                {vehicle} / {serviceType} @ ${mileageRate.toFixed(2)}/mile
+                {vehicle} / {serviceType}
               </p>
+
               <p className="pt-2 text-slate-400">
                 Ballpark only — final invoice may vary.
               </p>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
     </main>
   );
