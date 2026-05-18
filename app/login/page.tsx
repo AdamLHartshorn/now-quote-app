@@ -49,7 +49,7 @@ export default function LoginPage() {
 
           <button
             onClick={handleLogin}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl p-4 font-bold text-lg"
+            className="w-full bg-[#0093aa] hover:bg-[#007c91] text-white rounded-xl p-4 font-bold text-lg transition-all duration-200"
           >
             LOGIN
           </button>
