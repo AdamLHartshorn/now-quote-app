@@ -11,6 +11,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white text-slate-900 flex flex-col items-center justify-center p-6">
       <div className="w-full max-w-md text-center">
+
         <div className="flex justify-end mb-4">
           <button
             onClick={logout}
@@ -20,7 +21,8 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="mb-8">
+        <div className="mb-6">
+
           <div className="flex justify-center mb-6">
             <Image
               src="/now-logo.jpg"
@@ -31,48 +33,60 @@ export default function Home() {
             />
           </div>
 
-          <p className="text-blue-700 font-medium mb-2">
-            Whenever You Call, We Deliver.
+          <p className="text-xs tracking-widest text-slate-400 font-bold">
+            FOR INTERNAL USE ONLY · v0.5 INTERNAL BETA
           </p>
 
-          <p className="text-slate-500 text-sm">
-            Internal Pricing Tool
-          </p>
         </div>
 
         <div className="flex flex-col gap-4">
+
           <a
             href="/fast-quote-parcel"
-            className="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-5 rounded-2xl block shadow-lg shadow-blue-200"
+            className="bg-[#0093aa] hover:bg-[#007c91] text-white text-xl font-bold py-5 rounded-2xl block shadow-lg"
           >
             FAST QUOTE — PARCEL
           </a>
 
           <a
             href="/fast-quote-commercial"
-            className="bg-blue-700 hover:bg-blue-800 text-white text-xl font-bold py-5 rounded-2xl block shadow-lg shadow-blue-200"
+            className="bg-[#0093aa] hover:bg-[#007c91] text-white text-xl font-bold py-5 rounded-2xl block shadow-lg"
           >
             FAST QUOTE — COMMERCIAL
           </a>
 
           <a
             href="/detailed-quote"
-            className="bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-900 text-xl font-semibold py-5 rounded-2xl block"
+            className="bg-slate-700 hover:bg-slate-800 text-white text-xl font-semibold py-5 rounded-2xl block shadow-lg"
           >
             DETAILED QUOTE
           </a>
 
           <a
             href="/dedicated-quote"
-            className="bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-900 text-xl font-semibold py-5 rounded-2xl block"
+            className="bg-slate-700 hover:bg-slate-800 text-white text-xl font-semibold py-5 rounded-2xl block shadow-lg"
           >
             DEDICATED QUOTE
           </a>
+
         </div>
 
-        <p className="mt-10 text-xs tracking-widest text-slate-400">
-          FOR INTERNAL USE ONLY · v0.4
-        </p>
+        <div className="mt-10 space-y-2">
+
+          <p className="text-xs text-slate-500">
+            Feedback / Issues:
+          </p>
+
+          <p className="text-xs text-slate-600">
+            ahartshorn@nowcourier.com
+          </p>
+
+          <p className="text-xs text-slate-600">
+            (317) 270-3077
+          </p>
+
+        </div>
+
       </div>
     </main>
   );

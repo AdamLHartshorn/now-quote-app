@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 import { commercialEquipmentConfig, fuelSurcharge } from "@/config/rates";
 
@@ -190,175 +191,237 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
   }
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white p-6">
+    <main className="min-h-screen bg-white text-slate-900 p-6">
       <div className="mx-auto w-full max-w-md">
-        <a href="/" className="text-slate-400 text-sm">
-          ← Back
-        </a>
+        <div className="flex items-center justify-between mb-6">
+          <a href="/" className="text-slate-500 text-sm">
+            ← Back
+          </a>
 
-        <h1 className="text-4xl font-bold mt-6 mb-2">DETAILED QUOTE</h1>
+          <Image
+            src="/now-logo.jpg"
+            alt="NOW Courier"
+            width={130}
+            height={45}
+            priority
+          />
+        </div>
 
-        <p className="text-slate-400 mb-8">
-          Operational commercial quote workflow.
-        </p>
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-2">
+            DETAILED QUOTE
+          </h1>
+
+          <p className="text-slate-500">
+            Operational commercial quote workflow.
+          </p>
+        </div>
 
         <div className="space-y-5">
-          <label className="block">
-            <span className="text-sm text-slate-300">Customer Name</span>
+          <section className="rounded-2xl bg-slate-100 border border-slate-300 p-4 shadow-sm">
+            <p className="text-sm text-slate-600 font-bold mb-4">
+              Customer / Route
+            </p>
 
-            <input
-              type="text"
-              value={customerName}
-              onChange={(event) => setCustomerName(event.target.value)}
-              placeholder="Optional"
-              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-lg"
-            />
-          </label>
+            <div className="space-y-4">
+              <label className="block">
+                <span className="text-sm text-slate-600 font-medium">
+                  Customer Name
+                </span>
 
-          <label className="block">
-            <span className="text-sm text-slate-300">Pickup Address</span>
+                <input
+                  type="text"
+                  value={customerName}
+                  onChange={(event) => setCustomerName(event.target.value)}
+                  placeholder="Optional"
+                  className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-lg text-slate-900"
+                />
+              </label>
 
-            <input
-              type="text"
-              value={pickupAddress}
-              onChange={(event) => setPickupAddress(event.target.value)}
-              placeholder="Optional"
-              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-lg"
-            />
-          </label>
+              <label className="block">
+                <span className="text-sm text-slate-600 font-medium">
+                  Pickup Address
+                </span>
 
-          <label className="block">
-            <span className="text-sm text-slate-300">Delivery Address</span>
+                <input
+                  type="text"
+                  value={pickupAddress}
+                  onChange={(event) => setPickupAddress(event.target.value)}
+                  placeholder="Optional"
+                  className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-lg text-slate-900"
+                />
+              </label>
 
-            <input
-              type="text"
-              value={deliveryAddress}
-              onChange={(event) => setDeliveryAddress(event.target.value)}
-              placeholder="Optional"
-              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-lg"
-            />
-          </label>
+              <label className="block">
+                <span className="text-sm text-slate-600 font-medium">
+                  Delivery Address
+                </span>
 
-          <label className="block">
-            <span className="text-sm text-slate-300">Service Type</span>
+                <input
+                  type="text"
+                  value={deliveryAddress}
+                  onChange={(event) => setDeliveryAddress(event.target.value)}
+                  placeholder="Optional"
+                  className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-lg text-slate-900"
+                />
+              </label>
+            </div>
+          </section>
 
-            <select
-              value={safeServiceType}
-              onChange={(event) => setServiceType(event.target.value)}
-              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
-            >
-              {availableServices.map((item) => (
-                <option key={item}>{item}</option>
-              ))}
-            </select>
-          </label>
+          <section className="rounded-2xl bg-slate-100 border border-slate-300 p-4 shadow-sm">
+            <p className="text-sm text-slate-600 font-bold mb-4">
+              Service / Equipment
+            </p>
 
-          <label className="block">
-            <span className="text-sm text-slate-300">Equipment Type</span>
+            <div className="space-y-4">
+              <label className="block">
+                <span className="text-sm text-slate-600 font-medium">
+                  Service Type
+                </span>
 
-            <select
-              value={equipment}
-              onChange={(event) => {
-                setEquipment(
-                  event.target.value as keyof typeof commercialEquipmentConfig
-                );
-                setServiceType("Direct");
-                setMoffett(false);
-                setLiftgate(false);
-              }}
-              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
-            >
-              {Object.keys(commercialEquipmentConfig).map((item) => (
-                <option key={item}>{item}</option>
-              ))}
-            </select>
-          </label>
+                <select
+                  value={safeServiceType}
+                  onChange={(event) => setServiceType(event.target.value)}
+                  className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-xl text-slate-900"
+                >
+                  {availableServices.map((item) => (
+                    <option key={item}>{item}</option>
+                  ))}
+                </select>
+              </label>
 
-          <label className="block">
-            <span className="text-sm text-slate-300">Miles</span>
+              <label className="block">
+                <span className="text-sm text-slate-600 font-medium">
+                  Equipment Type
+                </span>
 
-            <input
-              type="number"
-              value={miles}
-              onChange={(event) => setMiles(event.target.value)}
-              placeholder="Enter miles"
-              className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
-            />
-          </label>
+                <select
+                  value={equipment}
+                  onChange={(event) => {
+                    setEquipment(
+                      event.target.value as keyof typeof commercialEquipmentConfig
+                    );
+                    setServiceType("Direct");
+                    setMoffett(false);
+                    setLiftgate(false);
+                  }}
+                  className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-xl text-slate-900"
+                >
+                  {Object.keys(commercialEquipmentConfig).map((item) => (
+                    <option key={item}>{item}</option>
+                  ))}
+                </select>
+              </label>
+            </div>
+          </section>
 
-          <div className="grid grid-cols-2 gap-3">
-            <label className="block">
-              <span className="text-sm text-slate-300">Weight (lbs)</span>
+          <section className="rounded-2xl bg-slate-100 border border-slate-300 p-4 shadow-sm">
+            <p className="text-sm text-slate-600 font-bold mb-4">
+              Shipment Details
+            </p>
 
-              <input
-                type="number"
-                value={weight}
-                onChange={(event) => setWeight(event.target.value)}
-                placeholder="Optional"
-                className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
-              />
-            </label>
+            <div className="space-y-4">
+              <label className="block">
+                <span className="text-sm text-slate-600 font-medium">
+                  Miles
+                </span>
 
-            <label className="block">
-              <span className="text-sm text-slate-300">Pallet Count</span>
+                <input
+                  type="number"
+                  value={miles}
+                  onChange={(event) => setMiles(event.target.value)}
+                  placeholder="Enter miles"
+                  className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-xl text-slate-900"
+                />
+              </label>
 
-              <input
-                type="number"
-                value={pallets}
-                onChange={(event) => setPallets(event.target.value)}
-                placeholder="Optional"
-                className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
-              />
-            </label>
-          </div>
+              <div className="grid grid-cols-2 gap-3">
+                <label className="block">
+                  <span className="text-sm text-slate-600 font-medium">
+                    Weight (lbs)
+                  </span>
 
-          <div className="grid grid-cols-3 gap-3">
-            <label className="block">
-              <span className="text-sm text-slate-300">Stops</span>
+                  <input
+                    type="number"
+                    value={weight}
+                    onChange={(event) => setWeight(event.target.value)}
+                    placeholder="Optional"
+                    className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-xl text-slate-900"
+                  />
+                </label>
 
-              <input
-                type="number"
-                value={stops}
-                onChange={(event) => setStops(event.target.value)}
-                className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
-              />
-            </label>
+                <label className="block">
+                  <span className="text-sm text-slate-600 font-medium">
+                    Pallet Count
+                  </span>
 
-            <label className="block">
-              <span className="text-sm text-slate-300">Pick Wait</span>
+                  <input
+                    type="number"
+                    value={pallets}
+                    onChange={(event) => setPallets(event.target.value)}
+                    placeholder="Optional"
+                    className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-xl text-slate-900"
+                  />
+                </label>
+              </div>
 
-              <input
-                type="number"
-                value={pickWaitTime}
-                onChange={(event) => setPickWaitTime(event.target.value)}
-                placeholder="0"
-                className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
-              />
-            </label>
+              <div className="grid grid-cols-3 gap-3">
+                <label className="block">
+                  <span className="text-sm text-slate-600 font-medium">
+                    Stops
+                  </span>
 
-            <label className="block">
-              <span className="text-sm text-slate-300">Drop Wait</span>
+                  <input
+                    type="number"
+                    value={stops}
+                    onChange={(event) => setStops(event.target.value)}
+                    className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-xl text-slate-900"
+                  />
+                </label>
 
-              <input
-                type="number"
-                value={dropWaitTime}
-                onChange={(event) => setDropWaitTime(event.target.value)}
-                placeholder="0"
-                className="mt-2 w-full rounded-xl bg-slate-900 border border-slate-700 p-4 text-xl"
-              />
-            </label>
-          </div>
+                <label className="block">
+                  <span className="text-sm text-slate-600 font-medium">
+                    Pick Wait
+                  </span>
 
-          <section className="rounded-2xl bg-slate-900 border border-slate-700 p-4">
-            <p className="text-sm text-slate-300 mb-3">Accessorials</p>
+                  <input
+                    type="number"
+                    value={pickWaitTime}
+                    onChange={(event) => setPickWaitTime(event.target.value)}
+                    placeholder="0"
+                    className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-xl text-slate-900"
+                  />
+                </label>
+
+                <label className="block">
+                  <span className="text-sm text-slate-600 font-medium">
+                    Drop Wait
+                  </span>
+
+                  <input
+                    type="number"
+                    value={dropWaitTime}
+                    onChange={(event) => setDropWaitTime(event.target.value)}
+                    placeholder="0"
+                    className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-xl text-slate-900"
+                  />
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-2xl bg-slate-100 border border-slate-300 p-4 shadow-sm">
+            <p className="text-sm text-slate-600 font-bold mb-4">
+              Accessorials
+            </p>
 
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => setAfterHours(!afterHours)}
                 className={`rounded-xl p-4 text-base font-semibold border ${
                   afterHours
-                    ? "bg-blue-600 border-blue-500"
-                    : "bg-slate-950 border-slate-700"
+                    ? "bg-[#0093aa] border-[#0093aa] text-white"
+                    : "bg-white border-slate-300 text-slate-900"
                 }`}
               >
                 After Hours
@@ -368,8 +431,8 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
                 onClick={() => setSharp(!sharp)}
                 className={`rounded-xl p-4 text-base font-semibold border ${
                   sharp
-                    ? "bg-blue-600 border-blue-500"
-                    : "bg-slate-950 border-slate-700"
+                    ? "bg-[#0093aa] border-[#0093aa] text-white"
+                    : "bg-white border-slate-300 text-slate-900"
                 }`}
               >
                 Sharp
@@ -379,8 +442,8 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
                 onClick={() => setNoLoad(!noLoad)}
                 className={`rounded-xl p-4 text-base font-semibold border ${
                   noLoad
-                    ? "bg-blue-600 border-blue-500"
-                    : "bg-slate-950 border-slate-700"
+                    ? "bg-[#0093aa] border-[#0093aa] text-white"
+                    : "bg-white border-slate-300 text-slate-900"
                 }`}
               >
                 No Load
@@ -391,10 +454,10 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
                 disabled={!selectedEquipment.liftgateAllowed}
                 className={`rounded-xl p-4 text-base font-semibold border ${
                   !selectedEquipment.liftgateAllowed
-                    ? "bg-slate-800 border-slate-700 text-slate-600"
+                    ? "bg-slate-200 border-slate-300 text-slate-400"
                     : liftgate
-                      ? "bg-blue-600 border-blue-500"
-                      : "bg-slate-950 border-slate-700"
+                      ? "bg-[#0093aa] border-[#0093aa] text-white"
+                      : "bg-white border-slate-300 text-slate-900"
                 }`}
               >
                 Liftgate
@@ -405,10 +468,10 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
                 disabled={!selectedEquipment.moffettAllowed}
                 className={`rounded-xl p-4 text-base font-semibold border ${
                   !selectedEquipment.moffettAllowed
-                    ? "bg-slate-800 border-slate-700 text-slate-600"
+                    ? "bg-slate-200 border-slate-300 text-slate-400"
                     : moffett
-                      ? "bg-blue-600 border-blue-500"
-                      : "bg-slate-950 border-slate-700"
+                      ? "bg-[#0093aa] border-[#0093aa] text-white"
+                      : "bg-white border-slate-300 text-slate-900"
                 }`}
               >
                 Moffett
@@ -418,8 +481,8 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
                 onClick={() => setHazmat(!hazmat)}
                 className={`rounded-xl p-4 text-base font-semibold border ${
                   hazmat
-                    ? "bg-blue-600 border-blue-500"
-                    : "bg-slate-950 border-slate-700"
+                    ? "bg-[#0093aa] border-[#0093aa] text-white"
+                    : "bg-white border-slate-300 text-slate-900"
                 }`}
               >
                 Hazmat
@@ -429,8 +492,8 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
                 onClick={() => setAirport(!airport)}
                 className={`rounded-xl p-4 text-base font-semibold border ${
                   airport
-                    ? "bg-blue-600 border-blue-500"
-                    : "bg-slate-950 border-slate-700"
+                    ? "bg-[#0093aa] border-[#0093aa] text-white"
+                    : "bg-white border-slate-300 text-slate-900"
                 }`}
               >
                 Airport/TSA/SIDA
@@ -438,34 +501,32 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
             </div>
           </section>
 
-          <div className="rounded-2xl bg-slate-900 border border-slate-700 p-6 text-center">
-            <p className="text-slate-400 text-sm">Estimated Quote</p>
+          <div className="rounded-2xl bg-slate-700 border border-slate-700 p-6 text-center shadow-lg">
+            <p className="text-slate-200 text-sm">
+              Estimated Quote
+            </p>
 
-            <p className="text-5xl font-bold mt-2">${total.toFixed(2)}</p>
+            <p className="text-5xl font-bold mt-2 text-white">
+              ${total.toFixed(2)}
+            </p>
 
             <button
               onClick={copyQuote}
-              className="mt-5 w-full rounded-xl bg-blue-600 hover:bg-blue-700 p-4 text-lg font-bold"
+              className="mt-5 w-full rounded-xl bg-[#0093aa] hover:bg-[#007c91] p-4 text-lg font-bold text-white"
             >
               {copied ? "COPIED!" : "COPY QUOTE"}
             </button>
 
-            <div className="text-slate-500 text-sm mt-4 space-y-1">
+            <div className="text-slate-200 text-sm mt-4 space-y-1">
               <p>Transport: ${transportBeforeFuel.toFixed(2)}</p>
-
               <p>
                 Fuel ({(fuelPercent * 100).toFixed(1)}%): $
                 {fuelCharge.toFixed(2)}
               </p>
-
               <p>Overweight: ${overweightCharge.toFixed(2)}</p>
-
               <p>Stops: ${additionalStopCharge.toFixed(2)}</p>
-
               <p>Wait Time: ${waitTimeCharge.toFixed(2)}</p>
-
               <p>Accessorials: ${accessorialTotal.toFixed(2)}</p>
-
               <p>Pallets: {palletCount}</p>
             </div>
           </div>
