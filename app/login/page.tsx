@@ -35,8 +35,8 @@ export default function LoginPage() {
 
         <div className="bg-white border border-slate-300 rounded-2xl p-8 shadow-lg">
 
-          <p className="text-slate-500 mb-6 text-center">
-            Internal Quote Tool
+          <p className="text-xs tracking-widest text-slate-400 font-bold text-center mb-6">
+            FOR INTERNAL USE ONLY · v0.5 INTERNAL BETA
           </p>
 
           <input
