@@ -26,7 +26,7 @@ export default function HomeClient({ isAdmin }: { isAdmin: boolean }) {
 
         <div className="grid gap-3">
           {isAdmin && (
-            <Link href="/admin" className="bg-white border border-cyan-200 text-[#006f83] hover:border-[#0093aa] text-sm font-extrabold tracking-wide py-4 px-5 rounded-2xl block shadow-sm text-center">
+            <Link href="/admin" className="flex min-h-[54px] items-center justify-center rounded-2xl border border-cyan-200 bg-white px-5 py-4 text-center text-sm font-extrabold tracking-wide text-[#006f83] shadow-sm hover:border-[#0093aa]">
               ADMIN — PRICING SETTINGS
             </Link>
           )}
@@ -35,11 +35,11 @@ export default function HomeClient({ isAdmin }: { isAdmin: boolean }) {
           <Link href="/detailed-quote" className="bg-[#15394b] hover:bg-[#102f40] text-white text-lg font-bold py-5 px-5 rounded-2xl block shadow-[0_12px_28px_rgba(16,45,61,.16)] text-center">DETAILED QUOTE</Link>
           <Link href="/dedicated-quote" className="bg-[#15394b] hover:bg-[#102f40] text-white text-lg font-bold py-5 px-5 rounded-2xl block shadow-[0_12px_28px_rgba(16,45,61,.16)] text-center">DEDICATED QUOTE</Link>
           <div
-            className="mt-1 flex items-center justify-between gap-4 rounded-2xl border border-[#bccbd2] bg-gradient-to-br from-[#dfe8eb] to-[#cedce1] px-5 py-4 text-[#294653] shadow-sm"
+            className="relative mt-1 flex min-h-[54px] items-center justify-center rounded-2xl border border-[#b9cbd2] bg-[#e4ecef] px-5 py-4 text-center text-sm font-extrabold tracking-wide text-[#365562] shadow-sm"
             aria-label="Routing Guide, coming soon"
           >
-            <span className="text-base font-extrabold tracking-wide">ROUTING GUIDE</span>
-            <span className="shrink-0 rounded-full bg-white/80 px-3 py-1 text-[10px] font-extrabold tracking-[0.12em] text-[#56717d]">
+            <span>ROUTING GUIDE</span>
+            <span className="absolute right-3 top-2 rounded-full bg-white/80 px-2 py-0.5 text-[8px] font-extrabold tracking-[0.1em] text-[#607984]">
               COMING SOON
             </span>
           </div>
