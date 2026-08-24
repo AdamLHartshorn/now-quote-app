@@ -26,16 +26,16 @@ export default function HomeClient({ isAdmin }: { isAdmin: boolean }) {
 
         <div className="grid gap-3">
           {isAdmin && (
-            <Link href="/admin" className="flex min-h-[54px] items-center justify-center rounded-2xl border border-cyan-200 bg-white px-5 py-4 text-center text-sm font-extrabold tracking-wide text-[#006f83] shadow-sm hover:border-[#0093aa]">
+            <Link href="/admin" className="flex h-16 items-center justify-center rounded-2xl border border-cyan-200 bg-white px-5 text-center text-lg font-extrabold text-[#006f83] shadow-sm hover:border-[#0093aa]">
               ADMIN — PRICING SETTINGS
             </Link>
           )}
-          <Link href="/fast-quote-parcel" className="bg-gradient-to-br from-[#00a1b8] to-[#007c91] text-white text-lg font-extrabold py-5 px-5 rounded-2xl block shadow-[0_12px_28px_rgba(0,126,148,.22)] text-center">FAST QUOTE — PARCEL</Link>
-          <Link href="/fast-quote-commercial" className="bg-gradient-to-br from-[#00a1b8] to-[#007c91] text-white text-lg font-extrabold py-5 px-5 rounded-2xl block shadow-[0_12px_28px_rgba(0,126,148,.22)] text-center">FAST QUOTE — COMMERCIAL</Link>
-          <Link href="/detailed-quote" className="bg-[#15394b] hover:bg-[#102f40] text-white text-lg font-bold py-5 px-5 rounded-2xl block shadow-[0_12px_28px_rgba(16,45,61,.16)] text-center">DETAILED QUOTE</Link>
-          <Link href="/dedicated-quote" className="bg-[#15394b] hover:bg-[#102f40] text-white text-lg font-bold py-5 px-5 rounded-2xl block shadow-[0_12px_28px_rgba(16,45,61,.16)] text-center">DEDICATED QUOTE</Link>
+          <Link href="/fast-quote-parcel" className="flex h-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#00a1b8] to-[#007c91] px-5 text-center text-lg font-extrabold text-white shadow-[0_12px_28px_rgba(0,126,148,.22)]">FAST QUOTE — PARCEL</Link>
+          <Link href="/fast-quote-commercial" className="flex h-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#00a1b8] to-[#007c91] px-5 text-center text-lg font-extrabold text-white shadow-[0_12px_28px_rgba(0,126,148,.22)]">FAST QUOTE — COMMERCIAL</Link>
+          <Link href="/detailed-quote" className="flex h-16 items-center justify-center rounded-2xl bg-[#15394b] px-5 text-center text-lg font-extrabold text-white shadow-[0_12px_28px_rgba(16,45,61,.16)] hover:bg-[#102f40]">DETAILED QUOTE</Link>
+          <Link href="/dedicated-quote" className="flex h-16 items-center justify-center rounded-2xl bg-[#15394b] px-5 text-center text-lg font-extrabold text-white shadow-[0_12px_28px_rgba(16,45,61,.16)] hover:bg-[#102f40]">DEDICATED QUOTE</Link>
           <div
-            className="relative mt-1 flex min-h-[54px] items-center justify-center rounded-2xl border border-[#b9cbd2] bg-[#e4ecef] px-5 py-4 text-center text-sm font-extrabold tracking-wide text-[#365562] shadow-sm"
+            className="relative mt-1 flex h-16 items-center justify-center rounded-2xl border border-[#b9cbd2] bg-[#e4ecef] px-5 text-center text-lg font-extrabold text-[#365562] shadow-sm"
             aria-label="Routing Guide, coming soon"
           >
             <span>ROUTING GUIDE</span>
