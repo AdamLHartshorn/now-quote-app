@@ -25,9 +25,9 @@ const fields: Array<{
 
 function toFormValues(settings: typeof defaultFuelSettings): FormValues {
   return {
-    parcel: String(settings.parcel * 100),
-    commercial: String(settings.commercial * 100),
-    heavyCommercial: String(settings.heavyCommercial * 100),
+    parcel: String(Math.round(settings.parcel * 1000) / 10),
+    commercial: String(Math.round(settings.commercial * 1000) / 10),
+    heavyCommercial: String(Math.round(settings.heavyCommercial * 1000) / 10),
   };
 }
 
@@ -69,20 +69,20 @@ function FuelSettingsForm({ initialSettings }: { initialSettings: typeof default
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 p-6">
-      <div className="mx-auto w-full max-w-lg">
-        <header className="flex items-center justify-between mb-8">
-          <Link href="/" className="text-slate-500 text-sm">← Quote menu</Link>
-          <Image src="/now-logo.jpg" alt="NOW Courier" width={130} height={45} priority />
+    <main className="app-shell">
+      <div className="page-frame">
+        <header className="topbar">
+          <Link href="/" className="back-link">← Quote menu</Link>
+          <Image src="/now-logo.jpg" alt="NOW Courier" width={130} height={45} priority className="brand-logo" />
         </header>
 
-        <div className="mb-8">
-          <p className="text-xs tracking-widest text-[#007c91] font-bold mb-2">ADMIN</p>
-          <h1 className="text-4xl font-bold mb-2">Pricing settings</h1>
-          <p className="text-slate-500">Update the weekly fuel percentages used by every quote calculator on this device.</p>
+        <div className="page-heading">
+          <p className="eyebrow">Administration</p>
+          <h1 className="page-title">Pricing settings</h1>
+          <p className="page-subtitle">Update the weekly fuel percentages used by every quote calculator on this device.</p>
         </div>
 
-        <form onSubmit={submit} className="bg-white border border-slate-300 rounded-2xl p-6 shadow-sm space-y-5">
+        <form onSubmit={submit} className="panel space-y-5">
           {fields.map((field) => (
             <label className="block" key={field.key}>
               <span className="text-sm text-slate-700 font-bold">{field.label}</span>
@@ -99,17 +99,17 @@ function FuelSettingsForm({ initialSettings }: { initialSettings: typeof default
                     setValues((current) => ({ ...current, [field.key]: event.target.value }));
                     setMessage("");
                   }}
-                  className="w-full rounded-xl bg-slate-50 border border-slate-300 p-4 pr-12 text-xl text-slate-900"
+                  className="control pr-12"
                 />
                 <span className="absolute right-4 top-4 text-xl text-slate-500">%</span>
               </div>
             </label>
           ))}
 
-          <button type="submit" className="w-full bg-[#0093aa] hover:bg-[#007c91] text-white rounded-xl p-4 font-bold text-lg">
+          <button type="submit" className="primary-button">
             SAVE FUEL SURCHARGES
           </button>
-          <button type="button" onClick={restoreDefaults} className="w-full border border-slate-300 hover:bg-slate-50 rounded-xl p-3 font-semibold text-slate-600">
+          <button type="button" onClick={restoreDefaults} className="secondary-button">
             Restore defaults
           </button>
           {message && <p className="text-sm text-center text-slate-600" role="status">{message}</p>}

@@ -27,10 +27,10 @@ export default function DedicatedQuote() {
   const total = billedHours * loadedHourlyRate;
 
   return (
-    <main className="min-h-screen bg-white text-slate-900 p-6">
-      <div className="mx-auto w-full max-w-md">
-        <div className="flex items-center justify-between mb-6">
-          <Link href="/" className="text-slate-500 text-sm">
+    <main className="app-shell">
+      <div className="page-frame">
+        <div className="topbar">
+          <Link href="/" className="back-link">
             ← Back
           </Link>
 
@@ -40,22 +40,22 @@ export default function DedicatedQuote() {
             width={130}
             height={45}
             priority
+            className="brand-logo"
           />
         </div>
 
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">
-            DEDICATED QUOTE
-          </h1>
+        <div className="page-heading">
+          <p className="eyebrow">Hourly service</p>
+          <h1 className="page-title">Dedicated</h1>
 
-          <p className="text-slate-500">
+          <p className="page-subtitle">
             Hourly dedicated pricing with 4-hour minimum.
           </p>
         </div>
 
-        <div className="space-y-5">
+        <div className="form-stack">
           <label className="block">
-            <span className="text-sm text-slate-600 font-medium">
+            <span className="field-label">
               Equipment
             </span>
 
@@ -66,7 +66,7 @@ export default function DedicatedQuote() {
                   event.target.value as keyof typeof dedicatedRates
                 )
               }
-              className="mt-2 w-full rounded-xl bg-slate-50 border border-slate-300 p-4 text-xl text-slate-900"
+              className="control"
             >
               {Object.keys(dedicatedRates).map((item) => (
                 <option key={item}>{item}</option>
@@ -75,7 +75,7 @@ export default function DedicatedQuote() {
           </label>
 
           <label className="block">
-            <span className="text-sm text-slate-600 font-medium">
+            <span className="field-label">
               Estimated Hours
             </span>
 
@@ -85,20 +85,20 @@ export default function DedicatedQuote() {
               value={hours}
               onChange={(event) => setHours(event.target.value)}
               placeholder="Enter hours"
-              className="mt-2 w-full rounded-xl bg-slate-50 border border-slate-300 p-4 text-xl text-slate-900"
+              className="control"
             />
           </label>
 
-          <div className="rounded-2xl bg-slate-100 border border-slate-300 p-6 text-center shadow-sm">
-            <p className="text-slate-500 text-sm">
+          <div className="quote-card">
+            <p className="quote-kicker">
               Estimated Dedicated Quote
             </p>
 
-            <p className="text-5xl font-bold mt-2 text-slate-900">
+            <p className="quote-amount">
               ${total.toFixed(2)}
             </p>
 
-            <div className="text-slate-600 text-sm mt-4 space-y-1">
+            <div className="breakdown">
               <p>Billed Hours: {billedHours.toFixed(2)}</p>
               <p>Base Hourly: ${selectedRate.hourly.toFixed(2)}</p>
               <p>Fuel: {(fuelPercent * 100).toFixed(1)}%</p>

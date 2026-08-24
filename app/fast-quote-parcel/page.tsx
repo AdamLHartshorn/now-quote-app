@@ -51,10 +51,10 @@ export default function FastQuoteParcel() {
   const total = transport + overweightCharge + fuel;
 
   return (
-    <main className="min-h-screen bg-white text-slate-900 p-6">
-      <div className="mx-auto w-full max-w-md">
-        <div className="flex items-center justify-between mb-6">
-          <Link href="/" className="text-slate-500 text-sm">
+    <main className="app-shell">
+      <div className="page-frame">
+        <div className="topbar">
+          <Link href="/" className="back-link">
             ← Back
           </Link>
 
@@ -64,22 +64,22 @@ export default function FastQuoteParcel() {
             width={130}
             height={45}
             priority
+            className="brand-logo"
           />
         </div>
 
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">
-            FAST QUOTE — PARCEL
-          </h1>
+        <div className="page-heading">
+          <p className="eyebrow">Fast quote</p>
+          <h1 className="page-title">Parcel</h1>
 
-          <p className="text-slate-500">
+          <p className="page-subtitle">
             Ballpark parcel quote for quick customer conversations.
           </p>
         </div>
 
-        <div className="space-y-5">
+        <div className="form-stack">
           <label className="block">
-            <span className="text-sm text-slate-600 font-medium">
+            <span className="field-label">
               Service Type
             </span>
 
@@ -90,7 +90,7 @@ export default function FastQuoteParcel() {
                   event.target.value as keyof typeof parcelServiceRates
                 )
               }
-              className="mt-2 w-full rounded-xl bg-slate-50 border border-slate-300 p-4 text-xl text-slate-900"
+              className="control"
             >
               {Object.keys(parcelServiceRates).map((item) => (
                 <option key={item}>{item}</option>
@@ -99,7 +99,7 @@ export default function FastQuoteParcel() {
           </label>
 
           <label className="block">
-            <span className="text-sm text-slate-600 font-medium">
+            <span className="field-label">
               Vehicle
             </span>
 
@@ -110,7 +110,7 @@ export default function FastQuoteParcel() {
                   event.target.value as keyof typeof parcelVehicleConfig
                 )
               }
-              className="mt-2 w-full rounded-xl bg-slate-50 border border-slate-300 p-4 text-xl text-slate-900"
+              className="control"
             >
               {Object.keys(parcelVehicleConfig).map((item) => (
                 <option key={item}>{item}</option>
@@ -119,7 +119,7 @@ export default function FastQuoteParcel() {
           </label>
 
           <label className="block">
-            <span className="text-sm text-slate-600 font-medium">
+            <span className="field-label">
               Miles
             </span>
 
@@ -128,12 +128,12 @@ export default function FastQuoteParcel() {
               value={miles}
               onChange={(event) => setMiles(event.target.value)}
               placeholder="Enter miles"
-              className="mt-2 w-full rounded-xl bg-slate-50 border border-slate-300 p-4 text-xl text-slate-900"
+              className="control"
             />
           </label>
 
           <label className="block">
-            <span className="text-sm text-slate-600 font-medium">
+            <span className="field-label">
               Weight (lbs)
             </span>
 
@@ -142,18 +142,18 @@ export default function FastQuoteParcel() {
               value={weight}
               onChange={(event) => setWeight(event.target.value)}
               placeholder="Optional"
-              className="mt-2 w-full rounded-xl bg-slate-50 border border-slate-300 p-4 text-xl text-slate-900"
+              className="control"
             />
           </label>
 
-          <div className="rounded-2xl bg-slate-100 border border-slate-300 p-6 text-center shadow-sm">
-            <p className="text-slate-500 text-sm">Ballpark Quote</p>
+          <div className="quote-card">
+            <p className="quote-kicker">Ballpark quote</p>
 
-            <p className="text-5xl font-bold mt-2 text-slate-900">
+            <p className="quote-amount">
               ${total.toFixed(2)}
             </p>
 
-            <div className="text-slate-600 text-sm mt-4 space-y-1">
+            <div className="breakdown">
               <p>Transport: ${transport.toFixed(2)}</p>
               <p>Overweight: ${overweightCharge.toFixed(2)}</p>
               <p>

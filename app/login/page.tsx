@@ -34,40 +34,45 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white flex items-center justify-center p-6">
-      <div className="w-full max-w-sm">
+    <main className="min-h-screen flex items-center justify-center p-5 bg-[#eef5f6] relative overflow-hidden">
+      <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#00a5bb] to-[#006f83]" />
+      <div className="absolute -top-40 -right-40 h-96 w-96 rounded-full bg-cyan-200/30 blur-3xl" />
+      <div className="w-full max-w-sm relative">
 
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-8">
           <Image
             src="/now-logo.jpg"
             alt="NOW Courier"
-            width={260}
-            height={90}
+            width={230}
+            height={80}
             priority
           />
         </div>
 
-        <div className="bg-white border border-slate-300 rounded-2xl p-8 shadow-lg">
+        <div className="bg-white/95 border border-white rounded-[28px] p-7 shadow-[0_24px_70px_rgba(16,45,61,0.16)] backdrop-blur">
 
-          <p className="text-xs tracking-widest text-slate-400 font-bold text-center mb-6">
-            FOR INTERNAL USE ONLY · v0.5 INTERNAL BETA
+          <p className="eyebrow text-center !mb-2">
+            NOW PRICING PORTAL
           </p>
+          <h1 className="text-2xl font-extrabold tracking-tight text-center text-[#102d3d] mb-2">Welcome back</h1>
+          <p className="text-sm text-slate-500 text-center mb-6">Enter your team password to continue.</p>
 
           <input
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Enter password"
+            aria-label="Password"
             onKeyDown={(event) => {
               if (event.key === "Enter") void handleLogin();
             }}
-            className="w-full rounded-xl border border-slate-300 p-4 text-xl tracking-wide text-slate-900 mb-4"
+            className="control mb-4 text-center tracking-widest"
           />
 
           <button
             onClick={() => void handleLogin()}
             disabled={loading || !password}
-            className="w-full bg-[#0093aa] hover:bg-[#007c91] text-white rounded-xl p-4 font-bold text-lg transition-all duration-200"
+            className="primary-button"
           >
             {loading ? "LOGGING IN…" : "LOGIN"}
           </button>

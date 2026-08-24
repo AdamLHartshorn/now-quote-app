@@ -194,10 +194,10 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
   }
 
   return (
-    <main className="min-h-screen bg-white text-slate-900 p-6">
-      <div className="mx-auto w-full max-w-md">
-        <div className="flex items-center justify-between mb-6">
-          <Link href="/" className="text-slate-500 text-sm">
+    <main className="app-shell">
+      <div className="page-frame">
+        <div className="topbar">
+          <Link href="/" className="back-link">
             ← Back
           </Link>
 
@@ -207,22 +207,22 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
             width={130}
             height={45}
             priority
+            className="brand-logo"
           />
         </div>
 
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">
-            DETAILED QUOTE
-          </h1>
+        <div className="page-heading">
+          <p className="eyebrow">Full workflow</p>
+          <h1 className="page-title">Detailed quote</h1>
 
-          <p className="text-slate-500">
+          <p className="page-subtitle">
             Operational commercial quote workflow.
           </p>
         </div>
 
-        <div className="space-y-5">
-          <section className="rounded-2xl bg-slate-100 border border-slate-300 p-4 shadow-sm">
-            <p className="text-sm text-slate-600 font-bold mb-4">
+        <div className="form-stack">
+          <section className="panel">
+            <p className="panel-title">
               Customer / Route
             </p>
 
@@ -271,8 +271,8 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
             </div>
           </section>
 
-          <section className="rounded-2xl bg-slate-100 border border-slate-300 p-4 shadow-sm">
-            <p className="text-sm text-slate-600 font-bold mb-4">
+          <section className="panel">
+            <p className="panel-title">
               Service / Equipment
             </p>
 
@@ -318,8 +318,8 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
             </div>
           </section>
 
-          <section className="rounded-2xl bg-slate-100 border border-slate-300 p-4 shadow-sm">
-            <p className="text-sm text-slate-600 font-bold mb-4">
+          <section className="panel">
+            <p className="panel-title">
               Shipment Details
             </p>
 
@@ -413,8 +413,8 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
             </div>
           </section>
 
-          <section className="rounded-2xl bg-slate-100 border border-slate-300 p-4 shadow-sm">
-            <p className="text-sm text-slate-600 font-bold mb-4">
+          <section className="panel">
+            <p className="panel-title">
               Accessorials
             </p>
 
@@ -504,23 +504,23 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
             </div>
           </section>
 
-          <div className="rounded-2xl bg-slate-700 border border-slate-700 p-6 text-center shadow-lg">
-            <p className="text-slate-200 text-sm">
+          <div className="quote-card">
+            <p className="quote-kicker">
               Estimated Quote
             </p>
 
-            <p className="text-5xl font-bold mt-2 text-white">
+            <p className="quote-amount">
               ${total.toFixed(2)}
             </p>
 
             <button
               onClick={copyQuote}
-              className="mt-5 w-full rounded-xl bg-[#0093aa] hover:bg-[#007c91] p-4 text-lg font-bold text-white"
+              className="primary-button relative z-[1] mt-5"
             >
               {copied ? "COPIED!" : "COPY QUOTE"}
             </button>
 
-            <div className="text-slate-200 text-sm mt-4 space-y-1">
+            <div className="breakdown">
               <p>Transport: ${transportBeforeFuel.toFixed(2)}</p>
               <p>
                 Fuel ({(fuelPercent * 100).toFixed(1)}%): $
