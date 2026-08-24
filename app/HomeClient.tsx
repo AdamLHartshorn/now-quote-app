@@ -34,6 +34,15 @@ export default function HomeClient({ isAdmin }: { isAdmin: boolean }) {
           <Link href="/fast-quote-commercial" className="bg-gradient-to-br from-[#00a1b8] to-[#007c91] text-white text-lg font-extrabold py-5 px-5 rounded-2xl block shadow-[0_12px_28px_rgba(0,126,148,.22)] text-center">FAST QUOTE — COMMERCIAL</Link>
           <Link href="/detailed-quote" className="bg-[#15394b] hover:bg-[#102f40] text-white text-lg font-bold py-5 px-5 rounded-2xl block shadow-[0_12px_28px_rgba(16,45,61,.16)] text-center">DETAILED QUOTE</Link>
           <Link href="/dedicated-quote" className="bg-[#15394b] hover:bg-[#102f40] text-white text-lg font-bold py-5 px-5 rounded-2xl block shadow-[0_12px_28px_rgba(16,45,61,.16)] text-center">DEDICATED QUOTE</Link>
+          <div
+            className="mt-1 flex items-center justify-between gap-4 rounded-2xl border border-[#bccbd2] bg-gradient-to-br from-[#dfe8eb] to-[#cedce1] px-5 py-4 text-[#294653] shadow-sm"
+            aria-label="Routing Guide, coming soon"
+          >
+            <span className="text-base font-extrabold tracking-wide">ROUTING GUIDE</span>
+            <span className="shrink-0 rounded-full bg-white/80 px-3 py-1 text-[10px] font-extrabold tracking-[0.12em] text-[#56717d]">
+              COMING SOON
+            </span>
+          </div>
         </div>
 
         <div className="mt-9 pt-6 border-t border-slate-200 text-center space-y-1">
