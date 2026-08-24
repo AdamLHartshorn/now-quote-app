@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-import { dedicatedRates, fuelSurcharge } from "@/config/rates";
+import { dedicatedRates } from "@/config/rates";
+import { useFuelSettings } from "@/lib/fuel-settings";
 
 export default function DedicatedQuote() {
+  const fuelSurcharge = useFuelSettings();
   const [equipment, setEquipment] =
     useState<keyof typeof dedicatedRates>("Car");
 
@@ -27,9 +30,9 @@ export default function DedicatedQuote() {
     <main className="min-h-screen bg-white text-slate-900 p-6">
       <div className="mx-auto w-full max-w-md">
         <div className="flex items-center justify-between mb-6">
-          <a href="/" className="text-slate-500 text-sm">
+          <Link href="/" className="text-slate-500 text-sm">
             ← Back
-          </a>
+          </Link>
 
           <Image
             src="/now-logo.jpg"

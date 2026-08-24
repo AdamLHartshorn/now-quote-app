@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-import { commercialEquipmentConfig, fuelSurcharge } from "@/config/rates";
+import { commercialEquipmentConfig } from "@/config/rates";
+import { useFuelSettings } from "@/lib/fuel-settings";
 
 export default function DetailedQuote() {
+  const fuelSurcharge = useFuelSettings();
   const [customerName, setCustomerName] = useState("");
   const [pickupAddress, setPickupAddress] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
@@ -194,9 +197,9 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
     <main className="min-h-screen bg-white text-slate-900 p-6">
       <div className="mx-auto w-full max-w-md">
         <div className="flex items-center justify-between mb-6">
-          <a href="/" className="text-slate-500 text-sm">
+          <Link href="/" className="text-slate-500 text-sm">
             ← Back
-          </a>
+          </Link>
 
           <Image
             src="/now-logo.jpg"

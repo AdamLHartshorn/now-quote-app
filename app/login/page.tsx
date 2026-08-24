@@ -10,13 +10,27 @@ export default function LoginPage() {
 
   const router = useRouter();
 
-  function handleLogin() {
-    if (password === "NOWQ2") {
-      document.cookie = "now-auth=true; path=/; max-age=86400";
-      router.push("/");
-    } else {
-      setError("Incorrect password");
+  const [loading, setLoading] = useState(false);
+
+  async function handleLogin() {
+    setLoading(true);
+    setError("");
+
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+    const result = (await response.json()) as { role?: "staff" | "admin"; error?: string };
+    setLoading(false);
+
+    if (!response.ok || !result.role) {
+      setError(result.error ?? "Unable to log in");
+      return;
     }
+
+    router.push(result.role === "admin" ? "/admin" : "/");
+    router.refresh();
   }
 
   return (
@@ -40,18 +54,22 @@ export default function LoginPage() {
           </p>
 
           <input
-            type="text"
+            type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Enter password"
+            onKeyDown={(event) => {
+              if (event.key === "Enter") void handleLogin();
+            }}
             className="w-full rounded-xl border border-slate-300 p-4 text-xl tracking-wide text-slate-900 mb-4"
           />
 
           <button
-            onClick={handleLogin}
+            onClick={() => void handleLogin()}
+            disabled={loading || !password}
             className="w-full bg-[#0093aa] hover:bg-[#007c91] text-white rounded-xl p-4 font-bold text-lg transition-all duration-200"
           >
-            LOGIN
+            {loading ? "LOGGING IN…" : "LOGIN"}
           </button>
 
           {error && (

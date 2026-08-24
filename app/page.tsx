@@ -4,9 +4,12 @@ import Image from "next/image";
 
 export default function Home() {
   function logout() {
-    document.cookie = "now-auth=; path=/; max-age=0";
-    window.location.href = "/login";
+    void fetch("/api/logout", { method: "POST" }).then(() => {
+      window.location.href = "/login";
+    });
   }
+
+  const isAdmin = typeof document !== "undefined" && document.cookie.includes("now-role=admin");
 
   return (
     <main className="min-h-screen bg-white text-slate-900 flex flex-col items-center justify-center p-6">
@@ -40,6 +43,15 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-4">
+
+          {isAdmin && (
+            <a
+              href="/admin"
+              className="border-2 border-[#0093aa] text-[#007c91] hover:bg-cyan-50 text-lg font-bold py-4 rounded-2xl block"
+            >
+              ADMIN — PRICING SETTINGS
+            </a>
+          )}
 
           <a
             href="/fast-quote-parcel"

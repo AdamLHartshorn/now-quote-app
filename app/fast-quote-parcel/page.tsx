@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import {
   parcelServiceRates,
   parcelVehicleConfig,
-  fuelSurcharge,
 } from "@/config/rates";
+import { useFuelSettings } from "@/lib/fuel-settings";
 
 export default function FastQuoteParcel() {
+  const fuelSurcharge = useFuelSettings();
   const [serviceType, setServiceType] =
     useState<keyof typeof parcelServiceRates>("Direct");
 
@@ -52,9 +54,9 @@ export default function FastQuoteParcel() {
     <main className="min-h-screen bg-white text-slate-900 p-6">
       <div className="mx-auto w-full max-w-md">
         <div className="flex items-center justify-between mb-6">
-          <a href="/" className="text-slate-500 text-sm">
+          <Link href="/" className="text-slate-500 text-sm">
             ← Back
-          </a>
+          </Link>
 
           <Image
             src="/now-logo.jpg"
