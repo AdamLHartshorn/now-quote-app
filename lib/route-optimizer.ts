@@ -39,7 +39,10 @@ async function geocode(query: string): Promise<Coordinate> {
 
 async function geocodeAll(input: NewRouteInput) {
   const locations: Coordinate[] = [];
-  const queries = [input.startAddress, ...input.prospects.map((prospect) => prospect.address)];
+  const queries = [
+    `${input.startName}, ${input.startAddress}`,
+    ...input.prospects.map((prospect) => `${prospect.businessName}, ${prospect.address}`),
+  ];
   for (const query of queries) {
     locations.push(await geocode(query));
     if (query !== queries.at(-1)) await pause(1050);

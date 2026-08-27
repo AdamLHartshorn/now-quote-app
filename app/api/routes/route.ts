@@ -27,7 +27,7 @@ export async function GET() {
 export async function POST(request: Request) {
   if (!(await authorized())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const input = await request.json();
-  if (!validInput(input)) return NextResponse.json({ error: "Complete the route name, territory, donut shop, and 1–20 prospects." }, { status: 400 });
+  if (!validInput(input)) return NextResponse.json({ error: "Complete the route name, territory, donut shop, and location details for 1–20 prospects." }, { status: 400 });
   try { return NextResponse.json(await createRoute(input), { status: 201 }); }
   catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to build route" }, { status: 503 }); }
 }
