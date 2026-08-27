@@ -41,7 +41,18 @@ async function geocode(query: string): Promise<Coordinate | null> {
 }
 
 async function geocodeFirstBest(name: string, locationHint: string) {
-  const attempts = [`${name}, ${locationHint}`, name, locationHint];
+  const simplifiedName = name
+    .replace(/[‘’]/g, "'")
+    .replace(/\b(the|of)\b/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const attempts = [...new Set([
+    `${name}, ${locationHint}`,
+    `${simplifiedName}, ${locationHint}, Indiana`,
+    `${simplifiedName}, Indianapolis, Indiana`,
+    simplifiedName,
+    `${locationHint}, Indiana`,
+  ])];
   for (const [index, query] of attempts.entries()) {
     const result = await geocode(query);
     if (result) return result;
