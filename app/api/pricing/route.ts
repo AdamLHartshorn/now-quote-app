@@ -1,8 +1,8 @@
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 import { defaultPricingConfig, type PricingConfig } from "@/config/rates";
 import { getPricingConfig, savePricingConfig } from "@/lib/pricing-server";
+import { getSessionRole } from "@/lib/auth-server";
 
 function isPositiveNumber(value: unknown) {
   return typeof value === "number" && Number.isFinite(value) && value >= 0;
@@ -28,12 +28,8 @@ function matchesPricingShape(value: unknown, template: unknown): boolean {
   );
 }
 
-async function role() {
-  return (await cookies()).get("now-auth")?.value;
-}
-
 export async function GET() {
-  if (!(await role())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await getSessionRole())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
     return NextResponse.json(await getPricingConfig());
@@ -46,7 +42,7 @@ export async function GET() {
 }
 
 export async function PUT(request: Request) {
-  if ((await role()) !== "admin") {
+  if ((await getSessionRole()) !== "admin") {
     return NextResponse.json({ error: "Admin access required" }, { status: 403 });
   }
 

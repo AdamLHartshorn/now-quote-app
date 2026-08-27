@@ -1,15 +1,17 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function proxy(request: NextRequest) {
-  const auth = request.cookies.get("now-auth");
+import { verifySessionToken } from "@/lib/auth-session";
+
+export async function proxy(request: NextRequest) {
+  const role = await verifySessionToken(request.cookies.get("now-auth")?.value);
   const isLoginPage = request.nextUrl.pathname === "/login";
 
-  if (!auth && !isLoginPage) {
+  if (!role && !isLoginPage) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (request.nextUrl.pathname.startsWith("/admin") && auth?.value !== "admin") {
+  if (request.nextUrl.pathname.startsWith("/admin") && role !== "admin") {
     return NextResponse.redirect(new URL("/", request.url));
   }
 

@@ -1,8 +1,7 @@
-import { cookies } from "next/headers";
-
 import HomeClient from "./HomeClient";
+import { getSessionRole } from "@/lib/auth-server";
 
 export default async function Home() {
-  const role = (await cookies()).get("now-auth")?.value;
+  const role = await getSessionRole();
   return <HomeClient isAdmin={role === "admin"} />;
 }

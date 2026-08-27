@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "NOW Courier Quote Tool",
   description:
     "Internal pricing and operational quoting platform for NOW Courier.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "NOW Sales",
+  },
 
   openGraph: {
     title: "NOW Courier Quote Tool",

@@ -1,8 +1,8 @@
-import { cookies } from "next/headers";
+import { getSessionRole } from "@/lib/auth-server";
 
 import RoutingGuideClient from "./RoutingGuideClient";
 
 export default async function RoutingGuidePage() {
-  const isAdmin = (await cookies()).get("now-auth")?.value === "admin";
+  const isAdmin = (await getSessionRole()) === "admin";
   return <RoutingGuideClient isAdmin={isAdmin} />;
 }

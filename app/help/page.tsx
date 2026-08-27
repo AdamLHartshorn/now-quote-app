@@ -1,8 +1,7 @@
-import { cookies } from "next/headers";
-
 import HelpClient from "./HelpClient";
+import { getSessionRole } from "@/lib/auth-server";
 
 export default async function HelpPage() {
-  const role = (await cookies()).get("now-auth")?.value;
+  const role = await getSessionRole();
   return <HelpClient isAdmin={role === "admin"} />;
 }
