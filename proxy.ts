@@ -24,6 +24,7 @@ export const config = {
     "/detailed-quote",
     "/dedicated-quote",
     "/help",
+    "/routing-guide",
     "/admin/:path*",
   ],
 };

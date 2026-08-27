@@ -59,6 +59,12 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
             <p className="rounded-xl bg-amber-50 p-3 text-xs font-semibold text-amber-800">Quotes are estimates. Confirm unusual freight, special handling, or exceptions with Operations.</p>
           </GuideSection>
 
+          <GuideSection title="Routing guide">
+            <p>Build and reuse prospect routes from the shared route library. Begin every route title with your name, select one of the eight compass territories, enter the donut shop as the locked starting location, then add 1–20 businesses.</p>
+            <p>The app validates the addresses and recommends an efficient driving order. Work down the list, marking each stop complete or skipped. Use the arrow controls when local knowledge makes a manual adjustment preferable.</p>
+            <p>Route mileage and drive time cover the donut shop through the final prospect; they do not include travel to the donut shop or a return trip.</p>
+          </GuideSection>
+
           {isAdmin && (
             <>
               <GuideSection title="Publishing rates">

@@ -37,15 +37,10 @@ export default function HomeClient({ isAdmin }: { isAdmin: boolean }) {
           <Link href="/help" className="flex h-16 items-center justify-center rounded-2xl border border-[#b7d5db] bg-white px-5 text-center text-lg font-extrabold text-[#15394b] shadow-sm hover:border-[#008da3] hover:text-[#00798d]">
             HELP
           </Link>
-          <div
-            className="relative mt-1 flex h-16 items-center justify-center rounded-2xl border border-[#b9cbd2] bg-[#e4ecef] px-5 text-center text-lg font-extrabold text-[#365562] shadow-sm"
-            aria-label="Routing Guide, coming soon"
-          >
-            <span>ROUTING GUIDE</span>
-            <span className="absolute right-3 top-2 rounded-full bg-white/80 px-2 py-0.5 text-[8px] font-extrabold tracking-[0.1em] text-[#607984]">
-              COMING SOON
-            </span>
-          </div>
+          <Link href="/routing-guide" className="relative mt-1 flex h-16 items-center justify-center rounded-2xl border border-[#9bc5cd] bg-[#dcebed] px-5 text-center text-lg font-extrabold text-[#244c5a] shadow-sm hover:border-[#008da3] hover:bg-[#d3e7ea]">
+            ROUTING GUIDE
+            <span className="absolute right-3 top-2 rounded-full bg-white/85 px-2 py-0.5 text-[8px] font-extrabold tracking-[0.1em] text-[#00798d]">NEW</span>
+          </Link>
         </div>
 
         <div className="mt-9 pt-6 border-t border-slate-200 text-center space-y-1">
