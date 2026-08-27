@@ -7,6 +7,7 @@ type Matrix = { durations: number[][]; distances: number[][] };
 
 const geocoderUrl = process.env.GEOCODING_BASE_URL ?? "https://nominatim.openstreetmap.org";
 const routingUrl = process.env.ROUTING_BASE_URL ?? "https://router.project-osrm.org";
+const searchViewbox = process.env.ROUTING_SEARCH_VIEWBOX ?? "-88.1,41.8,-84.7,37.7";
 
 function pause(milliseconds: number) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -18,6 +19,8 @@ async function geocode(query: string): Promise<Coordinate | null> {
   url.searchParams.set("format", "jsonv2");
   url.searchParams.set("limit", "1");
   url.searchParams.set("countrycodes", "us");
+  url.searchParams.set("viewbox", searchViewbox);
+  url.searchParams.set("bounded", "1");
 
   const response = await fetch(url, {
     headers: {
@@ -118,6 +121,7 @@ export async function optimizeRoute(input: NewRouteInput) {
     id: randomUUID(),
     businessName: input.prospects[sourceIndex - 1].businessName,
     address: input.prospects[sourceIndex - 1].address,
+    resolvedAddress: locations[sourceIndex].displayName,
     latitude: locations[sourceIndex].latitude,
     longitude: locations[sourceIndex].longitude,
     status: "pending",

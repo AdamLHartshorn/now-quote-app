@@ -6,6 +6,7 @@ export type RouteStop = {
   id: string;
   businessName: string;
   address: string;
+  resolvedAddress?: string;
   latitude: number;
   longitude: number;
   status: StopStatus;
