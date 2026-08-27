@@ -27,7 +27,7 @@ function credentials() {
 function headers(key: string) {
   return {
     apikey: key,
-    Authorization: `Bearer ${key}`,
+    ...(key.startsWith("eyJ") ? { Authorization: `Bearer ${key}` } : {}),
     "Content-Type": "application/json",
   };
 }
