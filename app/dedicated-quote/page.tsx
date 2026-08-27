@@ -4,11 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { dedicatedRates } from "@/config/rates";
-import { useFuelSettings } from "@/lib/fuel-settings";
+import { usePricingSettings } from "@/lib/pricing-settings";
 
 export default function DedicatedQuote() {
-  const fuelSurcharge = useFuelSettings();
+  const { config } = usePricingSettings();
+  const { dedicatedRates, fuelSurcharge, globalPricingRules } = config;
   const [equipment, setEquipment] =
     useState<keyof typeof dedicatedRates>("Car");
 
@@ -17,7 +17,11 @@ export default function DedicatedQuote() {
   const selectedRate = dedicatedRates[equipment];
   const rawHours = Number(hours) || 0;
 
-  const billedHours = Math.max(4, Math.ceil(rawHours * 4) / 4);
+  const billedHours = Math.max(
+    globalPricingRules.dedicatedMinimumHours,
+    Math.ceil(rawHours / globalPricingRules.dedicatedBillingIncrementHours) *
+      globalPricingRules.dedicatedBillingIncrementHours
+  );
 
   const fuelPercent = fuelSurcharge[selectedRate.fuelClass];
 
@@ -49,7 +53,7 @@ export default function DedicatedQuote() {
           <h1 className="page-title">Dedicated</h1>
 
           <p className="page-subtitle">
-            Hourly dedicated pricing with 4-hour minimum.
+            Hourly dedicated pricing with a {globalPricingRules.dedicatedMinimumHours}-hour minimum.
           </p>
         </div>
 

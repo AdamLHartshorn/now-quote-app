@@ -4,11 +4,17 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { commercialEquipmentConfig } from "@/config/rates";
-import { useFuelSettings } from "@/lib/fuel-settings";
+import { usePricingSettings } from "@/lib/pricing-settings";
+import { calculateCommercialTransport } from "@/lib/pricing-engine";
 
 export default function DetailedQuote() {
-  const fuelSurcharge = useFuelSettings();
+  const { config } = usePricingSettings();
+  const {
+    accessorialRates,
+    commercialEquipmentConfig,
+    fuelSurcharge,
+    globalPricingRules,
+  } = config;
   const [customerName, setCustomerName] = useState("");
   const [pickupAddress, setPickupAddress] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
@@ -61,22 +67,15 @@ export default function DetailedQuote() {
   const dropWaitMinutes = Number(dropWaitTime) || 0;
   const totalWaitMinutes = pickWaitMinutes + dropWaitMinutes;
 
-  const baseTransport =
-    selectedService.base + mileage * selectedService.ratePerMile;
-
-  const overThresholdCharge =
-    "overThresholdEntireTripRate" in selectedEquipment &&
-    mileage > selectedEquipment.overMileageThreshold
-      ? mileage * selectedEquipment.overThresholdEntireTripRate
-      : "overThresholdAdditionalPerMile" in selectedEquipment &&
-          mileage > selectedEquipment.overMileageThreshold
-        ? (mileage - selectedEquipment.overMileageThreshold) *
-          selectedEquipment.overThresholdAdditionalPerMile
-        : 0;
+  const calculatedTransport = calculateCommercialTransport(
+    mileage,
+    selectedService,
+    selectedEquipment
+  );
 
   const transportBeforeFuel = noLoad
     ? 0
-    : baseTransport + overThresholdCharge;
+    : calculatedTransport;
 
   const fuelPercent = fuelSurcharge[selectedEquipment.fuelClass];
   const fuelCharge = transportBeforeFuel * fuelPercent;
@@ -90,7 +89,10 @@ export default function DetailedQuote() {
     Math.ceil(overweightAmount / 100) *
     selectedEquipment.overweightRatePerCwt;
 
-  const additionalStopCharge = stopCount > 1 ? (stopCount - 1) * 25 : 0;
+  const additionalStopCharge =
+    stopCount > 1
+      ? (stopCount - 1) * globalPricingRules.additionalStopCharge
+      : 0;
 
   const chargeableWaitMinutes = Math.max(
     0,
@@ -105,7 +107,7 @@ export default function DetailedQuote() {
   const noLoadCharge = noLoad ? selectedEquipment.noLoad : 0;
 
   const liftgateCharge =
-    liftgate && selectedEquipment.liftgateAllowed ? 25 : 0;
+    liftgate && selectedEquipment.liftgateAllowed ? accessorialRates.liftgate : 0;
 
   const moffettCharge =
     moffett &&
@@ -114,8 +116,8 @@ export default function DetailedQuote() {
       ? selectedEquipment.moffettCharge
       : 0;
 
-  const hazmatCharge = hazmat ? 50 : 0;
-  const airportCharge = airport ? 30 : 0;
+  const hazmatCharge = hazmat ? accessorialRates.hazmat : 0;
+  const airportCharge = airport ? accessorialRates.airport : 0;
 
   const accessorialTotal =
     afterHoursCharge +

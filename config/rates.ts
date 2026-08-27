@@ -193,3 +193,30 @@ export const accessorialRates = {
   parcelAfterHours: 25,
   parcelNoLoad: 20,
 } as const;
+
+export const globalPricingRules = {
+  parcelMileageThreshold: 50,
+  additionalStopCharge: 25,
+  dedicatedMinimumHours: 4,
+  dedicatedBillingIncrementHours: 0.25,
+} as const;
+
+export const defaultPricingConfig = {
+  fuelSurcharge,
+  parcelServiceRates,
+  parcelVehicleConfig,
+  commercialEquipmentConfig,
+  dedicatedRates,
+  accessorialRates,
+  globalPricingRules,
+};
+
+type WidenDeep<T> = T extends number
+  ? number
+  : T extends boolean
+      ? boolean
+      : T extends Readonly<Record<string, unknown>>
+        ? { -readonly [K in keyof T]: WidenDeep<T[K]> }
+        : T;
+
+export type PricingConfig = WidenDeep<typeof defaultPricingConfig>;

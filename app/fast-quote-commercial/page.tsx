@@ -4,13 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  commercialEquipmentConfig,
-} from "@/config/rates";
-import { useFuelSettings } from "@/lib/fuel-settings";
+import { usePricingSettings } from "@/lib/pricing-settings";
+import { calculateCommercialTransport } from "@/lib/pricing-engine";
 
 export default function FastQuoteCommercial() {
-  const fuelSurcharge = useFuelSettings();
+  const { config } = usePricingSettings();
+  const { commercialEquipmentConfig, fuelSurcharge } = config;
   const [equipment, setEquipment] =
     useState<keyof typeof commercialEquipmentConfig>("Dock Truck");
 
@@ -37,20 +36,7 @@ export default function FastQuoteCommercial() {
   const mileage = Number(miles) || 0;
   const shipmentWeight = Number(weight) || 0;
 
-  const baseTransport =
-    selectedService.base + mileage * selectedService.ratePerMile;
-
-  const overThresholdCharge =
-    "overThresholdEntireTripRate" in selectedEquipment &&
-    mileage > selectedEquipment.overMileageThreshold
-      ? mileage * selectedEquipment.overThresholdEntireTripRate
-      : "overThresholdAdditionalPerMile" in selectedEquipment &&
-          mileage > selectedEquipment.overMileageThreshold
-        ? (mileage - selectedEquipment.overMileageThreshold) *
-          selectedEquipment.overThresholdAdditionalPerMile
-        : 0;
-
-  const transport = baseTransport + overThresholdCharge;
+  const transport = calculateCommercialTransport(mileage, selectedService, selectedEquipment);
 
   const overweightAmount = Math.max(
     0,

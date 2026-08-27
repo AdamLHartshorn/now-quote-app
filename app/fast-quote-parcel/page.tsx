@@ -4,14 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  parcelServiceRates,
-  parcelVehicleConfig,
-} from "@/config/rates";
-import { useFuelSettings } from "@/lib/fuel-settings";
+import { usePricingSettings } from "@/lib/pricing-settings";
 
 export default function FastQuoteParcel() {
-  const fuelSurcharge = useFuelSettings();
+  const { config } = usePricingSettings();
+  const { fuelSurcharge, parcelServiceRates, parcelVehicleConfig, globalPricingRules } = config;
   const [serviceType, setServiceType] =
     useState<keyof typeof parcelServiceRates>("Direct");
 
@@ -28,7 +25,7 @@ export default function FastQuoteParcel() {
   const shipmentWeight = Number(weight) || 0;
 
   const mileageRate =
-    mileage > 50
+    mileage > globalPricingRules.parcelMileageThreshold
       ? selectedVehicle.over50MileRate
       : selectedService.ratePerMile;
 
