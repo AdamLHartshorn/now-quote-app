@@ -12,7 +12,7 @@ function pause(milliseconds: number) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-async function geocode(query: string): Promise<Coordinate> {
+async function geocode(query: string): Promise<Coordinate | null> {
   const url = new URL("/search", geocoderUrl);
   url.searchParams.set("q", query);
   url.searchParams.set("format", "jsonv2");
@@ -29,7 +29,7 @@ async function geocode(query: string): Promise<Coordinate> {
   if (!response.ok) throw new Error("The address service is temporarily unavailable");
 
   const results = (await response.json()) as Array<{ lat: string; lon: string; display_name: string }>;
-  if (!results[0]) throw new Error(`Address not found: ${query}`);
+  if (!results[0]) return null;
   return {
     latitude: Number(results[0].lat),
     longitude: Number(results[0].lon),
@@ -37,15 +37,25 @@ async function geocode(query: string): Promise<Coordinate> {
   };
 }
 
+async function geocodeFirstBest(name: string, locationHint: string) {
+  const attempts = [`${name}, ${locationHint}`, name, locationHint];
+  for (const [index, query] of attempts.entries()) {
+    const result = await geocode(query);
+    if (result) return result;
+    if (index < attempts.length - 1) await pause(1050);
+  }
+  throw new Error(`Location not found: ${name} (${locationHint})`);
+}
+
 async function geocodeAll(input: NewRouteInput) {
   const locations: Coordinate[] = [];
-  const queries = [
-    `${input.startName}, ${input.startAddress}`,
-    ...input.prospects.map((prospect) => `${prospect.businessName}, ${prospect.address}`),
+  const entries = [
+    { name: input.startName, locationHint: input.startAddress },
+    ...input.prospects.map((prospect) => ({ name: prospect.businessName, locationHint: prospect.address })),
   ];
-  for (const query of queries) {
-    locations.push(await geocode(query));
-    if (query !== queries.at(-1)) await pause(1050);
+  for (const [index, entry] of entries.entries()) {
+    locations.push(await geocodeFirstBest(entry.name, entry.locationHint));
+    if (index < entries.length - 1) await pause(1050);
   }
   return locations;
 }
