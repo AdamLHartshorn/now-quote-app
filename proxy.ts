@@ -23,6 +23,7 @@ export const config = {
     "/fast-quote-commercial",
     "/detailed-quote",
     "/dedicated-quote",
+    "/help",
     "/admin/:path*",
   ],
 };
