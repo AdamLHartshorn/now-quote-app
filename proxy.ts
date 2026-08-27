@@ -25,6 +25,8 @@ export const config = {
     "/dedicated-quote",
     "/help",
     "/routing-guide",
+    "/quote-archive",
+    "/sales-reference",
     "/admin/:path*",
   ],
 };

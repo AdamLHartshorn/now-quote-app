@@ -6,9 +6,10 @@ import Link from "next/link";
 
 import { usePricingSettings } from "@/lib/pricing-settings";
 import { calculateCommercialTransport } from "@/lib/pricing-engine";
+import SaveQuote from "@/components/SaveQuote";
 
 export default function DetailedQuote() {
-  const { config } = usePricingSettings();
+  const { config, version } = usePricingSettings();
   const {
     accessorialRates,
     commercialEquipmentConfig,
@@ -535,6 +536,7 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
               <p>Pallets: {palletCount}</p>
             </div>
           </div>
+          <SaveQuote quoteType="Detailed Quote" amount={total} rateVersion={version} defaultCustomer={customerName} summary={{ Equipment: equipment, Service: safeServiceType, Pickup: pickupAddress || "Not entered", Delivery: deliveryAddress || "Not entered", Miles: mileage, "Weight (lbs)": shipmentWeight, Pallets: palletCount, Stops: stopCount, Accessorials: selectedAccessorials.join(", ") || "None", Transport: `$${transportBeforeFuel.toFixed(2)}`, Fuel: `$${fuelCharge.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
         </div>
       </div>
     </main>

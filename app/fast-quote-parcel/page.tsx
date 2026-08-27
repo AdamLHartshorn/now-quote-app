@@ -5,9 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { usePricingSettings } from "@/lib/pricing-settings";
+import SaveQuote from "@/components/SaveQuote";
 
 export default function FastQuoteParcel() {
-  const { config } = usePricingSettings();
+  const { config, version } = usePricingSettings();
   const { fuelSurcharge, parcelServiceRates, parcelVehicleConfig, globalPricingRules } = config;
   const [serviceType, setServiceType] =
     useState<keyof typeof parcelServiceRates>("Direct");
@@ -165,6 +166,7 @@ export default function FastQuoteParcel() {
               </p>
             </div>
           </div>
+          <SaveQuote quoteType="Fast Quote — Parcel" amount={total} rateVersion={version} summary={{ Service: serviceType, Vehicle: vehicle, Miles: mileage, "Weight (lbs)": shipmentWeight, Transport: `$${transport.toFixed(2)}`, Fuel: `$${fuel.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
         </div>
       </div>
     </main>

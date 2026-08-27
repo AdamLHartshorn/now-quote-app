@@ -37,8 +37,9 @@ function RateInput({ label, value, onChange, prefix, suffix, step = "0.01" }: Ra
 }
 
 function RateSection({ title, description, children }: { title: string; description?: string; children: ReactNode }) {
+  const sectionId = title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   return (
-    <details className="panel group" open={title === "Fuel surcharges"}>
+    <details id={sectionId} className="panel group scroll-mt-24" open={title === "Fuel surcharges"}>
       <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
         <span>
           <span className="block text-sm font-extrabold text-[#102d3d]">{title}</span>
@@ -84,11 +85,14 @@ function AdminPricingForm({
   loadError: string;
 }) {
   const [config, setConfig] = useState(() => structuredClone(initialConfig));
+  const [publishedConfig, setPublishedConfig] = useState(() => structuredClone(initialConfig));
   const [effectiveDate, setEffectiveDate] = useState(initialEffectiveDate);
+  const [publishedEffectiveDate, setPublishedEffectiveDate] = useState(initialEffectiveDate);
   const [version, setVersion] = useState(initialVersion);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState(loadError);
+  const dirty = JSON.stringify(config) !== JSON.stringify(publishedConfig) || effectiveDate !== publishedEffectiveDate;
 
   function update(path: string[], value: number) {
     setConfig((current) => {
@@ -123,6 +127,9 @@ function AdminPricingForm({
     }
 
     setVersion(result.version);
+    setConfig(structuredClone(result.config));
+    setPublishedConfig(structuredClone(result.config));
+    setPublishedEffectiveDate(result.effectiveDate);
     setMessage(`Shared pricing saved. Version ${result.version} is now live.`);
   }
 
@@ -147,6 +154,15 @@ function AdminPricingForm({
         </div>
 
         <form onSubmit={save} className="form-stack">
+          <nav className="sticky top-3 z-20 -mx-1 overflow-x-auto rounded-2xl border border-white/80 bg-white/90 p-2 shadow-lg backdrop-blur" aria-label="Pricing sections">
+            <div className="flex min-w-max gap-1">
+              {["Fuel surcharges", "Parcel service rates", "Parcel vehicles", "Commercial equipment", "Dedicated hourly rates", "Accessorials", "Global pricing rules"].map((title) => <a key={title} href={`#${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} className="rounded-xl px-3 py-2 text-[10px] font-extrabold text-slate-500 hover:bg-[#e8f4f5] hover:text-[#00798d]">{title.replace(" rates", "").replace(" pricing rules", " rules")}</a>)}
+            </div>
+          </nav>
+          <section className="panel border-[#b9dce1] bg-[#edf7f8]">
+            <p className="panel-title !mb-2">Pricing guardrails</p>
+            <ul className="space-y-2 text-xs leading-5 text-[#38515e]"><li>Dock Truck above-threshold pricing replaces the normal mileage rate for the full trip.</li><li>Flatbed and semi threshold charges apply only to excess miles.</li><li>Fuel applies to transportation; overweight rounds up by CWT; dedicated time rounds to the configured increment.</li></ul>
+          </section>
           <section className="panel">
             <label className="block">
               <span className="field-label">Rates effective date</span>
@@ -270,6 +286,7 @@ function AdminPricingForm({
           )}
 
           <div className="sticky bottom-4 z-10 rounded-2xl border border-white/70 bg-white/90 p-3 shadow-[0_16px_45px_rgba(16,45,61,.18)] backdrop-blur">
+            <div className="mb-2 flex items-center justify-between px-1 text-[10px] font-extrabold"><span className={dirty ? "text-amber-600" : "text-emerald-700"}>{dirty ? "● UNSAVED CHANGES" : "✓ ALL CHANGES PUBLISHED"}</span><span className="text-slate-400">VERSION {version}</span></div>
             <button type="submit" className="primary-button" disabled={saving || source !== "database"}>
               {saving ? "SAVING SHARED PRICING…" : "SAVE & PUBLISH PRICING"}
             </button>

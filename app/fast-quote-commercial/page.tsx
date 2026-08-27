@@ -6,9 +6,10 @@ import Link from "next/link";
 
 import { usePricingSettings } from "@/lib/pricing-settings";
 import { calculateCommercialTransport } from "@/lib/pricing-engine";
+import SaveQuote from "@/components/SaveQuote";
 
 export default function FastQuoteCommercial() {
-  const { config } = usePricingSettings();
+  const { config, version } = usePricingSettings();
   const { commercialEquipmentConfig, fuelSurcharge } = config;
   const [equipment, setEquipment] =
     useState<keyof typeof commercialEquipmentConfig>("Dock Truck");
@@ -196,6 +197,7 @@ export default function FastQuoteCommercial() {
               </p>
             </div>
           </div>
+          <SaveQuote quoteType="Fast Quote — Commercial" amount={total} rateVersion={version} summary={{ Equipment: equipment, Service: safeServiceType, Miles: mileage, "Weight (lbs)": shipmentWeight, Moffett: moffett, Transport: `$${transport.toFixed(2)}`, Fuel: `$${fuel.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
         </div>
       </div>
     </main>

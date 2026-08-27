@@ -5,9 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { usePricingSettings } from "@/lib/pricing-settings";
+import SaveQuote from "@/components/SaveQuote";
 
 export default function DedicatedQuote() {
-  const { config } = usePricingSettings();
+  const { config, version } = usePricingSettings();
   const { dedicatedRates, fuelSurcharge, globalPricingRules } = config;
   const [equipment, setEquipment] =
     useState<keyof typeof dedicatedRates>("Car");
@@ -109,6 +110,7 @@ export default function DedicatedQuote() {
               <p>Loaded Hourly: ${loadedHourlyRate.toFixed(2)}</p>
             </div>
           </div>
+          <SaveQuote quoteType="Dedicated Quote" amount={total} rateVersion={version} summary={{ Equipment: equipment, "Entered hours": rawHours, "Billed hours": billedHours, "Loaded hourly": `$${loadedHourlyRate.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
         </div>
       </div>
     </main>

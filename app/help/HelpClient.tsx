@@ -66,6 +66,15 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
             <p>Route mileage and drive time cover the donut shop through the final prospect; they do not include travel to the donut shop or a return trip.</p>
           </GuideSection>
 
+          <GuideSection title="Quote archive">
+            <p>Every calculator can save its current result to the shared Quote Archive. A customer name is required; after a name has been used once, it becomes available in the customer-name suggestions.</p>
+            <p>The archive is reference-only. Saving a quote does not create Salesforce activity, a pipeline record, ownership, follow-up tasks, or a won/lost status.</p>
+          </GuideSection>
+
+          <GuideSection title="Sales quick reference">
+            <p>This library will hold approved services, equipment, pricing guidance, discovery questions, objection responses, and escalation rules. Content will be added from the source documents provided by sales leadership.</p>
+          </GuideSection>
+
           {isAdmin && (
             <>
               <GuideSection title="Publishing rates">
