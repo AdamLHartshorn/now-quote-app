@@ -19,17 +19,18 @@ export async function POST(request: Request) {
   }
 
   const response = NextResponse.json({ role });
+  const ninetyDays = 60 * 60 * 24 * 90;
   response.cookies.set("now-auth", role, {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 60 * 24,
+    maxAge: ninetyDays,
     path: "/",
   });
   response.cookies.set("now-role", role, {
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 60 * 24,
+    maxAge: ninetyDays,
     path: "/",
   });
 

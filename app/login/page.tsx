@@ -57,25 +57,25 @@ export default function LoginPage() {
           <h1 className="text-2xl font-extrabold tracking-tight text-center text-[#102d3d] mb-2">Welcome back</h1>
           <p className="text-sm text-slate-500 text-center mb-6">Enter your team password to continue.</p>
 
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="Enter password"
-            aria-label="Password"
-            onKeyDown={(event) => {
-              if (event.key === "Enter") void handleLogin();
-            }}
-            className="control mb-4 text-center tracking-widest"
-          />
+          <form onSubmit={(event) => { event.preventDefault(); void handleLogin(); }}>
+            <input type="text" name="username" value="NOW Sales Portal" autoComplete="username" readOnly className="sr-only" tabIndex={-1} aria-hidden="true" />
+            <input
+              type="password"
+              name="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="Enter password"
+              aria-label="Password"
+              className="control mb-4 text-center tracking-widest"
+            />
 
-          <button
-            onClick={() => void handleLogin()}
-            disabled={loading || !password}
-            className="primary-button"
-          >
-            {loading ? "LOGGING IN…" : "LOGIN"}
-          </button>
+            <button type="submit" disabled={loading || !password} className="primary-button">
+              {loading ? "LOGGING IN…" : "LOGIN"}
+            </button>
+          </form>
+
+          <p className="mt-4 text-center text-[11px] leading-5 text-slate-400">This device will remain signed in for 90 days unless you log out or clear browser data.</p>
 
           {error && (
             <p className="text-red-600 text-sm mt-4 text-center">
