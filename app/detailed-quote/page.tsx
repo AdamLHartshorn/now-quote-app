@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePricingSettings } from "@/lib/pricing-settings";
 import { calculateCommercialTransport } from "@/lib/pricing-engine";
 import SaveQuote from "@/components/SaveQuote";
+import MileageLookup from "@/components/MileageLookup";
 
 export default function DetailedQuote() {
   const { config, version } = usePricingSettings();
@@ -244,35 +245,10 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
                 />
               </label>
 
-              <label className="block">
-                <span className="text-sm text-slate-600 font-medium">
-                  Pickup Address
-                </span>
-
-                <input
-                  type="text"
-                  value={pickupAddress}
-                  onChange={(event) => setPickupAddress(event.target.value)}
-                  placeholder="Optional"
-                  className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-lg text-slate-900"
-                />
-              </label>
-
-              <label className="block">
-                <span className="text-sm text-slate-600 font-medium">
-                  Delivery Address
-                </span>
-
-                <input
-                  type="text"
-                  value={deliveryAddress}
-                  onChange={(event) => setDeliveryAddress(event.target.value)}
-                  placeholder="Optional"
-                  className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-lg text-slate-900"
-                />
-              </label>
             </div>
           </section>
+
+          <MileageLookup pickup={pickupAddress} delivery={deliveryAddress} onPickupChange={setPickupAddress} onDeliveryChange={setDeliveryAddress} onMileage={(value) => setMiles(String(value))} />
 
           <section className="panel">
             <p className="panel-title">

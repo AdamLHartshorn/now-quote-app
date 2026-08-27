@@ -87,6 +87,34 @@ async function getMatrix(locations: Coordinate[]): Promise<Matrix> {
   };
 }
 
+async function geocodeLocationHint(locationHint: string) {
+  const attempts = [...new Set([locationHint, `${locationHint}, Indiana`, `${locationHint}, Indianapolis, Indiana`])];
+  for (const [index, query] of attempts.entries()) {
+    const result = await geocode(query);
+    if (result) return result;
+    if (index < attempts.length - 1) await pause(1050);
+  }
+  throw new Error(`Location not found: ${locationHint}`);
+}
+
+export async function calculateDrivingMileage(pickup: string, delivery: string) {
+  const origin = await geocodeLocationHint(pickup);
+  await pause(1050);
+  const destination = await geocodeLocationHint(delivery);
+  const matrix = await getMatrix([origin, destination]);
+  const distanceMeters = matrix.distances[0][1];
+  const durationSeconds = matrix.durations[0][1];
+  if (!Number.isFinite(distanceMeters) || !Number.isFinite(durationSeconds)) {
+    throw new Error("No drivable route was found between these locations");
+  }
+  return {
+    miles: Math.round((distanceMeters / 1609.344) * 10) / 10,
+    minutes: Math.round(durationSeconds / 60),
+    pickupMatch: origin.displayName,
+    deliveryMatch: destination.displayName,
+  };
+}
+
 function pathCost(path: number[], durations: number[][]) {
   let total = 0;
   for (let index = 1; index < path.length; index += 1) total += durations[path[index - 1]][path[index]];
