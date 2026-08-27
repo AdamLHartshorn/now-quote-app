@@ -8,6 +8,7 @@ import { usePricingSettings } from "@/lib/pricing-settings";
 import { calculateCommercialTransport } from "@/lib/pricing-engine";
 import SaveQuote from "@/components/SaveQuote";
 import MileageLookup from "@/components/MileageLookup";
+import CustomerNameField from "@/components/CustomerNameField";
 
 export default function DetailedQuote() {
   const { config, version } = usePricingSettings();
@@ -225,28 +226,7 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
         </div>
 
         <div className="form-stack">
-          <section className="panel">
-            <p className="panel-title">
-              Customer / Route
-            </p>
-
-            <div className="space-y-4">
-              <label className="block">
-                <span className="text-sm text-slate-600 font-medium">
-                  Customer Name
-                </span>
-
-                <input
-                  type="text"
-                  value={customerName}
-                  onChange={(event) => setCustomerName(event.target.value)}
-                  placeholder="Optional"
-                  className="mt-2 w-full rounded-xl bg-white border border-slate-300 p-4 text-lg text-slate-900"
-                />
-              </label>
-
-            </div>
-          </section>
+          <CustomerNameField value={customerName} onChange={setCustomerName} />
 
           <MileageLookup pickup={pickupAddress} delivery={deliveryAddress} onPickupChange={setPickupAddress} onDeliveryChange={setDeliveryAddress} onMileage={(value) => setMiles(String(value))} />
 
@@ -512,7 +492,7 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
               <p>Pallets: {palletCount}</p>
             </div>
           </div>
-          <SaveQuote quoteType="Detailed Quote" amount={total} rateVersion={version} defaultCustomer={customerName} summary={{ Equipment: equipment, Service: safeServiceType, Pickup: pickupAddress || "Not entered", Delivery: deliveryAddress || "Not entered", Miles: mileage, "Weight (lbs)": shipmentWeight, Pallets: palletCount, Stops: stopCount, Accessorials: selectedAccessorials.join(", ") || "None", Transport: `$${transportBeforeFuel.toFixed(2)}`, Fuel: `$${fuelCharge.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
+          <SaveQuote quoteType="Detailed Quote" amount={total} rateVersion={version} customerName={customerName} summary={{ Equipment: equipment, Service: safeServiceType, Pickup: pickupAddress || "Not entered", Delivery: deliveryAddress || "Not entered", Miles: mileage, "Weight (lbs)": shipmentWeight, Pallets: palletCount, Stops: stopCount, Accessorials: selectedAccessorials.join(", ") || "None", Transport: `$${transportBeforeFuel.toFixed(2)}`, Fuel: `$${fuelCharge.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
         </div>
       </div>
     </main>

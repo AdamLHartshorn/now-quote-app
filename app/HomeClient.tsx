@@ -4,6 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+type IconName = "car" | "truck" | "dollar" | "clock" | "compass" | "books" | "search" | "help" | "settings";
+
+function AppIcon({ name }: { name: IconName }) {
+  const paths: Record<IconName, ReactNode> = {
+    car: <><path d="M5 17h14l-1.5-5h-11L5 17Z"/><path d="m7 12 2-4h6l2 4M7 17v2m10-2v2"/><circle cx="8" cy="16" r="1"/><circle cx="16" cy="16" r="1"/></>,
+    truck: <><path d="M3 7h11v10H3zM14 11h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></>,
+    dollar: <><circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.7-.7-1.6-1-3-1-1.7 0-3 .8-3 2s1 1.8 3 2.3 3 1.1 3 2.5-1.3 2.2-3 2.2c-1.4 0-2.5-.4-3.3-1.2M12 5v14"/></>,
+    clock: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,
+    compass: <><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></>,
+    books: <><path d="M5 4h4v16H5zM10 4h4v16h-4zM15 5l3-.8L21 19l-3 .8z"/></>,
+    search: <><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></>,
+    help: <><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.3 2.2c-.8.4-1.1.9-1.1 1.8M12 17h.01"/></>,
+    settings: <><circle cx="12" cy="12" r="3"/><path d="M19 13.5v-3l-2-.7-.5-1.2.9-1.9-2.1-2.1-1.9.9-1.2-.5-.7-2h-3l-.7 2-1.2.5-1.9-.9-2.1 2.1.9 1.9-.5 1.2-2 .7v3l2 .7.5 1.2-.9 1.9 2.1 2.1 1.9-.9 1.2.5.7 2h3l.7-2 1.2-.5 1.9.9 2.1-2.1-.9-1.9.5-1.2 2-.7Z"/></>,
+  };
+  return <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</svg>;
+}
+
 function MenuCard({ href, title, description, icon, tone = "light", badge }: { href: string; title: string; description: string; icon: ReactNode; tone?: "light" | "teal" | "navy" | "soft"; badge?: string }) {
   const tones = {
     light: "border-slate-200 bg-white text-[#15394b] hover:border-[#8ebec7]",
@@ -22,8 +39,8 @@ export default function HomeClient({ isAdmin }: { isAdmin: boolean }) {
   function logout() { void fetch("/api/logout", { method: "POST" }).then(() => { window.location.href = "/login"; }); }
 
   return <main className="app-shell"><div className="mx-auto w-full max-w-2xl"><div className="mb-6 flex items-center justify-between"><Image src="/now-logo.jpg" alt="NOW Courier" width={178} height={62} priority className="brand-logo !h-14" /><button onClick={logout} className="text-xs font-bold tracking-wide text-slate-500 hover:text-slate-700">Log out</button></div><div className="mb-10"><p className="eyebrow">NOW Sales Workspace</p><h1 className="page-title">What are we working on?</h1><p className="page-subtitle">Pricing, prospect planning, and the references you need—all in one place.</p></div><div className="space-y-8">
-    <MenuGroup title="Create a quote"><MenuCard href="/fast-quote-parcel" title="Parcel quote" description="Car, small truck, and Sprinter estimates." icon="P" tone="teal" /><MenuCard href="/fast-quote-commercial" title="Commercial quote" description="Dock truck, flatbed, and semi estimates." icon="C" tone="teal" /><MenuCard href="/detailed-quote" title="Detailed quote" description="Full shipment details and accessorials." icon="D" tone="navy" /><MenuCard href="/dedicated-quote" title="Dedicated quote" description="Hourly equipment with minimums and fuel." icon="H" tone="navy" /></MenuGroup>
-    <MenuGroup title="Plan & reference"><MenuCard href="/routing-guide" title="Routing guide" description="Build and work optimized prospect routes." icon="R" tone="soft" badge="NEW" /><MenuCard href="/quote-archive" title="Quote archive" description="Find previously saved calculations." icon="A" /><MenuCard href="/sales-reference" title="Sales quick reference" description="Approved services, equipment, and sales guidance." icon="S" /><MenuCard href="/help" title="Help center" description="Learn the workflows, rules, and assumptions." icon="?" /></MenuGroup>
-    {isAdmin && <MenuGroup title="Administration"><MenuCard href="/admin" title="Pricing settings" description="Publish shared rates and manage pricing rules." icon="⚙" tone="soft" /></MenuGroup>}
+    <MenuGroup title="Create a quote"><MenuCard href="/fast-quote-parcel" title="Parcel quote" description="Car, small truck, and Sprinter estimates." icon={<AppIcon name="car" />} tone="teal" /><MenuCard href="/fast-quote-commercial" title="Commercial quote" description="Dock truck, flatbed, and semi estimates." icon={<AppIcon name="truck" />} tone="teal" /><MenuCard href="/detailed-quote" title="Detailed quote" description="Full shipment details and accessorials." icon={<AppIcon name="dollar" />} tone="navy" /><MenuCard href="/dedicated-quote" title="Dedicated quote" description="Hourly equipment with minimums and fuel." icon={<AppIcon name="clock" />} tone="navy" /></MenuGroup>
+    <MenuGroup title="Plan & reference"><MenuCard href="/routing-guide" title="Routing guide" description="Build and work optimized prospect routes." icon={<AppIcon name="compass" />} tone="soft" badge="NEW" /><MenuCard href="/quote-archive" title="Quote archive" description="Find previously saved calculations." icon={<AppIcon name="books" />} /><MenuCard href="/sales-reference" title="Sales quick reference" description="Approved services, equipment, and sales guidance." icon={<AppIcon name="search" />} /><MenuCard href="/help" title="Help center" description="Learn the workflows, rules, and assumptions." icon={<AppIcon name="help" />} /></MenuGroup>
+    {isAdmin && <MenuGroup title="Administration"><MenuCard href="/admin" title="Pricing settings" description="Publish shared rates and manage pricing rules." icon={<AppIcon name="settings" />} tone="soft" /></MenuGroup>}
   </div><footer className="mt-12 border-t border-slate-200 pt-6 text-center text-xs leading-5 text-slate-500"><p>Feedback or issues</p><a className="font-bold text-[#00798d]" href="mailto:ahartshorn@nowcourier.com">ahartshorn@nowcourier.com</a><span className="mx-2">·</span><a href="tel:+13172703077">(317) 270-3077</a></footer></div></main>;
 }

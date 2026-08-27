@@ -8,6 +8,7 @@ import { usePricingSettings } from "@/lib/pricing-settings";
 import { calculateCommercialTransport } from "@/lib/pricing-engine";
 import SaveQuote from "@/components/SaveQuote";
 import MileageLookup from "@/components/MileageLookup";
+import CustomerNameField from "@/components/CustomerNameField";
 
 export default function FastQuoteCommercial() {
   const { config, version } = usePricingSettings();
@@ -29,6 +30,7 @@ export default function FastQuoteCommercial() {
   const [moffett, setMoffett] = useState(false);
   const [pickupAddress, setPickupAddress] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [customerName, setCustomerName] = useState("");
 
   const safeServiceType =
     availableServices.includes(serviceType as ServiceType)
@@ -91,6 +93,7 @@ export default function FastQuoteCommercial() {
         </div>
 
         <div className="form-stack">
+          <CustomerNameField value={customerName} onChange={setCustomerName} />
           <MileageLookup pickup={pickupAddress} delivery={deliveryAddress} onPickupChange={setPickupAddress} onDeliveryChange={setDeliveryAddress} onMileage={(value) => setMiles(String(value))} />
 
           <label className="block">
@@ -202,7 +205,7 @@ export default function FastQuoteCommercial() {
               </p>
             </div>
           </div>
-          <SaveQuote quoteType="Fast Quote — Commercial" amount={total} rateVersion={version} summary={{ Equipment: equipment, Service: safeServiceType, Pickup: pickupAddress || "Not entered", Delivery: deliveryAddress || "Not entered", Miles: mileage, "Weight (lbs)": shipmentWeight, Moffett: moffett, Transport: `$${transport.toFixed(2)}`, Fuel: `$${fuel.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
+          <SaveQuote quoteType="Fast Quote — Commercial" amount={total} rateVersion={version} customerName={customerName} summary={{ Equipment: equipment, Service: safeServiceType, Pickup: pickupAddress || "Not entered", Delivery: deliveryAddress || "Not entered", Miles: mileage, "Weight (lbs)": shipmentWeight, Moffett: moffett, Transport: `$${transport.toFixed(2)}`, Fuel: `$${fuel.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
         </div>
       </div>
     </main>

@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { usePricingSettings } from "@/lib/pricing-settings";
 import SaveQuote from "@/components/SaveQuote";
+import CustomerNameField from "@/components/CustomerNameField";
 
 export default function DedicatedQuote() {
   const { config, version } = usePricingSettings();
@@ -14,6 +15,7 @@ export default function DedicatedQuote() {
     useState<keyof typeof dedicatedRates>("Car");
 
   const [hours, setHours] = useState("");
+  const [customerName, setCustomerName] = useState("");
 
   const selectedRate = dedicatedRates[equipment];
   const rawHours = Number(hours) || 0;
@@ -59,6 +61,7 @@ export default function DedicatedQuote() {
         </div>
 
         <div className="form-stack">
+          <CustomerNameField value={customerName} onChange={setCustomerName} />
           <label className="block">
             <span className="field-label">
               Equipment
@@ -110,7 +113,7 @@ export default function DedicatedQuote() {
               <p>Loaded Hourly: ${loadedHourlyRate.toFixed(2)}</p>
             </div>
           </div>
-          <SaveQuote quoteType="Dedicated Quote" amount={total} rateVersion={version} summary={{ Equipment: equipment, "Entered hours": rawHours, "Billed hours": billedHours, "Loaded hourly": `$${loadedHourlyRate.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
+          <SaveQuote quoteType="Dedicated Quote" amount={total} rateVersion={version} customerName={customerName} summary={{ Equipment: equipment, "Entered hours": rawHours, "Billed hours": billedHours, "Loaded hourly": `$${loadedHourlyRate.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
         </div>
       </div>
     </main>

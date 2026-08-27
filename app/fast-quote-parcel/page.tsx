@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePricingSettings } from "@/lib/pricing-settings";
 import SaveQuote from "@/components/SaveQuote";
 import MileageLookup from "@/components/MileageLookup";
+import CustomerNameField from "@/components/CustomerNameField";
 
 export default function FastQuoteParcel() {
   const { config, version } = usePricingSettings();
@@ -21,6 +22,7 @@ export default function FastQuoteParcel() {
   const [weight, setWeight] = useState("");
   const [pickupAddress, setPickupAddress] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [customerName, setCustomerName] = useState("");
 
   const selectedService = parcelServiceRates[serviceType];
   const selectedVehicle = parcelVehicleConfig[vehicle];
@@ -79,6 +81,7 @@ export default function FastQuoteParcel() {
         </div>
 
         <div className="form-stack">
+          <CustomerNameField value={customerName} onChange={setCustomerName} />
           <MileageLookup pickup={pickupAddress} delivery={deliveryAddress} onPickupChange={setPickupAddress} onDeliveryChange={setDeliveryAddress} onMileage={(value) => setMiles(String(value))} />
 
           <label className="block">
@@ -171,7 +174,7 @@ export default function FastQuoteParcel() {
               </p>
             </div>
           </div>
-          <SaveQuote quoteType="Fast Quote — Parcel" amount={total} rateVersion={version} summary={{ Service: serviceType, Vehicle: vehicle, Pickup: pickupAddress || "Not entered", Delivery: deliveryAddress || "Not entered", Miles: mileage, "Weight (lbs)": shipmentWeight, Transport: `$${transport.toFixed(2)}`, Fuel: `$${fuel.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
+          <SaveQuote quoteType="Fast Quote — Parcel" amount={total} rateVersion={version} customerName={customerName} summary={{ Service: serviceType, Vehicle: vehicle, Pickup: pickupAddress || "Not entered", Delivery: deliveryAddress || "Not entered", Miles: mileage, "Weight (lbs)": shipmentWeight, Transport: `$${transport.toFixed(2)}`, Fuel: `$${fuel.toFixed(2)}`, Total: `$${total.toFixed(2)}` }} />
         </div>
       </div>
     </main>
