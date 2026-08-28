@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import type { QuoteArchiveEntry } from "@/lib/quote-archive-types";
 
 export default function CustomerNameField({ value, onChange }: { value: string; onChange: (value: string) => void }) {
-  const [customers, setCustomers] = useState<string[]>([]);
+  const [customers, setCustomers] = useState<string[]>(["Test Order"]);
 
   useEffect(() => {
     let cancelled = false;
     fetch("/api/quotes", { cache: "no-store" }).then((response) => response.ok ? response.json() : []).then((quotes: QuoteArchiveEntry[]) => {
-      if (!cancelled) setCustomers([...new Set(quotes.map((quote) => quote.customerName))].sort((a, b) => a.localeCompare(b)));
+      if (!cancelled) setCustomers([...new Set(["Test Order", ...quotes.map((quote) => quote.customerName)])].sort((a, b) => a.localeCompare(b)));
     });
     return () => { cancelled = true; };
   }, []);

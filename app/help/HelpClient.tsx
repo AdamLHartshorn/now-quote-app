@@ -96,7 +96,8 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
           </GuideSection>
 
           <GuideSection title="Quote archive">
-            <p>Every calculator can save its current result to the shared Quote Archive. A customer name is required; after a name has been used once, it becomes available in the customer-name suggestions.</p>
+            <p>Every calculator can save its current result to the shared Quote Archive. A customer name is required; after a name has been used once, it becomes available in the customer-name suggestions. Select Test Order when practicing.</p>
+            <p>On Detailed Quote, Copy Quote keeps the full run details on your clipboard. Email Dispatch opens a separate, pre-addressed Outlook draft for Fleet Dispatch with the customer and vehicle in the subject. Review the draft before sending—it never sends automatically.</p>
             <p>The archive is reference-only. Saving a quote does not create Salesforce activity, a pipeline record, ownership, follow-up tasks, or a won/lost status.</p>
           </GuideSection>
 

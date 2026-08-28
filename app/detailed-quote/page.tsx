@@ -198,6 +198,16 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
     }, 2000);
   }
 
+  function emailDispatch() {
+    const subject = `${customerName.trim()} NEW ${equipment} ORDER`;
+    const params = new URLSearchParams({
+      to: "fleetdispatch@nowcourier.com",
+      subject,
+      body: quoteText,
+    });
+    window.open(`https://outlook.office.com/mail/deeplink/compose?${params.toString()}`, "_blank", "noopener,noreferrer");
+  }
+
   return (
     <main className="app-shell">
       <div className="page-frame">
@@ -465,12 +475,22 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
               ${total.toFixed(2)}
             </p>
 
-            <button
-              onClick={copyQuote}
-              className="primary-button relative z-[1] mt-5"
-            >
-              {copied ? "COPIED!" : "COPY QUOTE"}
-            </button>
+            <div className="relative z-[1] mt-5 grid gap-3 sm:grid-cols-2">
+              <button onClick={copyQuote} className="primary-button">
+                {copied ? "COPIED!" : "COPY QUOTE"}
+              </button>
+              <button
+                type="button"
+                onClick={emailDispatch}
+                disabled={!customerName.trim() || total <= 0}
+                className="secondary-button"
+              >
+                EMAIL DISPATCH
+              </button>
+            </div>
+            <p className="relative z-[1] mt-3 text-xs font-semibold text-white/75">
+              Email Dispatch opens a reviewable Outlook draft. Enter a customer name first.
+            </p>
 
             <div className="breakdown">
               <p>Transport: ${transportBeforeFuel.toFixed(2)}</p>
