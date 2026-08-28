@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { usePricingSettings } from "@/lib/pricing-settings";
@@ -9,6 +8,7 @@ import { calculateCommercialTransport } from "@/lib/pricing-engine";
 import SaveQuote from "@/components/SaveQuote";
 import MileageLookup from "@/components/MileageLookup";
 import CustomerNameField from "@/components/CustomerNameField";
+import BrandLockup from "@/components/BrandLockup";
 
 export default function DetailedQuote() {
   const { config, version } = usePricingSettings();
@@ -206,14 +206,7 @@ NOTE: Estimate only. Final invoice may vary based on actual shipment details.`;
             ← Back
           </Link>
 
-          <Image
-            src="/now-logo.jpg"
-            alt="NOW Courier"
-            width={130}
-            height={45}
-            priority
-            className="brand-logo"
-          />
+          <BrandLockup compact />
         </div>
 
         <div className="page-heading">

@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   description:
     "The sales quoting, routing, and reference workspace for NOW Courier.",
   manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/field-desk-icon.svg",
+    shortcut: "/field-desk-icon.svg",
+    apple: "/field-desk-icon.png",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

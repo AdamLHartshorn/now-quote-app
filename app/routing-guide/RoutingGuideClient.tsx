@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
 import { territories, type RouteStop, type SavedRoute, type StopStatus, type Territory } from "@/lib/routing-types";
+import BrandLockup from "@/components/BrandLockup";
 
 type ProspectDraft = { businessName: string; address: string };
 const blankProspect = (): ProspectDraft => ({ businessName: "", address: "" });
@@ -46,7 +46,7 @@ export default function RoutingGuideClient({ isAdmin }: { isAdmin: boolean }) {
       <div className="page-frame">
         <header className="topbar">
           <Link href="/" className="back-link">← Quote menu</Link>
-          <Image src="/now-logo.jpg" alt="NOW Courier" width={130} height={45} priority className="brand-logo" />
+          <BrandLockup compact />
         </header>
 
         {!selected && !creating && (

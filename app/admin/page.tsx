@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, ReactNode, useState } from "react";
 
 import { type PricingConfig } from "@/config/rates";
 import { usePricingSettings } from "@/lib/pricing-settings";
+import BrandLockup from "@/components/BrandLockup";
 
 type RateInputProps = {
   label: string;
@@ -138,7 +138,7 @@ function AdminPricingForm({
       <div className="page-frame">
         <header className="topbar">
           <Link href="/" className="back-link">← Quote menu</Link>
-          <Image src="/now-logo.jpg" alt="NOW Courier" width={130} height={45} priority className="brand-logo" />
+          <BrandLockup compact />
         </header>
 
         <div className="page-heading">

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+
+import BrandLockup from "@/components/BrandLockup";
 
 export default function LoginPage() {
   const [password, setPassword] = useState("");
@@ -39,20 +40,12 @@ export default function LoginPage() {
       <div className="absolute -top-40 -right-40 h-96 w-96 rounded-full bg-cyan-200/30 blur-3xl" />
       <div className="w-full max-w-sm relative">
 
-        <div className="flex justify-center mb-8">
-          <Image
-            src="/now-logo.jpg"
-            alt="NOW Courier"
-            width={230}
-            height={80}
-            priority
-          />
-        </div>
+        <div className="flex justify-center mb-8"><BrandLockup /></div>
 
         <div className="bg-white/95 border border-white rounded-[28px] p-7 shadow-[0_24px_70px_rgba(16,45,61,0.16)] backdrop-blur">
 
           <p className="eyebrow text-center !mb-2">
-            NOW PRICING PORTAL
+            Secure team access
           </p>
           <h1 className="text-2xl font-extrabold tracking-tight text-center text-[#102d3d] mb-2">Welcome back</h1>
           <p className="text-sm text-slate-500 text-center mb-6">Enter your team password to continue.</p>

@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+
+import BrandLockup from "@/components/BrandLockup";
 
 type IconName = "car" | "truck" | "dollar" | "clock" | "compass" | "books" | "search" | "help" | "settings";
 
@@ -28,7 +29,7 @@ function MenuCard({ href, title, description, icon, tone = "light", badge }: { h
     navy: "border-transparent bg-gradient-to-br from-[#183f52] to-[#102d3d] text-white shadow-[0_14px_30px_rgba(16,45,61,.18)]",
     soft: "border-[#a9ccd2] bg-[#e3f0f2] text-[#244c5a] hover:border-[#008da3]",
   };
-  return <Link href={href} className={`group relative flex min-h-24 items-center gap-4 rounded-[22px] border p-4 text-left transition duration-200 hover:-translate-y-0.5 hover:shadow-lg ${tones[tone]}`}><span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-lg font-black ${tone === "teal" || tone === "navy" ? "bg-white/14 text-white" : "bg-[#edf6f7] text-[#007f94]"}`}>{icon}</span><span className="min-w-0"><span className="block text-sm font-extrabold tracking-[-.01em]">{title}</span><span className={`mt-1 block text-xs leading-5 ${tone === "teal" || tone === "navy" ? "text-white/70" : "text-slate-500"}`}>{description}</span></span>{badge && <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2 py-1 text-[8px] font-extrabold tracking-wider text-[#00798d]">{badge}</span>}</Link>;
+  return <Link href={href} className={`menu-card group relative flex min-h-28 items-center gap-4 rounded-[22px] border p-5 text-left transition duration-200 hover:-translate-y-0.5 hover:shadow-lg ${tones[tone]}`}><span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-lg font-black ${tone === "teal" || tone === "navy" ? "bg-white/14 text-white" : "bg-[#edf6f7] text-[#007f94]"}`}>{icon}</span><span className="min-w-0"><span className="block text-base font-extrabold tracking-[-.01em]">{title}</span><span className={`mt-1 block text-sm leading-5 ${tone === "teal" || tone === "navy" ? "text-white/75" : "text-slate-500"}`}>{description}</span></span>{badge && <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2 py-1 text-[8px] font-extrabold tracking-wider text-[#00798d]">{badge}</span>}</Link>;
 }
 
 function MenuGroup({ title, children }: { title: string; children: ReactNode }) {
@@ -38,7 +39,7 @@ function MenuGroup({ title, children }: { title: string; children: ReactNode }) 
 export default function HomeClient({ isAdmin }: { isAdmin: boolean }) {
   function logout() { void fetch("/api/logout", { method: "POST" }).then(() => { window.location.href = "/login"; }); }
 
-  return <main className="app-shell"><div className="mx-auto w-full max-w-2xl"><div className="mb-6 flex items-center justify-between"><Image src="/now-logo.jpg" alt="NOW Courier" width={178} height={62} priority className="brand-logo !h-14" /><button onClick={logout} className="text-xs font-bold tracking-wide text-slate-500 hover:text-slate-700">Log out</button></div><div className="mb-10"><p className="eyebrow">NOW Field Desk</p><h1 className="page-title">What are we working on?</h1><p className="page-subtitle">Pricing, prospect planning, and the references you need—all in one place.</p></div><div className="space-y-8">
+  return <main className="app-shell"><div className="mx-auto w-full max-w-2xl"><div className="home-brand-row mb-8 flex items-start justify-between gap-5"><BrandLockup /><button onClick={logout} className="mt-2 text-sm font-bold tracking-wide text-slate-500 hover:text-slate-700">Log out</button></div><div className="home-hero mb-11"><p className="eyebrow">Your field sales command center</p><h1 className="page-title">What are we working on?</h1><p className="page-subtitle">Pricing, prospect planning, and the references you need—all in one place.</p></div><div className="space-y-10">
     <MenuGroup title="Create a quote"><MenuCard href="/fast-quote-parcel" title="Parcel quote" description="Car, small truck, and Sprinter estimates." icon={<AppIcon name="car" />} tone="teal" /><MenuCard href="/fast-quote-commercial" title="Commercial quote" description="Dock truck, flatbed, and semi estimates." icon={<AppIcon name="truck" />} tone="teal" /><MenuCard href="/detailed-quote" title="Detailed quote" description="Full shipment details and accessorials." icon={<AppIcon name="dollar" />} tone="navy" /><MenuCard href="/dedicated-quote" title="Dedicated quote" description="Hourly equipment with minimums and fuel." icon={<AppIcon name="clock" />} tone="navy" /></MenuGroup>
     <MenuGroup title="Plan & reference"><MenuCard href="/routing-guide" title="Routing guide" description="Build and work optimized prospect routes." icon={<AppIcon name="compass" />} tone="soft" badge="NEW" /><MenuCard href="/quote-archive" title="Quote archive" description="Find previously saved calculations." icon={<AppIcon name="books" />} /><MenuCard href="/sales-reference" title="Sales quick reference" description="Approved services, equipment, and sales guidance." icon={<AppIcon name="search" />} /><MenuCard href="/help" title="Help center" description="Learn the workflows, rules, and assumptions." icon={<AppIcon name="help" />} /></MenuGroup>
     {isAdmin && <MenuGroup title="Administration"><MenuCard href="/admin" title="Pricing settings" description="Publish shared rates and manage pricing rules." icon={<AppIcon name="settings" />} tone="soft" /></MenuGroup>}

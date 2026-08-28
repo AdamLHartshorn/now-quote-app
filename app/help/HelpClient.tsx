@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
+import BrandLockup from "@/components/BrandLockup";
 import { usePricingSettings } from "@/lib/pricing-settings";
 
 function GuideSection({ title, children }: { title: string; children: React.ReactNode }) {
@@ -27,7 +27,7 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
       <div className="page-frame">
         <header className="topbar">
           <Link href="/" className="back-link">← Quote menu</Link>
-          <Image src="/now-logo.jpg" alt="NOW Courier" width={130} height={45} priority className="brand-logo" />
+          <BrandLockup compact />
         </header>
 
         <div className="page-heading">

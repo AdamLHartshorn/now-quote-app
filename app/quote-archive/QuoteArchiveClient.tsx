@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { QuoteArchiveEntry } from "@/lib/quote-archive-types";
+import BrandLockup from "@/components/BrandLockup";
 
 export default function QuoteArchiveClient({ isAdmin }: { isAdmin: boolean }) {
   const [quotes, setQuotes] = useState<QuoteArchiveEntry[]>([]);
@@ -33,7 +33,7 @@ export default function QuoteArchiveClient({ isAdmin }: { isAdmin: boolean }) {
 
   return (
     <main className="app-shell"><div className="page-frame">
-      <header className="topbar"><Link href="/" className="back-link">← Quote menu</Link><Image src="/now-logo.jpg" alt="NOW Courier" width={130} height={45} priority className="brand-logo" /></header>
+      <header className="topbar"><Link href="/" className="back-link">← Quote menu</Link><BrandLockup compact /></header>
       <div className="page-heading"><p className="eyebrow">Shared reference library</p><h1 className="page-title">Quote archive</h1><p className="page-subtitle">Saved calculator results only—no pipeline, ownership, or follow-up activity.</p></div>
       <div className="form-stack">
         <input className="control" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search customer or quote type" />

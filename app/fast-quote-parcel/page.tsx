@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { usePricingSettings } from "@/lib/pricing-settings";
 import SaveQuote from "@/components/SaveQuote";
 import MileageLookup from "@/components/MileageLookup";
 import CustomerNameField from "@/components/CustomerNameField";
+import BrandLockup from "@/components/BrandLockup";
 
 export default function FastQuoteParcel() {
   const { config, version } = usePricingSettings();
@@ -61,14 +61,7 @@ export default function FastQuoteParcel() {
             ← Back
           </Link>
 
-          <Image
-            src="/now-logo.jpg"
-            alt="NOW Courier"
-            width={130}
-            height={45}
-            priority
-            className="brand-logo"
-          />
+          <BrandLockup compact />
         </div>
 
         <div className="page-heading">
