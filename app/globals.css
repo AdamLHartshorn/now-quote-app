@@ -58,10 +58,8 @@ button,a { -webkit-tap-highlight-color:transparent; }
 .breakdown { position:relative; z-index:1; margin-top:22px; padding-top:18px; border-top:1px solid rgba(255,255,255,.13); color:#c6d6dc; font-size:12px; line-height:1.75; }
 .muted-note { color:var(--muted); font-size:14px; line-height:1.55; }
 .home-brand-row { position:relative; z-index:1; }
-.home-hero { position:relative; overflow:hidden; padding:25px 26px 27px; border:1px solid rgba(184,205,212,.72); border-radius:24px; background:rgba(255,255,255,.82); box-shadow:0 16px 42px rgba(8,47,87,.08); }
-.home-hero::after { content:""; position:absolute; width:120px; height:120px; right:-55px; bottom:-58px; border:2px dashed rgba(0,163,189,.19); border-radius:50%; }
 .menu-card { overflow:hidden; box-shadow:0 10px 25px rgba(8,47,87,.07); }
 .menu-card::before { content:""; position:absolute; inset:auto 0 0; height:3px; background:linear-gradient(90deg,transparent,var(--teal),transparent); opacity:.38; }
 @media (min-width:700px) { .app-shell{padding:40px 28px 76px}.page-frame{max-width:640px}.panel{padding:25px}.field-desk-brand{width:232px}.field-desk-brand--compact{width:154px} }
-@media (max-width:420px) { .field-desk-brand{width:188px}.field-desk-brand--compact{width:132px}.field-desk-brand__name{font-size:15px}.field-desk-brand--compact .field-desk-brand__name{font-size:9px}.topbar{gap:10px}.back-link{padding:0 11px;font-size:13px}.home-hero{padding:23px 21px 25px} }
+@media (max-width:420px) { .field-desk-brand{width:188px}.field-desk-brand--compact{width:132px}.field-desk-brand__name{font-size:15px}.field-desk-brand--compact .field-desk-brand__name{font-size:9px}.topbar{gap:10px}.back-link{padding:0 11px;font-size:13px} }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after{scroll-behavior:auto!important;transition:none!important} }
