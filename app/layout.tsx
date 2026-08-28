@@ -2,28 +2,28 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "NOW Courier Quote Tool",
+  title: "NOW Field Desk",
   description:
-    "Internal pricing and operational quoting platform for NOW Courier.",
+    "The sales quoting, routing, and reference workspace for NOW Courier.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "NOW Sales",
+    title: "NOW Field Desk",
   },
 
   openGraph: {
-    title: "NOW Courier Quote Tool",
+    title: "NOW Field Desk",
     description:
-      "Internal pricing and operational quoting platform for NOW Courier.",
-    siteName: "NOW Courier Quote Tool",
+      "The sales quoting, routing, and reference workspace for NOW Courier.",
+    siteName: "NOW Field Desk",
   },
 
   twitter: {
     card: "summary",
-    title: "NOW Courier Quote Tool",
+    title: "NOW Field Desk",
     description:
-      "Internal pricing and operational quoting platform for NOW Courier.",
+      "The sales quoting, routing, and reference workspace for NOW Courier.",
   },
 };
 

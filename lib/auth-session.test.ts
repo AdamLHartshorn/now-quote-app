@@ -12,6 +12,8 @@ test("creates and verifies signed role sessions", async () => {
 test("rejects altered and legacy plain-text cookies", async () => {
   process.env.AUTH_SECRET = "test-secret-that-is-long-enough-for-session-signing";
   const token = await createSessionToken("staff");
-  assert.equal(await verifySessionToken(`${token.slice(0, -1)}x`), null);
+  const [payload, signature] = token.split(".");
+  const alteredPayload = `${payload[0] === "a" ? "b" : "a"}${payload.slice(1)}`;
+  assert.equal(await verifySessionToken(`${alteredPayload}.${signature}`), null);
   assert.equal(await verifySessionToken("admin"), null);
 });

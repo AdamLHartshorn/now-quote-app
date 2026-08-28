@@ -58,7 +58,7 @@ export default function LoginPage() {
           <p className="text-sm text-slate-500 text-center mb-6">Enter your team password to continue.</p>
 
           <form onSubmit={(event) => { event.preventDefault(); void handleLogin(); }}>
-            <input type="text" name="username" value="NOW Sales Portal" autoComplete="username" readOnly className="sr-only" tabIndex={-1} aria-hidden="true" />
+            <input type="text" name="username" value="NOW Field Desk" autoComplete="username" readOnly className="sr-only" tabIndex={-1} aria-hidden="true" />
             <input
               type="password"
               name="password"

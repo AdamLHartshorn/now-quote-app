@@ -59,29 +59,29 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
             <p className="rounded-xl bg-amber-50 p-3 text-xs font-semibold text-amber-800">Quotes are estimates. Confirm unusual freight, special handling, or exceptions with Operations.</p>
           </GuideSection>
 
-          <GuideSection title="Put NOW Sales on your phone’s Home Screen">
+          <GuideSection title="Put NOW Field Desk on your phone’s Home Screen">
             <p className="text-base font-semibold text-[#102d3d]">Do this once for one-tap access—just like opening an app.</p>
             <div className="grid gap-4 pt-1 md:grid-cols-2">
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                 <h3 className="mb-3 text-base font-extrabold text-[#102d3d]">Apple iPhone or iPad</h3>
                 <Steps>
                   <li>Open <strong className="text-[#102d3d]">Safari</strong>. Do not use the Google app or another in-app browser for these steps.</li>
-                  <li>Go to <strong className="text-[#102d3d]">now-quote-app.vercel.app</strong> and sign in.</li>
+                  <li>Go to <strong className="text-[#102d3d]">nowfielddesk.vercel.app</strong> and sign in.</li>
                   <li>Tap the <strong className="text-[#102d3d]">Share</strong> button—the square with an arrow pointing upward. Depending on your Safari layout, it may be at the top or bottom of the screen.</li>
                   <li>Scroll down and tap <strong className="text-[#102d3d]">Add to Home Screen</strong>. If it is missing, scroll to the bottom, tap <strong className="text-[#102d3d]">Edit Actions</strong>, and add it.</li>
-                  <li>Leave the name as <strong className="text-[#102d3d]">NOW Sales</strong>, turn on <strong className="text-[#102d3d]">Open as Web App</strong> if shown, then tap <strong className="text-[#102d3d]">Add</strong>.</li>
-                  <li>Return to your Home Screen and tap the NOW Sales icon to open it.</li>
+                  <li>Leave the name as <strong className="text-[#102d3d]">NOW Field Desk</strong>, turn on <strong className="text-[#102d3d]">Open as Web App</strong> if shown, then tap <strong className="text-[#102d3d]">Add</strong>.</li>
+                  <li>Return to your Home Screen and tap the Field Desk icon to open it.</li>
                 </Steps>
               </div>
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                 <h3 className="mb-3 text-base font-extrabold text-[#102d3d]">Android phone or tablet</h3>
                 <Steps>
                   <li>Open <strong className="text-[#102d3d]">Google Chrome</strong>.</li>
-                  <li>Go to <strong className="text-[#102d3d]">now-quote-app.vercel.app</strong> and sign in.</li>
+                  <li>Go to <strong className="text-[#102d3d]">nowfielddesk.vercel.app</strong> and sign in.</li>
                   <li>Tap the <strong className="text-[#102d3d]">three-dot menu</strong> to the right of the address bar.</li>
                   <li>Tap <strong className="text-[#102d3d]">Install and create shortcut</strong>, then <strong className="text-[#102d3d]">Create shortcut</strong>. On some Android versions this appears as <strong className="text-[#102d3d]">Add to Home screen</strong> or <strong className="text-[#102d3d]">Install app</strong>.</li>
-                  <li>Leave the name as <strong className="text-[#102d3d]">NOW Sales</strong>, tap <strong className="text-[#102d3d]">Add</strong>, and confirm placement if your phone asks.</li>
-                  <li>Return to your Home Screen and tap the NOW Sales icon to open it.</li>
+                  <li>Leave the name as <strong className="text-[#102d3d]">NOW Field Desk</strong>, tap <strong className="text-[#102d3d]">Add</strong>, and confirm placement if your phone asks.</li>
+                  <li>Return to your Home Screen and tap the Field Desk icon to open it.</li>
                 </Steps>
               </div>
             </div>

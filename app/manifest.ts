@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "NOW Sales Workspace",
-    short_name: "NOW Sales",
-    description: "NOW Courier sales quoting and prospect planning workspace.",
+    name: "NOW Field Desk",
+    short_name: "Field Desk",
+    description: "NOW Courier sales quoting, routing, and reference workspace.",
     start_url: "/",
     display: "standalone",
     background_color: "#f4f8f9",
