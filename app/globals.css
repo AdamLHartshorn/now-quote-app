@@ -67,6 +67,7 @@ button,a { -webkit-tap-highlight-color:transparent; }
 [class~="text-[13px]"] { font-size:15px; }
 .menu-card { min-height:120px; }
 .menu-card .text-base { font-size:18px; }
+.menu-card-title { text-transform:uppercase; }
 .menu-card .text-sm { font-size:16px; line-height:1.45; }
 .home-brand-row { position:relative; z-index:1; }
 .menu-card { overflow:hidden; box-shadow:0 10px 25px rgba(8,47,87,.07); }
