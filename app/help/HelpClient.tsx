@@ -54,7 +54,7 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
               <li>Enter trip miles—not round-trip miles unless the shipment itself is round trip.</li>
               <li>Enter shipment weight and every applicable stop or accessorial.</li>
               <li>Review the line-item breakdown before sharing the estimate.</li>
-              <li>Use the copy control on detailed quotes to transfer the summary accurately.</li>
+              <li>On Detailed Quote, copy the run details or open a prepared Fleet Dispatch email after reviewing the result.</li>
             </Steps>
             <p className="rounded-xl bg-amber-50 p-3 text-xs font-semibold text-amber-800">Quotes are estimates. Confirm unusual freight, special handling, or exceptions with Operations.</p>
           </GuideSection>
@@ -97,8 +97,19 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
 
           <GuideSection title="Quote archive">
             <p>Every calculator can save its current result to the shared Quote Archive. A customer name is required; after a name has been used once, it becomes available in the customer-name suggestions. Select Test Order when practicing.</p>
-            <p>On Detailed Quote, Copy Quote keeps the full run details on your clipboard. Email Dispatch opens a separate, pre-addressed Outlook draft for Fleet Dispatch with the customer and vehicle in the subject. Review the draft before sending—it never sends automatically.</p>
             <p>The archive is reference-only. Saving a quote does not create Salesforce activity, a pipeline record, ownership, follow-up tasks, or a won/lost status.</p>
+          </GuideSection>
+
+          <GuideSection title="Copy or email a run to Fleet Dispatch">
+            <p>After completing a Detailed Quote, use <strong className="text-[#102d3d]">Copy Quote</strong> to place the complete formatted run details on your clipboard. This existing option remains available and unchanged.</p>
+            <Steps>
+              <li>Enter or select the customer name. Use <strong className="text-[#102d3d]">Test Order</strong> when practicing.</li>
+              <li>Select the correct equipment and finish calculating the quote.</li>
+              <li>Select <strong className="text-[#102d3d]">Email Dispatch</strong>. The app opens a new Outlook draft addressed to <strong className="text-[#102d3d]">fleetdispatch@nowcourier.com</strong>.</li>
+              <li>Confirm the subject shows the customer and actual selected equipment—for example, <strong className="text-[#102d3d]">Acme NEW Dock Truck ORDER</strong>.</li>
+              <li>Review the recipient, subject, and complete run details, make any necessary edits, and send the message from Outlook.</li>
+            </Steps>
+            <p className="rounded-xl bg-[#e8f5f6] p-3 text-sm font-semibold text-[#205563]">Email Dispatch only prepares a draft. NOW Field Desk never sends the email automatically.</p>
           </GuideSection>
 
           <GuideSection title="Quick reference">
