@@ -9,7 +9,7 @@ button,a { -webkit-tap-highlight-color:transparent; }
 .app-shell { min-height:100vh; padding:24px 20px 56px; background:radial-gradient(circle at 100% 0%,rgba(0,147,170,.12),transparent 28rem),linear-gradient(180deg,#f8fbfb 0%,#eef4f5 100%); }
 .page-frame { width:100%; max-width:540px; margin:0 auto; }
 .topbar { display:flex; align-items:center; justify-content:space-between; min-height:52px; margin-bottom:34px; }
-.brand-logo { width:auto; height:44px; object-fit:contain; }
+.brand-logo { width:auto; height:44px; box-sizing:content-box; object-fit:contain; background:#fff; padding:8px 11px; border:1px solid rgba(148,163,184,.22); border-radius:14px; box-shadow:0 8px 24px rgba(16,45,61,.08); }
 .back-link { color:var(--muted); font-size:14px; font-weight:700; letter-spacing:.01em; text-decoration:none; transition:color .2s ease; }
 .back-link:hover { color:var(--teal-dark); }
 .eyebrow { margin:0 0 9px; color:var(--teal-dark); font-size:12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
