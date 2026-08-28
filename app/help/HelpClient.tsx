@@ -100,8 +100,9 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
             <p>The archive is reference-only. Saving a quote does not create Salesforce activity, a pipeline record, ownership, follow-up tasks, or a won/lost status.</p>
           </GuideSection>
 
-          <GuideSection title="Sales quick reference">
-            <p>This library will hold approved services, equipment, pricing guidance, discovery questions, objection responses, and escalation rules. Content will be added from the source documents provided by sales leadership.</p>
+          <GuideSection title="Quick reference">
+            <p>Open Equipment for approved vehicle capacities and dimensions, Services for the current service levels used by the calculators, or Pricing Rules for the written assumptions behind every quote.</p>
+            <p>Vehicle maximums do not guarantee availability or fit. Confirm unusually sized, heavy, or special-handling freight with Operations.</p>
           </GuideSection>
 
           {isAdmin && (
