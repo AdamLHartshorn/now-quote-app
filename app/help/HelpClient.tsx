@@ -100,10 +100,10 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
             <Steps>
               <li>Choose a rep or search by ZIP, city, county, or rep name.</li>
               <li>Tap a colored ZIP to see its owner and location details.</li>
-              <li>Review up to five prospect ideas drawn from public business listings inside that ZIP.</li>
+              <li>Review researched business profiles saved for that ZIP. Each profile includes its address, source link, research date, and a suggested conversation starter. Research is being published ZIP by ZIP; unfinished ZIPs are clearly marked.</li>
               <li>Verify the business details, then use Open Map, Call, or Website when available.</li>
             </Steps>
-            <p>Twelve specialty, post-office, or legacy ZIPs in the source list do not have a standard geographic boundary. They remain searchable and assigned, but are not drawn as map shapes.</p>
+            <p>Gray ZIPs were absent from the original territory sheet and await admin assignment. Twelve source ZIPs have no matching shape in the available Census boundary dataset; they remain searchable. Map shapes are approximate Census statistical areas.</p>
             {isAdmin && <p className="rounded-xl bg-[#e8f5f6] p-3 text-sm font-semibold text-[#205563]">Admins can open any ZIP, choose a different rep, and select Save Assignment. The change becomes visible to the whole sales team immediately.</p>}
           </GuideSection>
 

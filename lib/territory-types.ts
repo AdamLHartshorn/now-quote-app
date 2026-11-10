@@ -6,7 +6,7 @@ export type TerritoryRow = {
   zip: string;
   city: string;
   county: string;
-  rep: Rep;
+  rep: Rep | "Unassigned";
 };
 
 export type Prospect = {
@@ -17,4 +17,6 @@ export type Prospect = {
   address: string;
   phone?: string;
   website?: string;
+  sourceUrl?: string;
+  researchedOn?: string;
 };
