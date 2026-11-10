@@ -17,3 +17,15 @@ test("rejects altered and legacy plain-text cookies", async () => {
   assert.equal(await verifySessionToken(`${alteredPayload}.${signature}`), null);
   assert.equal(await verifySessionToken("admin"), null);
 });
+
+
+test("rotating the signing secret invalidates existing staff and admin sessions", async () => {
+  process.env.AUTH_SECRET = "previous-quarter-test-signing-secret";
+  const staff = await createSessionToken("staff");
+  const admin = await createSessionToken("admin");
+  process.env.AUTH_SECRET = "new-quarter-test-signing-secret";
+  assert.equal(await verifySessionToken(staff), null);
+  assert.equal(await verifySessionToken(admin), null);
+  assert.equal(await verifySessionToken(await createSessionToken("staff")), "staff");
+  assert.equal(await verifySessionToken(await createSessionToken("admin")), "admin");
+});

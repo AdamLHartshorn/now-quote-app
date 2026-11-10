@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFileSync } from "node:fs";
-import { filterProspects, prospectOwner, type HiringProspect } from "./prospect-watch.ts";
+import { filterProspects, prospectOwner, prospectsForZip, type HiringProspect } from "./prospect-watch.ts";
 
 const data = JSON.parse(readFileSync(new URL("./prospect-watch-data.json", import.meta.url), "utf8")) as { records: HiringProspect[] };
 test("admin ZIP overrides control prospect ownership; unknown sites are never guessed", () => {
@@ -50,4 +50,17 @@ test("every original research row is preserved exactly once after consolidation"
     assert.ok(p.signalRecordedOn && p.signalRecordedOn < p.checkedOn);
     assert.equal(p.postedOn, null);
   }
+});
+
+
+test("map ZIP matches are exact, retain prior signals, and exclude unknown branch locations", () => {
+  const matches = prospectsForZip(data.records, "46241");
+  assert.equal(matches.length, data.records.filter(p => p.zip === "46241").length);
+  assert.ok(matches.some(p => p.id === "graybar-indianapolis"));
+  assert.ok(matches.some(p => p.signalType === "historical"));
+  assert.equal(matches[0].signalType, "current");
+  assert.ok(!matches.some(p => p.id === "quench-indianapolis"));
+  assert.deepEqual(prospectsForZip(data.records, "4624"), []);
+  assert.deepEqual(prospectsForZip(data.records, ""), []);
+  assert.deepEqual(prospectsForZip(data.records, "99999"), []);
 });

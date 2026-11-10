@@ -12,9 +12,10 @@ export default async function ProspectPage({ params, searchParams }: { params: P
   if (!p) notFound();
   const back = new URLSearchParams();
   for (const key of ["rep", "q", "new", "signal"]) if (typeof search[key] === "string") back.set(key, search[key]);
+  const fromZip = typeof search.fromZip === "string" && /^\d{5}$/.test(search.fromZip) && search.fromZip === p.zip ? search.fromZip : null;
   const current = p.signalType === "current";
   return <main className="app-shell"><div className="page-frame" style={{ maxWidth: 800 }}>
-    <header className="topbar"><Link href={`/prospect-watch?${back}`} className="back-link">← Prospect Watch</Link><BrandLockup compact /></header>
+    <header className="topbar"><Link href={fromZip ? `/territory-map?zip=${fromZip}` : `/prospect-watch?${back}`} className="back-link">{fromZip ? `← ZIP ${fromZip}` : "← Prospect Watch"}</Link><BrandLockup compact /></header>
     <div className="page-heading"><p className="eyebrow">{p.owner} · {p.city}{p.zip ? ` · ${p.zip}` : ""}</p><h1 className="page-title" style={{ fontSize: "clamp(30px, 7vw, 44px)", lineHeight: 1.1 }}>{p.company}</h1><p className="page-subtitle">{p.address}</p>{p.locationNote && <p className="mt-4 rounded-xl bg-white/70 p-4 text-base leading-relaxed text-slate-600">{p.locationNote}</p>}</div>
     <div className="form-stack">
       <section className="panel">

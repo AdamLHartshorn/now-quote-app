@@ -109,7 +109,8 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
             <Steps>
               <li>Choose a rep or search by ZIP, city, county, or rep name.</li>
               <li>Tap a colored ZIP to see its owner and location details.</li>
-              <li>Review researched business profiles saved for that ZIP. Each profile includes its address, source link, research date, and a suggested conversation starter. Research is being published ZIP by ZIP; unfinished ZIPs are clearly marked.</li>
+              <li>Prospect Watch shows companies with a confirmed branch ZIP matching your selection, with current openings first and prior hiring signals clearly labeled. Tap a company for its full profile, then use the ZIP link to return to the map. Market-wide postings without a confirmed ZIP remain in Prospect Watch under ALL.</li>
+              <li>Other business ideas preserves the separate ZIP research where available, including addresses, sources, and suggested conversation starters. Research is being published ZIP by ZIP.</li>
               <li>Verify the business details, then use Open Map, Call, or Website when available.</li>
             </Steps>
             <p>Gray ZIPs were absent from the original territory sheet and await admin assignment. Twelve source ZIPs have no matching shape in the available Census boundary dataset; they remain searchable. Map shapes are approximate Census statistical areas.</p>

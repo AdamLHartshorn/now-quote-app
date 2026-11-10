@@ -43,3 +43,12 @@ export function filterProspects<T extends HiringProspect & { owner: string }>(re
 export function researchDate(value: string) {
   return new Date(`${value}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 }
+
+export type ZipWatchProspect = Pick<HiringProspect, "id" | "company" | "role" | "signalType" | "checkedOn" | "limitedFit">;
+
+export function prospectsForZip(records: HiringProspect[], zip: string): ZipWatchProspect[] {
+  if (!/^\d{5}$/.test(zip)) return [];
+  return records.filter(p => p.zip === zip)
+    .sort((a, b) => Number(b.signalType === "current") - Number(a.signalType === "current") || a.company.localeCompare(b.company))
+    .map(({ id, company, role, signalType, checkedOn, limitedFit }) => ({ id, company, role, signalType, checkedOn, limitedFit }));
+}
