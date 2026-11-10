@@ -19,7 +19,7 @@ function featurePoints(feature: Feature) {
   return polygons.flat(2);
 }
 
-function featurePath(feature: Feature) {
+function featurePath(feature: { geometry: Geometry }) {
   const polygons = feature.geometry.type === "Polygon" ? [feature.geometry.coordinates as number[][][]] : feature.geometry.coordinates as number[][][][];
   return polygons.map((polygon) => polygon.map((ring) => ring.map((point, index) => { const [x, y] = project(point); return `${index ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`; }).join(" ") + " Z").join(" ")).join(" ");
 }
@@ -88,8 +88,11 @@ export default function TerritoryMapClient({ isAdmin }: { isAdmin: boolean }) {
       <section className="overflow-hidden rounded-[26px] border border-[#294b5b] bg-[#102d3d] shadow-[0_20px_50px_rgba(16,45,61,.2)]">
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-white"><div><p className="text-xs font-extrabold uppercase tracking-[.16em] text-white/55">Current view</p><h2 className="mt-1 text-lg font-extrabold">{filter === "ALL" ? "All sales territories" : `${filter}’s territory`}</h2></div><span className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold">{visibleFeatures.length} mapped ZIPs</span></div>
         <svg viewBox={bounds(visibleFeatures)} className="block aspect-[4/5] w-full bg-[radial-gradient(circle_at_center,#1b4d61,#102d3d_70%)] sm:aspect-[16/11]" role="img" aria-label={`${filter} sales territory map`}>
+          <defs><pattern id="coverage-gap" patternUnits="userSpaceOnUse" width="12" height="12"><rect width="12" height="12" fill="#566776" /><path d="M0 0L12 12M-3 9L3 15M9 -3L15 3" stroke="#cbd5e1" strokeWidth="2" /></pattern></defs>
+          {territoryData.coverageGaps.map((gap, index) => <path key={index} d={featurePath(gap as { geometry: Geometry })} fill="url(#coverage-gap)" stroke="#cbd5e1" strokeWidth="1" vectorEffect="non-scaling-stroke"><title>{gap.properties.label}</title></path>)}
           {features.map((feature) => { const rep = overrides[feature.properties.zip] ?? feature.properties.rep; const active = selectedZip === feature.properties.zip; return <path key={feature.properties.zip} d={featurePath(feature)} fill={colors[rep]} fillRule="evenodd" fillOpacity={active ? 1 : filter === "ALL" || filter === rep ? .82 : rep === "Unassigned" ? .7 : .16} stroke={active ? "#ffffff" : "#d9f5f7"} strokeWidth={active ? 3.5 : 1.1} vectorEffect="non-scaling-stroke" role="button" tabIndex={0} aria-label={`${feature.properties.zip} ${feature.properties.city}, ${rep}`} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); choose(feature.properties); } }} className="cursor-pointer transition-opacity hover:opacity-100 focus:outline-none focus:stroke-white" onClick={() => choose({ ...feature.properties, rep })}><title>{feature.properties.zip} · {feature.properties.city} · {rep}</title></path>; })}
         </svg>
+        <p className="border-t border-white/10 px-5 py-3 text-sm leading-6 text-white/75">Hatched areas near Camp Atterbury have no ZIP boundary in the source data. Gray ZIPs await an admin assignment.</p>
         <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-white/10 px-5 py-4">{([...REPS, "Unassigned"] as const).map((rep) => <span key={rep} className="flex items-center gap-2 text-xs font-bold text-white/75"><span className="h-2.5 w-2.5 rounded-full" style={{ background: colors[rep] }} />{rep}</span>)}</div>
       </section>
 
