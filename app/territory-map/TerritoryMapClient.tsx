@@ -46,6 +46,8 @@ export default function TerritoryMapClient({ isAdmin, initialZip }: { isAdmin: b
   const [watchProspects, setWatchProspects] = useState<ZipWatchProspect[]>([]);
   const [prospects, setProspects] = useState<Prospect[]>([]);
   const [prospectNote, setProspectNote] = useState("");
+  const [prospectError, setProspectError] = useState("");
+  const [researchEdition, setResearchEdition] = useState("");
   const [loadingProspects, setLoadingProspects] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState("");
@@ -66,8 +68,8 @@ export default function TerritoryMapClient({ isAdmin, initialZip }: { isAdmin: b
   useEffect(() => {
     if (!selectedZip) return;
     const controller = new AbortController();
-    setLoadingProspects(true); setWatchProspects([]); setProspects([]); setProspectNote("");
-    void fetch(`/api/territory-prospects?zip=${selectedZip}`, { signal: controller.signal }).then(async (response) => { const data = await response.json(); if (!response.ok) throw new Error(data.error ?? "Prospects are temporarily unavailable."); if (controller.signal.aborted) return; setWatchProspects(data.watchProspects ?? []); setProspects(data.prospects ?? []); setProspectNote(data.note ?? ""); }).catch((error: Error) => { if (!controller.signal.aborted) setProspectNote(error.message); }).finally(() => { if (!controller.signal.aborted) setLoadingProspects(false); });
+    setLoadingProspects(true); setWatchProspects([]); setProspects([]); setProspectNote(""); setProspectError(""); setResearchEdition("");
+    void fetch(`/api/territory-prospects?zip=${selectedZip}`, { signal: controller.signal }).then(async (response) => { const data = await response.json(); if (!response.ok) throw new Error(data.error ?? "Prospects are temporarily unavailable."); if (controller.signal.aborted) return; setWatchProspects(data.watchProspects ?? []); setProspects(data.prospects ?? []); setProspectNote(data.note ?? ""); setResearchEdition(data.researchedOn ?? ""); }).catch((error: Error) => { if (!controller.signal.aborted) setProspectError(error.message); }).finally(() => { if (!controller.signal.aborted) setLoadingProspects(false); });
     return () => controller.abort();
   }, [selectedZip]);
 
@@ -118,10 +120,28 @@ export default function TerritoryMapClient({ isAdmin, initialZip }: { isAdmin: b
             <span className={`text-sm font-bold ${p.signalType === "current" ? "text-[#157259]" : "text-[#78591d]"}`}>{p.signalType === "current" ? "Current opening" : "Prior hiring signal"}</span>
             <h3 className="mt-2 text-lg font-extrabold leading-6 text-[#102d3d]">{p.company}</h3><p className="mt-2 text-base leading-6 text-slate-600">{p.role}</p>
             <p className="mt-2 text-sm text-slate-500">Reviewed {researchDate(p.checkedOn)}{p.limitedFit ? " · Limited fit" : ""}</p><span className="mt-3 inline-block text-base font-bold text-[#007f94]">View full profile →</span>
-          </Link>)}</div> : <p className="mt-4 rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-600">{prospectNote || "No Prospect Watch companies have a confirmed branch ZIP here yet."}</p>}
+          </Link>)}</div> : <p className="mt-4 rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-600">{prospectError || "No Prospect Watch companies have a confirmed branch ZIP here yet."}</p>}
           <Link href="/prospect-watch" className="mt-4 inline-block min-h-11 py-2 text-base font-bold text-[#007f94] underline underline-offset-4">Browse all Prospect Watch companies</Link>
         </section>
-        {prospects.length > 0 && <section className="rounded-[24px] border border-slate-200 bg-white p-5 shadow-sm"><p className="text-xs font-extrabold uppercase tracking-[.16em] text-[#008da3]">Researched prospects</p><h2 className="mt-1 text-xl font-extrabold text-[#102d3d]">Other business ideas</h2>{loadingProspects && <p className="mt-4 animate-pulse text-sm font-semibold text-slate-500">Loading researched prospects…</p>}{!loadingProspects && prospects.length === 0 && <p className="mt-4 rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-600">{prospectNote || "Research for this ZIP is still in progress."}</p>}<div className="mt-4 space-y-3">{prospects.map((prospect, index) => <article key={prospect.id} className="rounded-2xl border border-slate-200 p-4"><div className="flex gap-3"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#e5f4f6] text-xs font-black text-[#007f94]">{index + 1}</span><div><h3 className="font-extrabold text-[#102d3d]">{prospect.name}</h3><p className="mt-0.5 text-xs font-bold uppercase tracking-wide text-[#008da3]">{prospect.category}</p></div></div><p className="mt-3 text-sm leading-6 text-slate-600">{prospect.reason}</p><p className="mt-2 text-xs text-slate-500">Researched {prospect.researchedOn}</p><p className="mt-2 text-sm font-semibold text-slate-500">{prospect.address}</p><div className="mt-3 flex flex-wrap gap-2"><a className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-extrabold text-[#244c5a]" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${prospect.name} ${prospect.address}`)}`} target="_blank" rel="noreferrer">Open map</a>{prospect.phone && <a className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-extrabold text-[#244c5a]" href={`tel:${prospect.phone}`}>Call</a>}{prospect.sourceUrl && <a className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-extrabold text-[#244c5a]" href={prospect.sourceUrl} target="_blank" rel="noreferrer">Research source ↗</a>}{prospect.website && <a className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-extrabold text-[#244c5a]" href={prospect.website} target="_blank" rel="noreferrer">Website</a>}</div></article>)}</div>{prospects.length > 0 && prospectNote && <p className="mt-3 text-xs leading-5 text-slate-500">{prospectNote}</p>}<p className="mt-4 text-[11px] leading-4 text-slate-400">Curated research · November 10, 2026. Conversation starters are suggested outreach topics. Coverage is being built ZIP by ZIP.</p></section>}</>}
+        <section className="rounded-[24px] border border-slate-200 bg-white p-5 shadow-sm" aria-label="Local business ideas">
+          <p className="text-sm font-extrabold uppercase tracking-[.12em] text-[#008da3]">Researched prospects</p>
+          <h2 className="mt-1 text-xl font-extrabold text-[#102d3d]">Local business ideas</h2>
+          {loadingProspects ? <p className="mt-4 animate-pulse text-base text-slate-600">Loading researched prospects…</p> : prospectError ? <p role="alert" className="mt-4 rounded-xl bg-amber-50 p-4 text-base leading-6 text-amber-900">{prospectError}</p> : <>
+            <p className="mt-2 text-base font-semibold text-slate-600">{prospects.length} researched {prospects.length === 1 ? "business" : "businesses"} in {selected.zip}</p>
+            {prospectNote && <p className="mt-3 rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-600">{prospectNote}</p>}
+            <div className="mt-4 space-y-3">{prospects.map((prospect, index) => <article key={prospect.id} className="rounded-2xl border border-slate-200 p-4">
+              <div className="flex gap-3"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e5f4f6] text-sm font-black text-[#007f94]">{index + 1}</span><div><h3 className="text-lg font-extrabold leading-6 text-[#102d3d]">{prospect.name}</h3><p className="mt-1 text-sm font-bold text-[#008da3]">{prospect.category}</p></div></div>
+              <p className="mt-3 text-base leading-7 text-slate-600">{prospect.reason}</p>
+              <p className="mt-3 text-base font-semibold leading-6 text-slate-600">{prospect.address}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <a className="inline-flex min-h-11 items-center rounded-full bg-slate-100 px-4 py-2 text-sm font-extrabold text-[#244c5a]" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${prospect.name} ${prospect.address}`)}`} target="_blank" rel="noreferrer">Open map</a>
+                {prospect.phone && <a className="inline-flex min-h-11 items-center rounded-full bg-slate-100 px-4 py-2 text-sm font-extrabold text-[#244c5a]" href={`tel:${prospect.phone}`}>Call</a>}
+                {prospect.sourceUrl && <a className="inline-flex min-h-11 items-center rounded-full bg-slate-100 px-4 py-2 text-sm font-extrabold text-[#244c5a]" href={prospect.sourceUrl} target="_blank" rel="noreferrer">Research source ↗</a>}
+              </div>
+            </article>)}</div>
+            {researchEdition && <p className="mt-4 text-sm leading-6 text-slate-500">Research snapshot · {researchDate(researchEdition)}. Conversation starters suggest possible opportunities, not confirmed delivery needs or current hiring. Confirm business details before visiting. This is a saved reference, not a live business feed.</p>}
+          </>}
+        </section></>}
       </aside>
     </div>
   </div></main>;

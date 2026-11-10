@@ -110,8 +110,8 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
               <li>Choose a rep or search by ZIP, city, county, or rep name.</li>
               <li>Tap a colored ZIP to see its owner and location details.</li>
               <li>Prospect Watch shows companies with a confirmed branch ZIP matching your selection, with current openings first and prior hiring signals clearly labeled. Tap a company for its full profile, then use the ZIP link to return to the map. Market-wide postings without a confirmed ZIP remain in Prospect Watch under ALL.</li>
-              <li>Other business ideas preserves the separate ZIP research where available, including addresses, sources, and suggested conversation starters. Research is being published ZIP by ZIP.</li>
-              <li>Verify the business details, then use Open Map, Call, or Website when available.</li>
+              <li>Local business ideas contains up to five researched businesses per ZIP, with street addresses, source links, call buttons where a number is available, and suggested conversation starters. All map ZIPs were researched for the November 10 edition. Some have fewer than five suitable matches; those gaps are explained instead of filled with uncertain or nearby businesses.</li>
+              <li>Check the research source and confirm current business details before visiting. Use Open map or Call when available. The business ideas are a saved research snapshot, separate from Prospect Watch hiring signals.</li>
             </Steps>
             <p>Gray ZIPs were absent from the original territory sheet and await admin assignment. Twelve source ZIPs have no matching shape in the available Census boundary dataset; they remain searchable. Map shapes are approximate Census statistical areas.</p>
             {isAdmin && <p className="rounded-xl bg-[#e8f5f6] p-3 text-sm font-semibold text-[#205563]">Admins can open any ZIP, choose a different rep, and select Save Assignment. The change becomes visible to the whole sales team immediately.</p>}
