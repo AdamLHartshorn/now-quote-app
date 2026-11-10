@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
+import InterstateOverlay from "@/components/InterstateOverlay";
 import BrandLockup from "@/components/BrandLockup";
 import territoryData from "@/lib/territory-data.json";
 import { REPS, type Prospect, type Rep, type TerritoryRow } from "@/lib/territory-types";
@@ -36,6 +37,7 @@ function bounds(features: Feature[]) {
 export default function TerritoryMapClient({ isAdmin }: { isAdmin: boolean }) {
   const rows = territoryData.territories as TerritoryRow[];
   const features = territoryData.geojson.features as Feature[];
+  const [showHighways, setShowHighways] = useState(true);
   const [filter, setFilter] = useState<Filter>("ALL");
   const [query, setQuery] = useState("");
   const [selectedZip, setSelectedZip] = useState<string | null>(null);
@@ -50,6 +52,7 @@ export default function TerritoryMapClient({ isAdmin }: { isAdmin: boolean }) {
   const owner = (row: TerritoryRow) => overrides[row.zip] ?? row.rep;
   const selected = rows.find((row) => row.zip === selectedZip);
   const visibleFeatures = useMemo(() => features.filter((feature) => filter === "ALL" || (overrides[feature.properties.zip] ?? feature.properties.rep) === filter), [features, filter, overrides]);
+  const viewBox = useMemo(() => bounds(visibleFeatures), [visibleFeatures]);
   const matches = useMemo(() => {
     const value = query.trim().toLowerCase();
     if (!value) return [];
@@ -87,13 +90,17 @@ export default function TerritoryMapClient({ isAdmin }: { isAdmin: boolean }) {
     <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.55fr)_minmax(330px,.75fr)]">
       <section className="overflow-hidden rounded-[26px] border border-[#294b5b] bg-[#102d3d] shadow-[0_20px_50px_rgba(16,45,61,.2)]">
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-white"><div><p className="text-xs font-extrabold uppercase tracking-[.16em] text-white/55">Current view</p><h2 className="mt-1 text-lg font-extrabold">{filter === "ALL" ? "All sales territories" : `${filter}’s territory`}</h2></div><span className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold">{visibleFeatures.length} mapped ZIPs</span></div>
-        <svg viewBox={bounds(visibleFeatures)} className="block aspect-[4/5] w-full bg-[radial-gradient(circle_at_center,#1b4d61,#102d3d_70%)] sm:aspect-[16/11]" role="img" aria-label={`${filter} sales territory map`}>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-3"><span className="text-sm font-semibold text-white/75">I-465 · I-70 · I-65 · I-74 · I-69</span><button type="button" aria-pressed={showHighways} onClick={() => setShowHighways(value => !value)} className={`min-h-11 rounded-xl border px-4 py-2 text-sm font-bold transition ${showHighways ? "border-[#efe1b9]/60 bg-[#efe1b9]/15 text-[#fff2ce]" : "border-white/20 text-white/70 hover:bg-white/10"}`}>{showHighways ? "Hide highways" : "Show highways"}</button></div>
+        <svg viewBox={viewBox} className="block aspect-[4/5] w-full bg-[radial-gradient(circle_at_center,#1b4d61,#102d3d_70%)] sm:aspect-[16/11]" role="img" aria-label={`${filter} sales territory map`}>
           <defs><pattern id="coverage-gap" patternUnits="userSpaceOnUse" width="12" height="12"><rect width="12" height="12" fill="#566776" /><path d="M0 0L12 12M-3 9L3 15M9 -3L15 3" stroke="#cbd5e1" strokeWidth="2" /></pattern></defs>
           {territoryData.coverageGaps.map((gap, index) => <path key={index} d={featurePath(gap as { geometry: Geometry })} fill="url(#coverage-gap)" stroke="#cbd5e1" strokeWidth="1" vectorEffect="non-scaling-stroke"><title>{gap.properties.label}</title></path>)}
           {features.map((feature) => { const rep = overrides[feature.properties.zip] ?? feature.properties.rep; const active = selectedZip === feature.properties.zip; return <path key={feature.properties.zip} d={featurePath(feature)} fill={colors[rep]} fillRule="evenodd" fillOpacity={active ? 1 : filter === "ALL" || filter === rep ? .82 : rep === "Unassigned" ? .7 : .16} stroke={active ? "#ffffff" : "#d9f5f7"} strokeWidth={active ? 3.5 : 1.1} vectorEffect="non-scaling-stroke" role="button" tabIndex={0} aria-label={`${feature.properties.zip} ${feature.properties.city}, ${rep}`} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); choose(feature.properties); } }} className="cursor-pointer transition-opacity hover:opacity-100 focus:outline-none focus:stroke-white" onClick={() => choose({ ...feature.properties, rep })}><title>{feature.properties.zip} · {feature.properties.city} · {rep}</title></path>; })}
+          {showHighways && <InterstateOverlay viewBox={viewBox} />}
+          {selectedZip && features.filter(feature => feature.properties.zip === selectedZip).map(feature => <path key={`selected-${selectedZip}`} d={featurePath(feature)} fill="none" stroke="white" strokeWidth="3.5" vectorEffect="non-scaling-stroke" pointerEvents="none" aria-hidden="true" />)}
         </svg>
-        <p className="border-t border-white/10 px-5 py-3 text-sm leading-6 text-white/75">Hatched areas near Camp Atterbury have no ZIP boundary in the source data. Gray ZIPs await an admin assignment.</p>
+        <p className="border-t border-white/10 px-5 py-3 text-sm leading-6 text-white/75">Hatched areas near Camp Atterbury have no ZIP boundary in the source data. Gray ZIPs await an admin assignment. Highway lines are geographic landmarks.</p>
         <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-white/10 px-5 py-4">{([...REPS, "Unassigned"] as const).map((rep) => <span key={rep} className="flex items-center gap-2 text-xs font-bold text-white/75"><span className="h-2.5 w-2.5 rounded-full" style={{ background: colors[rep] }} />{rep}</span>)}</div>
+        <p className="px-5 pb-4 text-xs text-white/60">Highways: <a href="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation_LargeScale/MapServer/0" target="_blank" rel="noreferrer" className="underline underline-offset-2">U.S. Census Bureau, January 2026</a>.</p>
       </section>
 
       <aside className="space-y-5 lg:sticky lg:top-5">

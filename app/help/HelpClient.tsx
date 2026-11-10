@@ -105,7 +105,7 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
           </GuideSection>
 
           <GuideSection title="Territory map">
-            <p>Open <strong className="text-[#102d3d]">Territory Map</strong> to see the current sales assignments from the November 10 territory sheet. Choose ALL, Adam, Brad, Dawn, Jon, or Shawn; the map automatically frames that rep’s complete territory, so no manual zooming or scanning is required.</p>
+            <p>Open <strong className="text-[#102d3d]">Territory Map</strong> to see the current sales assignments from the November 10 territory sheet. Choose ALL, Adam, Brad, Dawn, Jon, or Shawn; the map automatically frames that rep’s complete territory, so no manual zooming or scanning is required. I-465, I-70, I-65, I-74, and I-69 appear as thin lines with interstate shields to help you orient yourself. Use Hide highways for a ZIP-only view; the lines do not block selecting a ZIP.</p>
             <Steps>
               <li>Choose a rep or search by ZIP, city, county, or rep name.</li>
               <li>Tap a colored ZIP to see its owner and location details.</li>
