@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 import BrandLockup from "@/components/BrandLockup";
 
-type IconName = "car" | "truck" | "dollar" | "clock" | "compass" | "map" | "books" | "search" | "help" | "settings";
+type IconName = "car" | "truck" | "dollar" | "clock" | "compass" | "map" | "watch" | "books" | "search" | "help" | "settings";
 
 function AppIcon({ name }: { name: IconName }) {
   const paths: Record<IconName, ReactNode> = {
@@ -15,6 +15,7 @@ function AppIcon({ name }: { name: IconName }) {
     clock: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,
     compass: <><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></>,
     map: <><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15M15 6v15"/><circle cx="15" cy="11" r="2"/></>,
+    watch: <><path d="M4 8h5v11H3L4 8Zm11 0h5l1 11h-6V8ZM9 10h6M7 8V5h2m6 3V5h2"/><path d="M3 15h6m6 0h6"/></>,
     books: <><path d="M5 4h4v16H5zM10 4h4v16h-4zM15 5l3-.8L21 19l-3 .8z"/></>,
     search: <><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></>,
     help: <><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.3 2.2c-.8.4-1.1.9-1.1 1.8M12 17h.01"/></>,
@@ -42,7 +43,7 @@ export default function HomeClient({ isAdmin }: { isAdmin: boolean }) {
 
   return <main className="app-shell"><div className="mx-auto w-full max-w-2xl"><div className="home-brand-row mb-11 flex justify-center"><BrandLockup /></div><div className="space-y-10">
     <MenuGroup title="Create a quote"><MenuCard href="/fast-quote-parcel" title="Parcel quote" description="Car, small truck, and Sprinter estimates." icon={<AppIcon name="car" />} tone="teal" /><MenuCard href="/fast-quote-commercial" title="Commercial quote" description="Dock truck, flatbed, and semi estimates." icon={<AppIcon name="truck" />} tone="teal" /><MenuCard href="/detailed-quote" title="Detailed quote" description="Full shipment details and accessorials." icon={<AppIcon name="dollar" />} tone="navy" /><MenuCard href="/dedicated-quote" title="Dedicated quote" description="Hourly equipment with minimums and fuel." icon={<AppIcon name="clock" />} tone="navy" /></MenuGroup>
-    <MenuGroup title="Plan & reference"><MenuCard href="/territory-map" title="Territory map" description="See ZIP ownership and five local prospects." icon={<AppIcon name="map" />} tone="soft" badge="NEW" /><MenuCard href="/routing-guide" title="Routing guide" description="Build and work optimized prospect routes." icon={<AppIcon name="compass" />} /><MenuCard href="/quote-archive" title="Quote archive" description="Find previously saved calculations." icon={<AppIcon name="books" />} /><MenuCard href="/sales-reference" title="Quick reference" description="Approved services, equipment, and sales guidance." icon={<AppIcon name="search" />} /><MenuCard href="/help" title="Help center" description="Learn the workflows, rules, and assumptions." icon={<AppIcon name="help" />} /></MenuGroup>
+    <MenuGroup title="Plan & reference"><MenuCard href="/territory-map" title="Territory map" description="See ZIP ownership and researched prospect ideas." icon={<AppIcon name="map" />} tone="soft" badge="NEW" /><MenuCard href="/prospect-watch" title="Prospect watch" description="Explore hiring activity and delivery opportunities." icon={<AppIcon name="watch" />} tone="soft" badge="NEW" /><MenuCard href="/routing-guide" title="Routing guide" description="Build and work optimized prospect routes." icon={<AppIcon name="compass" />} /><MenuCard href="/quote-archive" title="Quote archive" description="Find previously saved calculations." icon={<AppIcon name="books" />} /><MenuCard href="/sales-reference" title="Quick reference" description="Approved services, equipment, and sales guidance." icon={<AppIcon name="search" />} /><MenuCard href="/help" title="Help center" description="Learn the workflows, rules, and assumptions." icon={<AppIcon name="help" />} /></MenuGroup>
     {isAdmin && <MenuGroup title="Administration"><MenuCard href="/admin" title="Pricing settings" description="Publish shared rates and manage pricing rules." icon={<AppIcon name="settings" />} tone="soft" /></MenuGroup>}
   </div><footer className="mt-12 flex items-end justify-between gap-5 border-t border-slate-200 pt-6 text-xs leading-5 text-slate-500"><div><p>Feedback or issues</p><a className="block font-bold text-[#00798d]" href="mailto:ahartshorn@nowcourier.com">ahartshorn@nowcourier.com</a><a className="block" href="tel:+13172703077">(317) 270-3077</a></div><button onClick={logout} className="shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 font-bold tracking-wide text-slate-600 shadow-sm hover:border-[#8fc6cf] hover:text-[#00798d]">Log out</button></footer></div></main>;
 }

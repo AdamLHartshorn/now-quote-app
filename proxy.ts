@@ -30,6 +30,7 @@ export const config = {
     "/quote-archive",
     "/sales-reference",
     "/territory-map",
+    "/prospect-watch/:path*",
     "/admin/:path*",
   ],
 };

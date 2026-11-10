@@ -1,0 +1,1283 @@
+{
+  "reviewedOn": "2026-11-10",
+  "baseline": [
+    {
+      "index": 0,
+      "company": "Madison Millwork",
+      "sourceUrl": "https://www.ziprecruiter.com/job-redirect?match_token=Cp8BChZQdHdVQUZUcXhQdGFpckstQTZTdEt3EiQwMWExNWE3YS03MzI4LTcwNTUtODQxMy04ODY1Y2VlNmI2YWMaW0FBSHI2eWJXenVudk1ES1hKWlBURzVlQWtfNzRLM2N1a09iWjh1eEdHNEhFc19nY3VpdlFjRUlBX2hid05uMUlneFRVZ2s4MVBhS1BISDhFQXZ6d0NpZ1p5WUEg5a0FEAEY5a0F&server_redirect=true&tsid=100000600&impression_lot_id=mcp-1792519336439-hdk9sb0",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 1,
+      "company": "Ridge NAPA Auto Parts",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=12b6f1881e86f1ed",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 2,
+      "company": "Packaging Corporation of America",
+      "sourceUrl": "https://www.ziprecruiter.com/job-redirect?match_token=Cp8BChZoWDUyWTB5cVRCNmxuMEZQbEFpbEp3EiQwMWExNWE3YS03NWZkLTdjYTUtODI0ZC1iZTg0Y2E1YTEzYjQaW0FBRm1adUswQzhGYTNSc2kwUV9MMTVfbS1WRUxhODdHeUIyeF9ZelFLc1p0VWJxWVFUNWtoblZ1Q3hVU0lOSS1hcmdXakI4V1ZIUGVtLTJpSlhSQkdzTnVJWVkg5a0FEAEY5a0F&server_redirect=true&tsid=100000600&impression_lot_id=mcp-1792519337218-8i9ul08",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 3,
+      "company": "US Foods",
+      "sourceUrl": "https://to.indeed.com/aab8pbz84zgb",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 4,
+      "company": "Martin Supply (Martin Incorporated)",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=5cd2df6a8a65b631",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 5,
+      "company": "Lipari Foods",
+      "sourceUrl": "https://to.indeed.com/aazyfsg8zcy4",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 6,
+      "company": "Gillman Home Center",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/class-b-cdl-driver-at-gillman-home-center-4450499912",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "index": 7,
+      "company": "Quality Custom Distribution",
+      "sourceUrl": "https://careers.goldenstatefoods.com/jobs/18152832-local-class-a-cdl-driver",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 8,
+      "company": "365 Equipment & Supply / Pepper Construction",
+      "sourceUrl": "https://www.metaintro.com/job/delivery-driver-full-time-at-pepper-construction-3772287f-3c18-5e9b-85f5-a46928758e59",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "index": 9,
+      "company": "Best-One Tire & Service \u2014 Post Road",
+      "sourceUrl": "https://recruiting.paylocity.com/recruiting/jobs/All/ffe6b68a-10ca-4e20-aae7-e20f8c0c7ca5/BEST-ONE-TIRE-SERVICE",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 10,
+      "company": "Bunzl",
+      "sourceUrl": "https://click.appcast.io/t/sjgaIAZPUaweR9zVC2GtMe_DOV8aoMCQnPe1W0s4gECyV886lyo4P1NFKM56_pky?sar_id=2aws563f&jpos=12",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 11,
+      "company": "Cencora",
+      "sourceUrl": "https://to.indeed.com/aats66sp9wm8",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 12,
+      "company": "Culligan Ultrapure",
+      "sourceUrl": "https://www.metaintro.com/job/route-driver-at-culligan-ultrapure-d3f148e0-9b75-5daa-bd83-a152c69103bc",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "index": 13,
+      "company": "Gordon Food Service",
+      "sourceUrl": "https://gfs.wd5.myworkdayjobs.com/en-US/usjobs-gen-gfs/job/Indianapolis-Indiana/CDL-A--Delivery-Driver---Indianapolis--IN_R-53654",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 14,
+      "company": "Hoosier Wholesale",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=5dae0c15133bbd5c",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 15,
+      "company": "K&M Tire",
+      "sourceUrl": "https://www.metaintro.com/job/route-driver-at-k-and-m-tire-f78772ea-a3ae-5358-bdd8-d1e4862a1288",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "index": 16,
+      "company": "Keurig Dr Pepper",
+      "sourceUrl": "https://to.indeed.com/aasw7wmp2gh2",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 17,
+      "company": "McLane",
+      "sourceUrl": "https://jobs.joinmclane.com/job/cdl-a-delivery-truck-driver/indianapolis-in/JR109246/",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 18,
+      "company": "Performance Foodservice",
+      "sourceUrl": "https://jobs.performancefoodservice.com/job/cdl-a-delivery-driver/indianapolis-in/155171BR/",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 19,
+      "company": "PFG Customized",
+      "sourceUrl": "https://jobs.performancefoodservice.com/job/cdl-class-a-delivery-truck-driver/indianapolis-in/155363BR/",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 20,
+      "company": "Stone Center / Heritage Landscape Supply",
+      "sourceUrl": "https://click.appcast.io/t/fUaFQiJ9vG2k12IbpStj52pIJQaKJo0hQ_7fIlk3eqN2UKnt0Crx9J4ku9X6YYYP?sar_id=2aws563f&jpos=0",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 21,
+      "company": "Suvie",
+      "sourceUrl": "https://www.ziprecruiter.com/job-redirect?match_token=Cp8BChZDSFFlZ1VhZlRpRDgxOFJIVjFGR2FREiQwMWExNWE3YS1jZWMxLTc2YzQtYjY1NC02N2RmMWNlMWM3YTkaW0FBR0sxaFJtWjFnLVRpWko4U0Y1bkVVNjBZSHZSUEZ0VEk3WlRhQVpGMDhYQVdKbTExQnNoajhlRHZzdjZfUHFabENwaHhUM0l5YjZKaUdzcVVVZktZa0VMOUUg5a0FEAEY5a0F&server_redirect=true&tsid=100000600&impression_lot_id=mcp-1792519359943-p6zrs8w",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 22,
+      "company": "Sysco Indianapolis",
+      "sourceUrl": "https://careers.sysco.com/en/job/-/-/1105/97807754608?p_sid=leB5aWb&p_uid=4qshQDxwZX&source=rd_resumelibrary_pj&ss=paid",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 404: Not Found"
+    },
+    {
+      "index": 23,
+      "company": "Triton Stone",
+      "sourceUrl": "https://to.indeed.com/aawj4gyv7vph",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 24,
+      "company": "PTSolutions",
+      "sourceUrl": "https://www.jobsparx.com/Job/B14598461/Ptsolutions-Delivery-Driver-Indianapolis-IN",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 25,
+      "company": "Fenix Parts \u2013 Indianapolis",
+      "sourceUrl": "https://www.ziprecruiter.com/c/Fenix-Parts/Job/Delivery-Driver-No-Weekends/-in-Indianapolis%2CIN?jid=061d01ad8becdb5e",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 26,
+      "company": "Commercial Food Systems, Inc.",
+      "sourceUrl": "https://www.jobsparx.com/Job/B16129452/Commercial-Food-Systems-Inc-Delivery-Driver-Warehouse-Non-Cdl-5am-Start-No-Weekends-Indianapolis-IN",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 27,
+      "company": "TBA & Oil Warehouse \u2013 Indianapolis",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=d5186bdecfcbcb68",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 28,
+      "company": "Caruso USA",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=8653fd8688387f0a",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 29,
+      "company": "Ferguson Enterprises LLC",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=35c90b477338747e",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 30,
+      "company": "Team Allied Distribution",
+      "sourceUrl": "https://www.jobsparx.com/Job/B15792300/Team-Allied-Distribution-Delivery-Driver-Indianapolis-IN",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 31,
+      "company": "Estes Design & Manufacturing",
+      "sourceUrl": "https://www.jobsparx.com/Job/B16215888/Estes-Design-Lastmile-Manufacturing-Delivery-Driver-Forhire-Endorsed-Indianapolis-IN",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 32,
+      "company": "H.T. Hackney Company",
+      "sourceUrl": "https://www.monster.com/job-openings/driver-cdl-a-indianapolis-in--e5e8e2c1-7561-4798-82e4-d8efcb4db08a",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: HTTP Forbidden"
+    },
+    {
+      "index": 33,
+      "company": "Harrington Industrial Plastics",
+      "sourceUrl": "https://www.indeed.com/jobs?jnt=Warehouse%2FDriver&l=Indianapolis%2C+in&q=Warehouse%2FDriver",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 34,
+      "company": "Empire Auto Parts LLC",
+      "sourceUrl": "https://www.jobsparx.com/Job/B14602600/Empire-Auto-Parts-Llc-Delivery-Driver-Indianapolis-IN",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 35,
+      "company": "Pep Boys \u2014 Distribution/Hub",
+      "sourceUrl": "https://www.ziprecruiter.com/c/Pep-Boys/Job/Delivery-Driver-Box-Truck/-in-Indianapolis%2CIN?jid=c99f89a4b012db00",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 36,
+      "company": "Style Crest Enterprises",
+      "sourceUrl": "https://www.jobsparx.com/Job/B15095801/Style-Crest-Enterprises-Inc-Delivery-Driver-Indianapolis-IN",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 37,
+      "company": "Tynan Equipment Company",
+      "sourceUrl": "https://www.career.com/job/tynan-equipment-company/part-time-cdl-a-delivery-truck-driver/j202607200041400534400",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 38,
+      "company": "Gordon Food Service Store \u2013 NE Indianapolis",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=f8244ee6a14d6453",
+      "checkedOn": "2026-11-10",
+      "decision": "published",
+      "profileId": "gfs-masters",
+      "evidenceUrl": "https://gfs.wd5.myworkdayjobs.com/usjobs-gen-gfs/job/Indianapolis-Indiana/Part-Time-Van-Delivery-Driver_R-53628"
+    },
+    {
+      "index": 39,
+      "company": "Hoosier Wholesale Distributor",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=5dae0c15133bbd5c",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 40,
+      "company": "Hoosier Wholesale Distributor",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=5dae0c15133bbd5c",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 41,
+      "company": "618 Cabinetry",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=41c2f5351fa64255",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 42,
+      "company": "A Classic Party Rental",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=9bcb4a1b8b961bd4",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 43,
+      "company": "Baker Distributing",
+      "sourceUrl": "https://bakerdistributing.applytojob.com/apply",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 44,
+      "company": "EquipmentShare",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=fbe4a8637aa41f91",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 45,
+      "company": "Woody Warehouse Nursery, Inc.",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=b733fda66d411365",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 46,
+      "company": "Klosterman Baking Company",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/transport-driver-at-klosterman-baking-company-4466893142",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 47,
+      "company": "Cordova Food Distributors",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=1630681c742351a2",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 48,
+      "company": "Kittle's Home Furnishings",
+      "sourceUrl": "https://www.jobsparx.com/Job/B15524885/Kittles-Home-Furnishings-Center-Inc-Delivery-Driver-Non-Cdl-Noblesville-IN",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 49,
+      "company": "Core-Mark (PFG)",
+      "sourceUrl": "https://jobs.performancefoodservice.com/job/class-a-delivery-driver/plainfield-in/149212BR/",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 50,
+      "company": "Midland Paper, Packaging and Supplies",
+      "sourceUrl": "https://to.indeed.com/aa6y6ngbdx2w",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 51,
+      "company": "MSI (M S International)",
+      "sourceUrl": "https://www.ziprecruiter.com/job-redirect?match_token=Cp8BChZDeWNiQUM2MzI4UHlUaEc4Uk9qUExnEiQwMWExNWE3YS1kMjAyLTdkNTktODU0MC0wMmE2Yzk4ZmU2NDAaW0FBRTF4VTdPNGZpSWQzNmx1WEZjYmNUbENiTmdWU3d5RVY4NndtRE96QXVmRGRGZ1pRLXd0TjBaNVVsZGtNNEdIUm14eXd4amlUOTFZTndlY25XNWxUUTVtOVEg5a0FEAEY5a0F&server_redirect=true&tsid=100000600&impression_lot_id=mcp-1792519360679-u6u0h9q",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 52,
+      "company": "Performance Foodservice",
+      "sourceUrl": "https://jobs.performancefoodservice.com/job/class-a-delivery-truck-driver/plainfield-in/155693BR/",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 53,
+      "company": "MYGRANT GLASS COMPANY INC",
+      "sourceUrl": "https://www.indeed.com/cmp/Mygrant-Glass-1/locations/IN/Plainfield",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 54,
+      "company": "Gillman Home Center \u2014 Seymour",
+      "sourceUrl": "https://gillmanhomecenter.applytojob.com/apply/rDtPgf9uKD/For-Hire-Delivery-Driver",
+      "checkedOn": "2026-11-10",
+      "decision": "published",
+      "profileId": "gillman-seymour",
+      "evidenceUrl": "https://gillmanhomecenter.applytojob.com/apply/rDtPgf9uKD/For-Hire-Delivery-Driver"
+    },
+    {
+      "index": 55,
+      "company": "Hubler Honda",
+      "sourceUrl": "https://www.indeed.com/cmp/Hubler-Honda/jobs",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 56,
+      "company": "Sunbelt Rentals",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=97ae8ab7946e9090",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 57,
+      "company": "Chadwell Supply",
+      "sourceUrl": "https://chadwellsupply.applytojob.com/apply/jobs/details/eCNw1Wrouz",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 58,
+      "company": "Airgas \u2014 Columbus",
+      "sourceUrl": "https://to.indeed.com/aa77rh96x8gy",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 59,
+      "company": "Agiliti",
+      "sourceUrl": "https://careers.agilitihealth.com/us/en/job/JR44131/Medical-Equipment-Service-and-Delivery-Driver",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 60,
+      "company": "Airgas \u2014 dry ice",
+      "sourceUrl": "https://to.indeed.com/aa4vycrgrknr",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 61,
+      "company": "AutoZone \u2013 Indianapolis Hub",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/hub-driver-%E2%80%93-part-time-at-autozone-4439873511",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 62,
+      "company": "Closed Loop Recycling LLC",
+      "sourceUrl": "https://www.ziprecruiter.com/job-redirect?match_token=CpwBChZBbEhYLUdCa1RpQXVBTjBIMV9oSENREiQwMWExNWE3YS1jZWMxLTc2YzEtYjBkMS00NjBhOGIxNmQyM2IaWEFBRWJLbThBR1BEMkU0WHJDUmF2ZDVtZ0VuVmp4c05pNFRfSHF3Q1JEZDZvcXVVSDRKa194alNIaXlCdXNlbEdJVVJoY3VxWGw3V2Zyb0ZEQV91QnAwNG8g5a0FEAEY5a0F&server_redirect=true&tsid=100000600&impression_lot_id=mcp-1792519359943-p6zrs8w",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 63,
+      "company": "E-Tank",
+      "sourceUrl": "https://to.indeed.com/aavq7ssq68xv",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 64,
+      "company": "Iron Mountain",
+      "sourceUrl": "https://www.ziprecruiter.com/job-redirect?match_token=CpQBChZ0d0hXRmc0Y3lVampCN0JqVkU3cEhREiQwMWExNWE3YS1jZWMxLTc2YmMtOWNjYi1hODc1MzRiMzMzNzIaUEFBRVhDUndVQ0xCdW1oYnVxNHg1Vzg0d3RaODVnWE1saFFwcWdSRzU4SGNieWU3bkU2X3pYNFF4bFAtMUlLSm8ta1RmT3YwT2N5akhnOWpFIOWtBRABGOWtBQ%3D%3D&server_redirect=true&tsid=100000600&impression_lot_id=mcp-1792519359943-p6zrs8w",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 65,
+      "company": "McKesson",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/delivery-professional-parcel-van-at-mckesson-4472036917",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 66,
+      "company": "Pure Edible Oils",
+      "sourceUrl": "https://www.ziprecruiter.com/job-redirect?match_token=Cp8BChZhTjNVQ3gyNG83YV9XMVYxZG9OZzl3EiQwMWExNWE3YS1jZWMxLTc2YWItOWY1ZC03N2RlYjBkODZkMDMaW0FBSDlPcDVENURTQnhyamMxTF9mdEpGS3B4LTdrWXJyUVE1aElOOWk0VVJmcXhCaGkzb01URWcxZXNUQzhETUpWZ2ZWX19mTk1mbGJRdXZlWTlpdGhXbEpjWm8g5a0FEAEY5a0F&server_redirect=true&tsid=100000600&impression_lot_id=mcp-1792519359943-p6zrs8w",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 67,
+      "company": "Sherwin-Williams",
+      "sourceUrl": "https://click.appcast.io/t/jOxzuvkc31smH-mpp1MF6mOCWRryzUfatSEXPTEUAKoXUMq_eHQbk7kUJBmFQlmn?sar_id=2aws56zx&jpos=12",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 68,
+      "company": "Rotech Healthcare",
+      "sourceUrl": "https://diversityjobs.com/career/18579341/Local-Medical-Equipment-Delivery-Driver-Temp-Indiana-Indianapolis",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 69,
+      "company": "Caruso USA / Caruso Logistics",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=8653fd8688387f0a",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 70,
+      "company": "Quipt Home Medical",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=79ac38e8168916d5",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 71,
+      "company": "Kirby Risk Electrical Supply \u2014 Lebanon",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=66bc308a6091ba85",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 72,
+      "company": "YELO Dumpsters",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=81b4cd39bacf9035",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 73,
+      "company": "Caldwell\u2019s Inc.",
+      "sourceUrl": "https://www.indeed.com/cmp/Caldwell%27s-Inc-1?campaignid=mobvjcmp&fromjk=0df7c324a1eb3a91",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 74,
+      "company": "Restaurant Technologies",
+      "sourceUrl": "https://to.indeed.com/aamdx69kmp8z",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 75,
+      "company": "Performance Foodservice Ohio \u2014 separate requisition",
+      "sourceUrl": "https://jobs.performancefoodservice.com/job/cdl-class-a-delivery-truck-driver/plainfield-in/155602BR/",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 76,
+      "company": "ChemStation of Indiana",
+      "sourceUrl": "https://to.indeed.com/aanzllkjqqy8",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 77,
+      "company": "Safety-Kleen",
+      "sourceUrl": "https://to.indeed.com/aas8fz4mxcx8",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 78,
+      "company": "Key Remnant Delivery",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=ddd46c51d3331206",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 79,
+      "company": "X M Logistics LLC",
+      "sourceUrl": "https://www.jobsparx.com/Job/B15543793/X-M-Logistics-Llc-Delivery-Driver-Greenwood-IN",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 80,
+      "company": "American Welding & Gas",
+      "sourceUrl": "https://to.indeed.com/aa6sjmzxbqgy",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 81,
+      "company": "CC Inc. Concrete & Excavation Solutions",
+      "sourceUrl": "https://to.indeed.com/aahsjlc2wgw7",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 82,
+      "company": "Republic Services",
+      "sourceUrl": "https://click.appcast.io/t/HY9hwnoDWn-YvjdtjSq-kf0Nrn27Y7zT8JZLMpIpEs_TcmKTKkLK7AOIS_-MLG6d?sar_id=2aws563f&jpos=3",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 83,
+      "company": "Tank Traders",
+      "sourceUrl": "https://to.indeed.com/aaqp8689mpzc",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 84,
+      "company": "The Drainman Inc.",
+      "sourceUrl": "https://www.ziprecruiter.com/job-redirect?match_token=CpwBChZIaV9DQXA4MDJOMWRpekdtb0tYWHhBEiQwMWExNWE3YS1jODZkLTc4MDQtYjEyMC0xMGNhZGI4ZjFhNjYaWEFBR3FQMFZaSzE1SzhPRkZSYkJzSXRhSmdEWHQzaDlqMWM5Q1pWTDNWcVV5U1hXQWtuSDZHWndoMEdiem1CWTZGNWVsMlktbF9KZlZlWU1ITHA5OHRuU3Yg5a0FEAEY5a0F&server_redirect=true&tsid=100000600&impression_lot_id=mcp-1792518833997-gg6ymee",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 85,
+      "company": "WM / Stericycle",
+      "sourceUrl": "https://to.indeed.com/aaymhs8mzfdq",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 86,
+      "company": "Index Distributors LLC",
+      "sourceUrl": "https://www.jobsparx.com/Job/B16222797/Index-Distributors-Llc-Seasonal-Delivery-Driver-Indianapolis-IN",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 87,
+      "company": "T.A. Smith Distributing Inc.",
+      "sourceUrl": null,
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "No specific job URL in original record"
+    },
+    {
+      "index": 88,
+      "company": "Imperial Dade / Imperial Brady",
+      "sourceUrl": "https://www.imperialdade.com/careers",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 89,
+      "company": "O\u2019Reilly Auto Parts / OAP Transportation",
+      "sourceUrl": "https://www.indeed.com/q-cdl-driver-l-brownsburg%2C-in-jobs.html",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 90,
+      "company": "HD Supply",
+      "sourceUrl": "https://hdsupply.jobs/us/en/job/R26002730/Delivery-Driver-NON-CDL",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 410: Gone"
+    },
+    {
+      "index": 91,
+      "company": "Drainage Solutions Inc.",
+      "sourceUrl": "https://drainagesolutionsinc.com/careers.php",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 92,
+      "company": "Fletcher Chrysler Products",
+      "sourceUrl": "https://www.indeed.com/q-parts-driver-l-franklin%2C-in-jobs.html",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 93,
+      "company": "Plumbers Supply Co \u2014 Franklin",
+      "sourceUrl": "https://plumberssupplyco.applytojob.com/apply/bZWO4JWImo/Delivery-Driver",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 410: Gone"
+    },
+    {
+      "index": 94,
+      "company": "S. Abraham & Sons",
+      "sourceUrl": null,
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "No specific job URL in original record"
+    },
+    {
+      "index": 95,
+      "company": "Summers Plumbing Heating & Cooling \u2013 Greenfield",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/hvac-warehouse-parts-specialist-delivery-driver-at-summers-plumbing-heating-cooling-4457561817",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 96,
+      "company": "TBA & Oil Warehouse",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=d5186bdecfcbcb68",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 97,
+      "company": "Gordon Food Service Store \u2013 Greenwood",
+      "sourceUrl": "https://gfs.wd5.myworkdayjobs.com/en-US/usjobs-gen-gfs/job/Greenwood-Indiana/Part-Time-Van-Delivery-Driver_R-57172",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 98,
+      "company": "Tom O'Brien Chrysler Jeep Dodge Ram \u2013 Greenwood",
+      "sourceUrl": "https://www.glassdoor.com/job-listing/parts-driver-tom-o-brien-chrysler-jeep-dodge-ram-JV_IC1145010_KO0%2C12_KE13%2C48.htm?jl=1010174174954",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 99,
+      "company": "Versiti",
+      "sourceUrl": null,
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "No specific job URL in original record"
+    },
+    {
+      "index": 100,
+      "company": "Gordon Food Service Store \u2013 East Indianapolis",
+      "sourceUrl": "https://www.indeed.com/q-delivery-driver-18-l-greenwood%2C-in-jobs.html",
+      "checkedOn": "2026-11-10",
+      "decision": "published",
+      "profileId": "gfs-shadeland",
+      "evidenceUrl": "https://gfs.wd5.myworkdayjobs.com/usjobs-gen-gfs/job/Indianapolis-Indiana/Part-Time-Van-Delivery-Driver_R-55797"
+    },
+    {
+      "index": 101,
+      "company": "Ritz Safety \u2013 Indianapolis",
+      "sourceUrl": "https://www.ritzsafety.com/locations-indianapolis-in",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 102,
+      "company": "Hubler Chevrolet \u2014 South Indianapolis",
+      "sourceUrl": null,
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "No specific job URL in original record"
+    },
+    {
+      "index": 103,
+      "company": "Graybar Electric \u2013 Indianapolis",
+      "sourceUrl": "https://graybar.wd1.myworkdayjobs.com/en-US/Careers/job/Delivery-Driver_R262929-1",
+      "checkedOn": "2026-11-10",
+      "decision": "published",
+      "profileId": "graybar-indianapolis",
+      "evidenceUrl": "https://graybar.wd1.myworkdayjobs.com/Careers/job/Indianapolis-IN/Delivery-Driver_R261110"
+    },
+    {
+      "index": 104,
+      "company": "Weller Truck Parts",
+      "sourceUrl": "https://www.indeed.com/q-part-time-local-driver-l-indianapolis%2C-in-jobs.html",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 105,
+      "company": "ImageFIRST Healthcare Laundry Specialists",
+      "sourceUrl": "https://www.imagefirst.com/careers/",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 106,
+      "company": "Johnson Brothers of Indiana",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=885daab5dfa7d721",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 107,
+      "company": "S.P. Richards",
+      "sourceUrl": "https://www.career.com/job/s-p-richards-company/daytime-driver/j202608190524379063865",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 108,
+      "company": "Lumbermen's",
+      "sourceUrl": "https://job-boards.greenhouse.io/lumbermens/jobs/5380656008",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 109,
+      "company": "Hubler Ford Shelbyville",
+      "sourceUrl": "https://www.indeed.com/q-parts-delivery-driver-l-flat-rock%2C-in-jobs.html",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 110,
+      "company": "Hittle Construction",
+      "sourceUrl": "https://www.indeed.com/q-deliver-driver-l-westfield%2C-in-jobs.html",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 111,
+      "company": "Coca-Cola Consolidated \u2014 Whitestown",
+      "sourceUrl": "https://conaservices.jobs2web.com/consolidated/go/Delivery-%26-Transportation/9125100/25/",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 112,
+      "company": "Gordon Food Service Store \u2013 Anderson",
+      "sourceUrl": "https://www.glassdoor.com/job-listing/full-time-van-delivery-driver-gordon-food-service-service-alimentaire-gordon-JV_IC1144756_KO0%2C29_KE30%2C76.htm?jl=1010221231919",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 113,
+      "company": "Postal Center International",
+      "sourceUrl": "https://www.linkedin.com/jobs/postal-center-international%C2%AE-pci%C2%AE-jobs-worldwide",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "index": 114,
+      "company": "TBA & Oil Warehouse \u2013 Carmel",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=d5186bdecfcbcb68",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 115,
+      "company": "Williams Bros Health Care Pharmacy",
+      "sourceUrl": "https://www.simplyhired.com/job/0plPcFMamC7Z7k0ayuWEuKWJNusZVgeHQZapmjjONEtnlB2upHdcHw",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 116,
+      "company": "Blue Tank and Pump Rental",
+      "sourceUrl": "https://www.career.com/job/blue-tank-and-pump-rental/class-a-cdl-equipment-delivery-truck-driver/j202608021041413062213",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 117,
+      "company": "Greenfield Habitat ReStore",
+      "sourceUrl": null,
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "No specific job URL in original record"
+    },
+    {
+      "index": 118,
+      "company": "US AutoForce / US Venture",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/delivery-driver-non-cdl-at-u-s-autoforce-4473920609",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "index": 119,
+      "company": "Airgas \u2014 industrial route",
+      "sourceUrl": "https://to.indeed.com/aa74bkfry6cd",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 120,
+      "company": "CVS Health / Omnicare \u2013 Indianapolis",
+      "sourceUrl": null,
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "No specific job URL in original record"
+    },
+    {
+      "index": 121,
+      "company": "Plumbers Supply Co \u2014 Indianapolis",
+      "sourceUrl": "https://www.jobtarget.com/jobs/jt-8j2261rtp7/route-driver-indianapolis-indiana",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 404: Not Found"
+    },
+    {
+      "index": 122,
+      "company": "Advance Auto Parts \u2013 Indianapolis",
+      "sourceUrl": null,
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "No specific job URL in original record"
+    },
+    {
+      "index": 123,
+      "company": "Napleton Indianapolis",
+      "sourceUrl": null,
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "No specific job URL in original record"
+    },
+    {
+      "index": 124,
+      "company": "Interstate Utility Trailer \u2013 Indianapolis",
+      "sourceUrl": "https://www.indeed.com/cmp/Interstate-Utility-Trailer",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 125,
+      "company": "NAPA Auto Parts \u2013 NE Indianapolis",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=33cc11e196256a6c",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 126,
+      "company": "P4 Automotive \u2013 Indianapolis",
+      "sourceUrl": "https://p4automotive.hireology.careers/",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 127,
+      "company": "AutoZone \u2013 Martinsville",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/commercial-driver-%E2%80%93-part-time-at-autozone-4461392527",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "index": 128,
+      "company": "O'Reilly Auto Parts \u2013 Pendleton",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/delivery-specialist-at-o-reilly-auto-parts-4456189675",
+      "checkedOn": "2026-11-10",
+      "decision": "published",
+      "profileId": "oreilly-pendleton",
+      "evidenceUrl": "https://www.linkedin.com/jobs/view/delivery-specialist-at-o-reilly-auto-parts-4456189675"
+    },
+    {
+      "index": 129,
+      "company": "AutoZone \u2013 Shelbyville",
+      "sourceUrl": "https://simplify.jobs/p/adc0c9e5-8d98-41d4-b377-5d7b71f26477/Commercial-Driver",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "<urlopen error [SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol version (_ssl.c:1129)>"
+    },
+    {
+      "index": 130,
+      "company": "Indiana Steel Fabricating",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=eede0db3937d83df",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 131,
+      "company": "Jackson Oil & Solvents",
+      "sourceUrl": "https://www.jacksonoilsolvents.com/careers",
+      "checkedOn": "2026-11-10",
+      "decision": "published",
+      "profileId": "jackson-oil",
+      "evidenceUrl": "https://www.jacksonoilsolvents.com/careers"
+    },
+    {
+      "index": 132,
+      "company": "4-Way Production Inc.",
+      "sourceUrl": null,
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "No specific job URL in original record"
+    },
+    {
+      "index": 133,
+      "company": "Shelby Materials",
+      "sourceUrl": "https://www.shelbymaterials.com/career-opportunities/",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 134,
+      "company": "NobleScript Pharmacy & Compounding",
+      "sourceUrl": "https://noblescript.com/careers/",
+      "checkedOn": "2026-11-10",
+      "decision": "published",
+      "profileId": "noblescript",
+      "evidenceUrl": "https://noblescript.com/careers/"
+    },
+    {
+      "index": 135,
+      "company": "Plants Plus Inc.",
+      "sourceUrl": "https://www.careerbuilder.com/job-details/delivery-driver-indianapolis-in--3328f9c6-cf3d-4337-bf32-00cc69bcf2d2",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: HTTP Forbidden"
+    },
+    {
+      "index": 136,
+      "company": "Delaware Valley Floral Group / Marvin\u2019s Wholesale Florist",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/delivery-driver-indianapolis-in-at-delaware-valley-floral-group-4410986784",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 137,
+      "company": "M&K Truck Centers \u2014 Indianapolis South",
+      "sourceUrl": "https://www.simplyhired.com/job/BfesQ6_m7qkmLhqu0dRTxhPYJGeIGF7m207SPNUjh_nKuqOpmNP6Iw",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 138,
+      "company": "McMahon Truck Centers \u2014 Indianapolis",
+      "sourceUrl": "https://www.indeed.com/q-automotive-parts-delivery-l-indianapolis%2C-in-jobs.html",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 139,
+      "company": "American Tire Distributors / Asphalt Buyer II LLC",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=c87fce06eef8f29a",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 140,
+      "company": "PIP / Dynamark \u2014 Indianapolis",
+      "sourceUrl": "https://www.monster.com/job-openings/delivery-driver-no-cdl-indianapolis-in--202ccf0b-fe17-4506-9812-e1b1da6c1c1a",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: HTTP Forbidden"
+    },
+    {
+      "index": 141,
+      "company": "Corken Steel Products / Capitol Supplies \u2014 Downtown Indianapolis",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=f4831c4ff98e6a11",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 142,
+      "company": "Holman Powertrain \u2014 Indianapolis",
+      "sourceUrl": "https://www.breakroom.cc/en-us/jobs/listing/39692519-holman-inc-driver-indianapolis-holman-powertrain",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 143,
+      "company": "Kendall Electric / The Kendall Group \u2014 Indianapolis",
+      "sourceUrl": "https://jobs.localjobnetwork.com/job/detail/87283905/Route-Driver",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 410: Gone"
+    },
+    {
+      "index": 144,
+      "company": "PGW Auto Glass \u2014 Indianapolis",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/delivery-driver-warehouse-at-pgw-auto-glass-4463599739",
+      "checkedOn": "2026-11-10",
+      "decision": "published",
+      "profileId": "pgw-indianapolis",
+      "evidenceUrl": "https://www.linkedin.com/jobs/view/delivery-driver-warehouse-at-pgw-auto-glass-4463599739"
+    },
+    {
+      "index": 145,
+      "company": "Cregger Company \u2014 Indianapolis",
+      "sourceUrl": "https://www.tealhq.com/job/warehouse-delivery-driver_7ea1aa0ce969c70a5eaedef5cdc7cfd5cf863",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 146,
+      "company": "ABC Supply \u2014 Indianapolis Branch 404",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/class-a-cdl-delivery-truck-driver-404-at-abc-supply-co-inc-4431529827",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 147,
+      "company": "Porter Pipe & Supply \u2014 Indianapolis",
+      "sourceUrl": "https://www.indeed.com/q-porter-pipe-%26-supply-l-indianapolis%2C-in-jobs.html?l=indianapolis%2C+in&q=porter+pipe+%26+supply",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 148,
+      "company": "Lee Building Products \u2014 Mooresville",
+      "sourceUrl": "https://www.simplyhired.com/job/RigW2ms3ZxKAKAgB5uFs69LlPSRv4F4tKPXjnMuPMVZ4z10ExH8f3Q",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 149,
+      "company": "Reese Wholesale \u2014 Plainfield",
+      "sourceUrl": "https://www.indeed.com/cmp/Reese-Wholesale/locations/IN/Indianapolis",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 150,
+      "company": "Martin Bros. Distributing \u2014 Plainfield",
+      "sourceUrl": "https://jobs.transforce.com/viewjob/Martin-Bros./Plainfield%2C-IN-CDL-A-Delivery-Driver/Plainfield-IN/PJ/eyJpZCI6IjY1MWJkN2VlLWZjZDUtNDg0Ny04YmU0LTljMDk4MWY1OTUyZSIsInNvdXJjZSI6InBhcnRuZXJlZC1qb2IifQ%3D%3D?fs=35",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 410: Gone"
+    },
+    {
+      "index": 151,
+      "company": "Euro USA \u2014 Indianapolis delivery operation",
+      "sourceUrl": "https://www.tealhq.com/job/delivery-driver_7ea1ae5b71e8ecfb978beed1ef702cd93c4ad",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "index": 152,
+      "company": "AVI Foodsystems \u2014 Indianapolis",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/delivery-route-driver-at-avi-foodsystems-4469779429",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 153,
+      "company": "Velvet Ice Cream \u2014 Indianapolis",
+      "sourceUrl": "https://www.indeed.com/viewjob?jk=61e7c208e1c1c3e5",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "index": 154,
+      "company": "Apria \u2014 Indianapolis",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/patient-service-technician-cmv-delivering-medical-equipment-at-apria-4456774606",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "Saved URL did not establish a currently open, correctly located delivery role in this review; not published."
+    },
+    {
+      "index": 155,
+      "company": "Lincare \u2014 Westfield",
+      "sourceUrl": "https://www.indeed.com/q-medical-delivery-driver-l-beech-grove%2C-in-jobs.html",
+      "checkedOn": "2026-11-10",
+      "decision": "withheld",
+      "reason": "HTTP Error 403: Forbidden"
+    }
+  ],
+  "newProfiles": [
+    "bay-insulation",
+    "builders-firstsource-greenfield",
+    "cornerstone-shelbyville",
+    "valvoline-noblesville",
+    "quench-indianapolis",
+    "gfs-lafayette"
+  ],
+  "additionalExclusions": [
+    {
+      "company": "Optimas Solutions",
+      "reason": "Live job URL redirected to employer search with error=404; cached search copy was not used as current evidence."
+    },
+    {
+      "company": "Best Supply",
+      "reason": "Job board evidence found, but live application status could not be independently confirmed."
+    },
+    {
+      "company": "Team Allied",
+      "reason": "Job board evidence found, but live application status could not be independently confirmed."
+    }
+  ]
+}
