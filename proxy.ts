@@ -29,6 +29,7 @@ export const config = {
     "/routing-guide",
     "/quote-archive",
     "/sales-reference",
+    "/territory-map",
     "/admin/:path*",
   ],
 };

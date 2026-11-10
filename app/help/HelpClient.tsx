@@ -95,6 +95,18 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
             <p>Route mileage and drive time cover the donut shop through the final prospect; they do not include travel to the donut shop or a return trip.</p>
           </GuideSection>
 
+          <GuideSection title="Territory map">
+            <p>Open <strong className="text-[#102d3d]">Territory Map</strong> to see the current sales assignments from the November 10 territory sheet. Choose ALL, Adam, Brad, Dawn, Jon, or Shawn; the map automatically frames that rep’s complete territory, so no manual zooming or scanning is required.</p>
+            <Steps>
+              <li>Choose a rep or search by ZIP, city, county, or rep name.</li>
+              <li>Tap a colored ZIP to see its owner and location details.</li>
+              <li>Review up to five prospect ideas drawn from public business listings inside that ZIP.</li>
+              <li>Verify the business details, then use Open Map, Call, or Website when available.</li>
+            </Steps>
+            <p>Twelve specialty, post-office, or legacy ZIPs in the source list do not have a standard geographic boundary. They remain searchable and assigned, but are not drawn as map shapes.</p>
+            {isAdmin && <p className="rounded-xl bg-[#e8f5f6] p-3 text-sm font-semibold text-[#205563]">Admins can open any ZIP, choose a different rep, and select Save Assignment. The change becomes visible to the whole sales team immediately.</p>}
+          </GuideSection>
+
           <GuideSection title="Quote archive">
             <p>Every calculator can save its current result to the shared Quote Archive. A customer name is required; after a name has been used once, it becomes available in the customer-name suggestions. Select Test Order when practicing.</p>
             <p>The archive is reference-only. Saving a quote does not create Salesforce activity, a pipeline record, ownership, follow-up tasks, or a won/lost status.</p>
