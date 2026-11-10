@@ -152,6 +152,14 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
                 <p>Fuel percentages are entered as percentages in Admin, then stored and calculated as decimals.</p>
               </GuideSection>
 
+              <GuideSection title="Fuel updates from Christina’s email">
+                <p>Use the separately labeled Parcel, Commercial, and Heavy Commercial figures from Christina Pacheco’s fuel surcharge email. Follow the dates above that specific section; the subject and other sections may cover different periods.</p>
+                <p><strong className="text-[#102d3d]">Heavy Commercial already accounts for built-in fuel.</strong> Heavy-commercial base rates include 20% fuel, and Christina’s Heavy Commercial figure gives the additional percentage to apply. If Commercial is 45% and Heavy Commercial is 25%, enter 25% for Heavy Commercial. Field Desk applies that value directly; do not subtract 20% again.</p>
+                <p>Parcel covers Car, Small Truck, and Sprinter; Commercial covers Dock Truck; Heavy Commercial covers flatbeds and semis. Use these categories rather than driver percentages, pump prices, or named-customer rates.</p>
+                <p>A computer-based monitor checks Christina’s email at 9 AM and 5 PM daily. It needs Adam’s computer and Codex running, with Outlook and Field Desk accessible. It applies clear updates only when effective, skips duplicate updates, and flags ambiguous rates or conflicting manual edits. Admins can still publish approved rates manually.</p>
+                <p><strong className="text-[#102d3d]">The effective date is a record, not a timer.</strong> Save &amp; Publish Pricing activates the values immediately. Keep future rates unpublished until their start date.</p>
+              </GuideSection>
+
               <GuideSection title="Current rules and assumptions">
                 {pricing.error && <p className="rounded-xl bg-red-50 p-3 font-semibold text-red-700">Live shared rates could not be loaded. Do not rely on the figures below until the connection is restored.</p>}
                 <ul className="space-y-3">

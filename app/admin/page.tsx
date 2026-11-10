@@ -170,7 +170,12 @@ function AdminPricingForm({
             </label>
           </section>
 
-          <RateSection title="Fuel surcharges" description="Weekly percentages by equipment class">
+          <RateSection title="Fuel surcharges" description="Additional fuel percentages from Christina’s current email schedule">
+            <div className="mb-5 rounded-xl bg-[#edf7f8] p-4 text-base leading-7 text-[#38515e]">
+              <p>Use the email’s separately labeled <strong>Parcel</strong>, <strong>Commercial</strong>, and <strong>Heavy Commercial</strong> figures and the effective dates attached to that section.</p>
+              <p className="mt-3"><strong>Heavy Commercial is already adjusted:</strong> its base rates include 20% fuel. Christina’s Heavy Commercial figure is the additional percentage to enter here. For example, when her email lists Commercial at 45% and Heavy Commercial at 25%, enter 25% for Heavy Commercial. Do not subtract another 20%.</p>
+              <p className="mt-3">These fields apply the entered percentages directly. Save &amp; Publish makes them live immediately; a future effective date does not delay publication.</p>
+            </div>
             <div className="grid gap-4 sm:grid-cols-3">
               {(["parcel", "commercial", "heavyCommercial"] as const).map((key) => (
                 <RateInput
