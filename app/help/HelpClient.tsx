@@ -95,12 +95,12 @@ export default function HelpClient({ isAdmin }: { isAdmin: boolean }) {
             <p>Route mileage and drive time cover the donut shop through the final prospect; they do not include travel to the donut shop or a return trip.</p>
           </GuideSection>
 
-          <GuideSection title="Prospect Watch — Now Hiring">
+          <GuideSection title="Prospect Watch — Hiring & Delivery Signals">
             <p>Open <strong className="text-[#102d3d]">Prospect Watch</strong> next to Territory Map on the home page. Choose ALL, Adam, Brad, Dawn, Jon, or Shawn, then search by company, city, ZIP, or equipment.</p>
-            <p>Each card shows a hiring role and a suggested NOW opportunity. Tap it for the full profile, hiring source, checked date, possible equipment fit, and published business contact information where available.</p>
-            <p><strong className="text-[#102d3d]">New to collection</strong> identifies a location added to this research collection; it does not mean the employer posted the job today. Closed or unconfirmed openings are excluded from the published edition. Openings can close after the checked date.</p>
+            <p>Each card shows a current or earlier hiring role and a suggested NOW opportunity. Use Hiring signal to view all prospects, current openings, or prior hiring signals. Tap it for the full profile, hiring source, checked date, possible equipment fit, and published business contact information where available.</p>
+            <p><strong className="text-[#102d3d]">New to collection</strong> identifies a location added to this research collection; it does not mean the employer posted the job today. Current opening means a live hiring signal was confirmed on the shown date. Prior hiring signal preserves earlier research even when an ad expired or current hiring could not be confirmed. It does not claim the company is still hiring or paid for an ad. Openings can close after review.</p>
             <p>Rep filters follow the current ZIP assignments, including admin changes, when the page loads. ALL also includes market-wide postings without a confirmed branch ZIP and locations outside the assigned ZIP list. Those are not guessed into a rep’s territory.</p>
-            <p>The suggested equipment and sales angle are research-based ideas. Confirm actual freight, handling, service requirements, and outsourcing needs with the business and Operations. Keep account ownership, activity, and follow-up in Salesforce.</p>
+            <p>Earlier prospects remain available; duplicate research entries are consolidated. Profiles show location caveats and limited-fit warnings where needed. The suggested equipment and sales angle are research-based ideas. Confirm actual freight, handling, service requirements, and outsourcing needs with the business and Operations. Keep account ownership, activity, and follow-up in Salesforce.</p>
             <p>Research is refreshed in published editions. Send the next research update to Adam for the planned two-week review; the displayed checked date reflects the evidence review, not an automatic live job feed.</p>
           </GuideSection>
 

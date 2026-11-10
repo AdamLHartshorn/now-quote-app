@@ -22,10 +22,32 @@ test("published records have unique identities, dated evidence, sources, and qua
   for (const p of data.records) {
     assert.match(p.checkedOn, /^\d{4}-\d{2}-\d{2}$/);
     assert.ok(p.zip === null || /^\d{5}$/.test(p.zip));
-    assert.equal(new URL(p.sourceUrl).protocol, "https:");
+    if (p.sourceUrl) assert.equal(new URL(p.sourceUrl).protocol, "https:");
     assert.ok(p.evidence && p.qualification && p.opportunity && p.equipment.length);
   }
   assert.equal(data.records.find(p => p.id === "cornerstone-shelbyville")?.zip, "46176");
   assert.equal(data.records.find(p => p.id === "quench-indianapolis")?.zip, null);
-  assert.ok(data.records.find(p => p.id === "graybar-indianapolis")?.sourceUrl.endsWith("R261110"));
+  assert.ok(data.records.find(p => p.id === "graybar-indianapolis")?.sourceUrl?.endsWith("R261110"));
+});
+
+test("historical signals stay searchable, current filter never claims they are open", () => {
+  const all = data.records.map(p => ({ ...p, owner: "Adam" }));
+  const current = filterProspects(all, "ALL", "", false, "current");
+  const history = filterProspects(all, "ALL", "", false, "historical");
+  assert.ok(current.length > 14);
+  assert.ok(history.length > 100);
+  assert.equal(current.length + history.length, all.length);
+  assert.ok(current.every(p => p.signalType === "current" && p.careerUrl));
+  assert.ok(history.every(p => p.signalRecordedOn && p.reviewNote));
+  assert.ok(filterProspects(all, "Adam", "Agiliti", false, "historical").length);
+  assert.equal(filterProspects(all, "Adam", "Agiliti", false, "current").length, 0);
+});
+test("every original research row is preserved exactly once after consolidation", () => {
+  const indices = data.records.flatMap(p => p.baselineIndices).sort((a,b) => a-b);
+  assert.deepEqual(indices, Array.from({length:156}, (_,i) => i));
+  assert.equal(data.records.filter(p => /Hoosier Wholesale/.test(p.company)).length, 1);
+  for (const p of data.records.filter(p => p.signalType === "historical")) {
+    assert.ok(p.signalRecordedOn && p.signalRecordedOn < p.checkedOn);
+    assert.equal(p.postedOn, null);
+  }
 });
